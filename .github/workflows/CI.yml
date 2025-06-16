@@ -1,0 +1,47 @@
+name: Full Stack CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Run Backend Tests
+        working-directory: ./backend
+        run: |
+          echo "No backend tests yet" # Replace with `npm test` if you have tests
+
+      - name: Start Backend and Test API
+        working-directory: ./backend
+        run: |
+          nohup npm start &  # Start server in background
+          sleep 5            # Wait for server to boot up
+          curl http://localhost:3000/ | grep "Hello from express!"  # Simple check
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run Frontend Build
+        working-directory: ./frontend
+        run: npm run build
