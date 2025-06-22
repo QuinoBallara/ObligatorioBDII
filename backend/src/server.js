@@ -21,6 +21,9 @@ app.get('/api', (req, res) => {
 
 // Auth and unprotected routes go here
 
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+
 const authenticate = require('./middlewares/authenticate');
 app.use(authenticate);
 

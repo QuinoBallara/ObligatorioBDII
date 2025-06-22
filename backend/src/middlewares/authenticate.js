@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { checkTokenBlacklist } = require('../services/authService');
 
 function authenticate(req, res, next) {
     const token = req.headers['authorization']?.split(' ')[1];
@@ -9,6 +10,11 @@ function authenticate(req, res, next) {
     try {
         const secretKey = process.env.JWT_SECRET_KEY;
         const payload = jwt.verify(token, secretKey);
+
+        const isBlacklisted = checkTokenBlacklist(req.db, token);
+        if (isBlacklisted) {
+            return res.status(401).json({ message: 'Token is blacklisted' });
+        }
 
         req.auth = payload;
 
