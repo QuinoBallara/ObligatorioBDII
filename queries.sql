@@ -15,7 +15,7 @@ SELECT
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
-WHERE v.es_observado = FALSE
+WHERE v.es_observado = FALSE AND v.mesa_id = 1 -- Aca va la mesa que se tenga que filtrar
 GROUP BY 
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
@@ -42,7 +42,7 @@ SELECT
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
-WHERE v.es_observado = FALSE
+WHERE v.es_observado = FALSE AND v.mesa_id = 1 -- Aca va la mesa que se tenga que filtrar
 GROUP BY 
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
@@ -77,7 +77,7 @@ LEFT JOIN Ciudadano_ListaPresidencial clp ON lp.lista_id = clp.lista_presidencia
     AND clp.tipo_ciudadano_id = 3 
     AND clp.numero = 1
 LEFT JOIN Ciudadano c ON clp.ciudadano_id = c.id
-WHERE v.es_observado = FALSE
+WHERE v.es_observado = FALSE AND v.mesa_id = 1 -- Aca va la mesa que se tenga que filtrar
 GROUP BY 
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
