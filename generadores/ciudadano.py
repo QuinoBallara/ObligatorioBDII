@@ -54,7 +54,7 @@ for _ in range(1000):
     primer_apellido = random.choice(apellidos)
     segundo_apellido = random.choice(apellidos) if random.random() < 0.7 else "NULL"
     fecha_nacimiento = random_birth_date().isoformat()
-    esta_vivo = random.choice(['TRUE', 'FALSE'])
+    esta_vivo = 'TRUE'
 
     values = (
         id_val,
