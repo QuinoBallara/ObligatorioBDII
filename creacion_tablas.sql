@@ -1,12 +1,12 @@
 -- Ciudadano
 CREATE TABLE Ciudadano (
-    id MEDIUMINT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY,
     primer_nombre VARCHAR(50) NOT NULL,
     segundo_nombre VARCHAR(50),
     primer_apellido VARCHAR(50) NOT NULL,
     segundo_apellido VARCHAR(50),
     fecha_nacimiento DATE NOT NULL,
-    esta_vivo BOOLEAN NOT NULL DEFAULT TRUE
+    esta_vivo BOOLEAN NOT NULL DEFAULT TRUE,
     CHECK (fecha_nacimiento <= CURRENT_DATE),
 );
 
@@ -20,20 +20,20 @@ CREATE TABLE Ciudadano_CredencialCivica (
 
 -- TipoCiudadano
 CREATE TABLE TipoCiudadano (
-    id TINYINT UNSIGNED PRIMARY KEY,
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL UNIQUE
 );
 
 
 -- Departamento
 CREATE TABLE Departamento (
-    id TINYINT UNSIGNED PRIMARY KEY,
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(15) NOT NULL
 );
 
 -- Municipio
 CREATE TABLE Municipio (
-    id SMALLINT UNSIGNED PRIMARY KEY,
+    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     departamento_id TINYINT UNSIGNED NOT NULL,
     FOREIGN KEY (departamento_id) REFERENCES Departamento(id)
@@ -41,7 +41,7 @@ CREATE TABLE Municipio (
 
 -- Zona
 CREATE TABLE Zona (
-    id MEDIUMINT UNSIGNED PRIMARY KEY,
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(250) NOT NULL,
     municipio_id SMALLINT UNSIGNED NOT NULL,
     FOREIGN KEY (municipio_id) REFERENCES Municipio(id)
@@ -49,7 +49,7 @@ CREATE TABLE Zona (
 
 -- Comisaria
 CREATE TABLE Comisaria (
-    id MEDIUMINT UNSIGNED PRIMARY KEY,
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     municipio_id SMALLINT UNSIGNED NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     FOREIGN KEY (municipio_id) REFERENCES Municipio(id)
@@ -57,13 +57,13 @@ CREATE TABLE Comisaria (
 
 -- TipoEstablecimiento
 CREATE TABLE TipoEstablecimiento (
-    id TINYINT UNSIGNED PRIMARY KEY,
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Establecimiento
 CREATE TABLE Establecimiento (
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(250) NOT NULL,
     direccion VARCHAR(300) NOT NULL,
     tipo_establecimiento_id TINYINT UNSIGNED NOT NULL,
@@ -74,21 +74,36 @@ CREATE TABLE Establecimiento (
 
 -- TipoEleccion
 CREATE TABLE TipoEleccion (
-    id TINYINT UNSIGNED PRIMARY KEY,
+    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- Eleccion
 CREATE TABLE Eleccion (
-    id MEDIUMINT UNSIGNED PRIMARY KEY,
+    id MEDIUMINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     fecha DATE NOT NULL,
     tipo_eleccion_id TINYINT UNSIGNED NOT NULL,
     FOREIGN KEY (tipo_eleccion_id) REFERENCES TipoEleccion(id)
 );
 
+-- OrganismoEstatal
+CREATE TABLE OrganismoEstatal (
+    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Ciudadano-OrganismoEstatal
+CREATE TABLE Ciudadano_OrganismoEstatal (
+    ciudadano_id MEDIUMINT UNSIGNED NOT NULL,
+    organismo_estatal_id SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (ciudadano_id, organismo_estatal_id),
+    FOREIGN KEY (ciudadano_id) REFERENCES Ciudadano(id),
+    FOREIGN KEY (organismo_estatal_id) REFERENCES OrganismoEstatal(id)
+);
+
 -- Mesa
 CREATE TABLE Mesa (
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     circuito_id INT UNSIGNED NOT NULL,
     establecimiento_id INT UNSIGNED NOT NULL,
     accessible BOOLEAN NOT NULL DEFAULT FALSE,
@@ -108,7 +123,7 @@ CREATE TABLE Mesa (
 
 -- Policia-Comisaria
 CREATE TABLE Policia_Comisaria (
-    policia_id MEDIUMINT UNSIGNED NOT NULL,
+    policia_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
     comisaria_id MEDIUMINT UNSIGNED NOT NULL,
     PRIMARY KEY (policia_id, comisaria_id),
     FOREIGN KEY (policia_id) REFERENCES Ciudadano(id),
@@ -117,13 +132,13 @@ CREATE TABLE Policia_Comisaria (
 
 -- PartidoPolitico
 CREATE TABLE PartidoPolitico (
-    id SMALLINT UNSIGNED PRIMARY KEY,
+    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Lista
 CREATE TABLE Lista (
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     eleccion_id MEDIUMINT UNSIGNED NOT NULL,
     FOREIGN KEY (eleccion_id) REFERENCES Eleccion(id)
 );
@@ -141,7 +156,7 @@ CREATE TABLE ListaPresidencial (
 
 -- Voto
 CREATE TABLE Voto (
-    id INT UNSIGNED PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     mesa_id INT UNSIGNED NOT NULL,
     lista_id INT UNSIGNED,
     es_observado BOOLEAN NOT NULL DEFAULT FALSE,
@@ -161,20 +176,6 @@ CREATE TABLE Ciudadano_Mesa (
     FOREIGN KEY (mesa_id) REFERENCES Mesa(id)
 );
 
--- OrganismoEstatal
-CREATE TABLE OrganismoEstatal (
-    id SMALLINT UNSIGNED PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL UNIQUE
-);
-
--- Ciudadano-OrganismoEstatal
-CREATE TABLE Ciudadano_OrganismoEstatal (
-    ciudadano_id MEDIUMINT UNSIGNED NOT NULL,
-    organismo_estatal_id SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (ciudadano_id, organismo_estatal_id),
-    FOREIGN KEY (ciudadano_id) REFERENCES Ciudadano(id),
-    FOREIGN KEY (organismo_estatal_id) REFERENCES OrganismoEstatal(id)
-);
 
 -- Ciudadano-ListaPresidencial
 CREATE TABLE Ciudadano_ListaPresidencial (
@@ -190,7 +191,7 @@ CREATE TABLE Ciudadano_ListaPresidencial (
 
 -- Autoridad-PartidoPolitico
 CREATE TABLE Autoridad_PartidoPolitico (
-    id SMALLINT UNSIGNED PRIMARY KEY,
+    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     ciudadano_id MEDIUMINT UNSIGNED NOT NULL,
     partido_politico_id SMALLINT UNSIGNED NOT NULL,
     fecha_inicio DATE NOT NULL,

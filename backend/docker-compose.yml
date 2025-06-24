@@ -12,7 +12,7 @@ services:
       MYSQL_USER: myappuser
       MYSQL_PASSWORD: mypassword
     volumes:
-      - mysql-data:/var/lib/mysql
+      - ./sql-scripts:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
