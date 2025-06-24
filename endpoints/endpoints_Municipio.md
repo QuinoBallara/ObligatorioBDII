@@ -22,29 +22,3 @@ Crea un nuevo municipio.
 }
 ```
 
-## PUT /municipio/{id}
-Actualiza un municipio existente.
-- **Input**: ID del municipio (path parameter) y datos a actualizar
-```json
-{
-    "nombre": string,
-    "departamento_id": integer
-}
-```
-
-## DELETE /municipio/{id}
-Elimina un municipio por su ID.
-- **Input**: ID del municipio (path parameter)
-
-## GET /municipio
-Lista todos los municipios.
-- **Output**: Array de municipios
-```json
-[
-    {
-        "id": integer,
-        "nombre": string,
-        "departamento_id": integer
-    }
-]
-```
