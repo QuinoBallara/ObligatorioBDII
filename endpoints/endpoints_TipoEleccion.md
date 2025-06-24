@@ -21,18 +21,6 @@ Crea un nuevo tipo de elección.
 }
 ```
 
-## PUT /tipoEleccion/{id}
-Actualiza un tipo de elección existente.
-- **Input**: ID del tipo de elección (path parameter) y datos a actualizar
-```json
-{
-    "nombre": string
-}
-```
-
-## DELETE /tipoEleccion/{id}
-Elimina un tipo de elección por su ID.
-- **Input**: ID del tipo de elección (path parameter)
 
 ## GET /tipoEleccion
 Lista todos los tipos de elección.

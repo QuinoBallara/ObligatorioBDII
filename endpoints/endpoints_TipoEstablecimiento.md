@@ -20,19 +20,6 @@ Crea un nuevo tipo de establecimiento.
 }
 ```
 
-## PUT /tipoEstablecimiento/{id}
-Actualiza un tipo de establecimiento existente.
-- **Input**: ID del tipo de establecimiento (path parameter) y datos a actualizar
-```json
-{
-    "nombre": string
-}
-```
-
-## DELETE /tipoEstablecimiento/{id}
-Elimina un tipo de establecimiento por su ID.
-- **Input**: ID del tipo de establecimiento (path parameter)
-
 ## GET /tipoEstablecimiento
 Lista todos los tipos de establecimiento.
 - **Output**: Array de tipos de establecimiento
