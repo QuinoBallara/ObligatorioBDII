@@ -50,6 +50,9 @@ app.use('/api/tipoCiudadano', tipoCiudadanoRoutes);
 const ciudadanoRoutes = require('./routes/ciudadano');
 app.use('/api/ciudadano', ciudadanoRoutes);
 
+const tipoEleccionRoutes = require('./routes/tipoEleccion');
+app.use('/api/tipoEleccion', tipoEleccionRoutes);
+
 
 // Error handling middleware
 
@@ -58,7 +61,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
         error: {
             message: err.message || 'Internal Server Error',
-            status: err.status || 500
+            status: err.status || 400
         }
     });
 });

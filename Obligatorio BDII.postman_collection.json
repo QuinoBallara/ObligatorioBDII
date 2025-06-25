@@ -554,6 +554,35 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "TipoEleccion",
+			"item": [
+				{
+					"name": "Get tipoEleccion by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get tipoEleccion",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Post tipoEleccion",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
