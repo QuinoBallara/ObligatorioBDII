@@ -1,6 +1,6 @@
 const {get, getByID, insert} = require('../services/tipoCiudadanoService');
 
-async function getTipoCiudadanoByID(req, res) {
+async function getTipoCiudadanoByID(req, res, next) {
     const {id} = req.params;
 
     if (!id) {
@@ -37,7 +37,7 @@ async function getTipoCiudadano(req, res, next) {
     }
 }
 
-async function postTipoCiudadano(req, res) {
+async function postTipoCiudadano(req, res, next) {
     const {nombre} = req.body;
 
     if (!nombre) {

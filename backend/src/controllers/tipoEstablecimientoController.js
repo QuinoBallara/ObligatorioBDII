@@ -37,7 +37,7 @@ async function getTipoEstablecimiento(req, res, next) {
     }
 }
 
-async function postTipoEstablecimiento(req, res) {
+async function postTipoEstablecimiento(req, res, next) {
     const {nombre} = req.body;
 
     if (!nombre) {
