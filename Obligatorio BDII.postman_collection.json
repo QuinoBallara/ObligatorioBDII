@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "617ea2ba-d40f-4af9-bb15-e483c4329fef",
+		"_postman_id": "106f7d93-bae1-4e70-b2d1-d0b50cc78988",
 		"name": "Obligatorio BDII",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32819461",
-		"_collection_link": "https://legionarios-del-oeste.postman.co/workspace/Legionarios-del-Oeste-Workspace~9d9adcac-7a3c-4c07-9b72-2d5f449ea12d/collection/32819461-617ea2ba-d40f-4af9-bb15-e483c4329fef?action=share&source=collection_link&creator=32819461"
+		"_exporter_id": "36883163"
 	},
 	"item": [
 		{
@@ -150,6 +149,82 @@
 							],
 							"path": [
 								"au"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Departamento",
+			"item": [
+				{
+					"name": "Get departamento by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZDAyODYyMzYtNDIyMi00ZDViLThiODQtMzg1YjY1ZWMxMGFhIiwiaWF0IjoxNzUwODI4MTIzLCJleHAiOjE3NTA4NzEzMjN9.oZ6-VBwLI8UMqSxgXHPYvtanpyR_j7dz0MR1tDFEKhM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/departamento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post departamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZDAyODYyMzYtNDIyMi00ZDViLThiODQtMzg1YjY1ZWMxMGFhIiwiaWF0IjoxNzUwODI4MTIzLCJleHAiOjE3NTA4NzEzMjN9.oZ6-VBwLI8UMqSxgXHPYvtanpyR_j7dz0MR1tDFEKhM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Montevideo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/departamento/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departamento",
+								""
 							]
 						}
 					},

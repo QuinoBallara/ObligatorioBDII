@@ -38,6 +38,12 @@ app.use(authenticate)
 
 // Protected routes go here
 
+const departamentoRoutes = require('./routes/departamento');
+app.use('/api/departamento', departamentoRoutes);
+
+
+// Error handling middleware
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.status || 500).json({
