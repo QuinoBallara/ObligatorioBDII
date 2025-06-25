@@ -47,6 +47,18 @@ async function postCiudadano(req, res, next) {
         return res.status(400).json({ message: 'ID, Credencial Civica, Primer Nombre, Primer Apellido, and Fecha Nacimiento are required' });
     }
 
+    try{
+        const existingCiudadano = await getByID(id);
+
+        if (existingCiudadano) {
+            return res.status(409).json({ message: 'Ciudadano with this ID already exists' });
+        }
+
+    } catch (error) {
+        console.error('Error checking existing Ciudadano:', error);
+        next(error);
+    }
+
     try {
         const resultsQueryCiudadano = await insert(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo);
     
