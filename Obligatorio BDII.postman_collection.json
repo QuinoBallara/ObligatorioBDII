@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "106f7d93-bae1-4e70-b2d1-d0b50cc78988",
+		"_postman_id": "aca5b772-0b92-4f6c-901e-e063cc67530d",
 		"name": "Obligatorio BDII",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36883163"
+		"_exporter_id": "32810699"
 	},
 	"item": [
 		{
@@ -562,7 +562,10 @@
 					"name": "Get tipoEleccion by id",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -570,7 +573,10 @@
 					"name": "Get tipoEleccion",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -578,9 +584,122 @@
 					"name": "Post tipoEleccion",
 					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PartidoPolitico",
+			"item": [
+				{
+					"name": "Get partidoPolitico by id",
+					"request": {
+						"method": "GET",
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "Get partidoPolitico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/partidoPolitico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"partidoPolitico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post partidoPolitico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Partido Verde Animalista\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/partidoPolitico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"partidoPolitico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Autoridades",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Post Autoridad",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiOThiMGY2OWMtMmY3Yy00Mzk2LWJhNmEtNmI3Zjg4OWUyZDY1IiwiaWF0IjoxNzUwODkxOTI3LCJleHAiOjE3NTA5MzUxMjd9.-hBvNDwFC8kVgLr-pzqUnYsEyExHKTQTPf_ilwZnCxw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
