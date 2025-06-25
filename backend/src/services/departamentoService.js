@@ -12,8 +12,7 @@ async function getDepartamentoByID(id) {
         }
         return null;
     } catch (error) {
-        console.error('Error fetching departamento by ID:', error);
-        next(error);
+        throw error;
     }
 
 }
@@ -27,8 +26,7 @@ async function insertDepartamento(nombre) {
         console.log('Departamento inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
-        console.error('Error inserting departamento:', error);
-        next(error);
+        throw error;
     }
 }
 

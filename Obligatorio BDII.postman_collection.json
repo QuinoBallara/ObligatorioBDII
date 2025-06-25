@@ -246,7 +246,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZDAyODYyMzYtNDIyMi00ZDViLThiODQtMzg1YjY1ZWMxMGFhIiwiaWF0IjoxNzUwODI4MTIzLCJleHAiOjE3NTA4NzEzMjN9.oZ6-VBwLI8UMqSxgXHPYvtanpyR_j7dz0MR1tDFEKhM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
 									"type": "string"
 								}
 							]
@@ -255,10 +255,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\" : \"Montevideo\"\r\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tipoEstablecimiento/:id",
+							"raw": "http://localhost:3000/api/tipoEstablecimiento/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -267,13 +267,7 @@
 							"path": [
 								"api",
 								"tipoEstablecimiento",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
+								"1"
 							]
 						}
 					},
@@ -313,8 +307,39 @@
 				{
 					"name": "Post tipoEstablecimiento",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"UCU :)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tipoEstablecimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoEstablecimiento"
+							]
+						}
 					},
 					"response": []
 				}
@@ -326,24 +351,205 @@
 				{
 					"name": "Get tipoCiudadano by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tipoCiudadano/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoCiudadano",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Get tipoCiudadano",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tipoCiudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoCiudadano"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Post tipoCiudadano",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"Puto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tipoCiudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoCiudadano"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ciudadano",
+			"item": [
+				{
+					"name": "Get ciudadano by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/Ciudadano/7990423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"Ciudadano",
+								"7990423"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ciudadano",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/Ciudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"Ciudadano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post ciudadano",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"7998549\",\r\n    \"primer_nombre\": \"mauro\",\r\n    \"segundo_nombre\": \"mauricio\",\r\n    \"primer_apellido\": \"machado\",\r\n    \"segundo_apellido\": \"machicio\",\r\n    \"fecha_nacimiento\": \"1958-11-29\",\r\n    \"esta_vivo\": true,\r\n    \"credencial_civica\": \"HNF74746\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/Ciudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"Ciudadano"
+							]
+						}
 					},
 					"response": []
 				}

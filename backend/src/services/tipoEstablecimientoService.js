@@ -10,8 +10,7 @@ async function getByID(id) {
         }
         return null;
     } catch (error) {
-        console.error('Error fetching tipo establecimiento by ID:', error);
-        next(error);
+        throw error;
     }
 }
 
@@ -25,8 +24,7 @@ async function get() {
         }
         return null;
     } catch (error) {
-        console.error('Error fetching tipo establecimiento:', error);
-        next(error);
+        throw error;
     }
 }
 
@@ -38,8 +36,7 @@ async function insert(nombre) {
         console.log('TipoEstablecimiento inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
-        console.error('Error inserting tipo establecimiento:', error);
-        next(error);
+        throw error;
     }
 
 }
