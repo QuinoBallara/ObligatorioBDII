@@ -1,6 +1,6 @@
 # TipoEleccion Endpoints
 
-## GET /tipoEleccion/{id}
+## GET /api/tipoEleccion/{id}
 Obtiene un tipo de elección por su ID.
 - **Input**: ID del tipo de elección (path parameter)
 - **Output**: Datos del tipo de elección
@@ -11,7 +11,7 @@ Obtiene un tipo de elección por su ID.
 }
 ```
 
-## POST /tipoEleccion
+## POST /api/tipoEleccion
 Crea un nuevo tipo de elección.
 - **Input**: Datos del tipo de elección
 ```json
@@ -22,7 +22,7 @@ Crea un nuevo tipo de elección.
 ```
 
 
-## GET /tipoEleccion
+## GET /api/tipoEleccion
 Lista todos los tipos de elección.
 - **Output**: Array de tipos de elección
 ```json

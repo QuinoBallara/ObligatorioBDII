@@ -11,7 +11,7 @@ async function getDepartamento(req, res) {
 
     console.log('Results from getDepartamentoByID:', resultsQuery);
 
-    if (resultsQuery.length === 0) {
+    if (!resultsQuery) {
         return res.status(404).json({ message: 'Departamento not found' });
     }
     return res.status(200).json(resultsQuery);

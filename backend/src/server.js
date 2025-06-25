@@ -41,6 +41,9 @@ app.use(authenticate)
 const departamentoRoutes = require('./routes/departamento');
 app.use('/api/departamento', departamentoRoutes);
 
+const tipoEstablecimientoRoutes = require('./routes/tipoEstablecimiento');
+app.use('/api/tipoEstablecimiento', tipoEstablecimientoRoutes);
+
 
 // Error handling middleware
 

@@ -1,6 +1,6 @@
 # Mesa Endpoints
 
-## GET /mesa/:id
+## GET /api/mesa/:id
 Obtiene una mesa por su ID.
 - **Input**: ID de la mesa (path parameter)
 - **Output**: Datos de la mesa
@@ -19,7 +19,7 @@ Obtiene una mesa por su ID.
 }
 ```
 
-## POST /mesa
+## POST /api/mesa
 Crea una nueva mesa.
 - **Input**: Datos de la mesa
 ```json
@@ -37,7 +37,7 @@ Crea una nueva mesa.
 }
 ```
 
-## PATCH /mesa/:id
+## PATCH /api/mesa/:id
 Actualiza si una mesa está abierta o cerrada.
 - **Input**: ID de la mesa (path parameter) y datos a actualizar
 ```json
@@ -46,7 +46,7 @@ Actualiza si una mesa está abierta o cerrada.
 }
 ```
 
-## GET /mesa/:id/ciudadano/:ciudadanoId
+## GET /api/mesa/:id/ciudadano/:ciudadanoId
 Obtiene una asignación de ciudadano a mesa por IDs.
 - **Input**: ID del ciudadano y ID de la mesa (path parameters)
 - **Output**: Datos de la asignación
@@ -58,7 +58,7 @@ Obtiene una asignación de ciudadano a mesa por IDs.
 }
 ```
 
-## POST /mesa/:id/ciudadano
+## POST /api/mesa/:id/ciudadano
 Crea una nueva asignación de ciudadano a mesa.
 - **Input**: Datos de la asignación
 ```json
@@ -69,7 +69,7 @@ Crea una nueva asignación de ciudadano a mesa.
 }
 ```
 
-## PATCH /mesa/:id/ciudadano/:ciudadanoId
+## PATCH /api/mesa/:id/ciudadano/:ciudadanoId
 Actualiza si un ciudadano emitió un voto en una mesa.
 - **Input**: ID del ciudadano y ID de la mesa (path parameters) y datos a actualizar
 ```json
@@ -78,7 +78,7 @@ Actualiza si un ciudadano emitió un voto en una mesa.
 }
 ```
 
-## GET /mesa/:id/ciudadano
+## GET /api/mesa/:id/ciudadano
 Lista todos los ciudadanos asignados a una mesa.
 - **Input**: ID de la mesa (path parameter)
 - **Output**: Array de asignaciones para la mesa
@@ -92,7 +92,7 @@ Lista todos los ciudadanos asignados a una mesa.
 ]
 ```
 
-## GET /mesa/voto/:id
+## GET /api/mesa/voto/:id
 Obtiene un voto por su ID.
 - **Input**: ID del voto (path parameter)
 - **Output**: Datos del voto
@@ -107,7 +107,7 @@ Obtiene un voto por su ID.
 }
 ```
 
-## POST /mesa/voto
+## POST /api/mesa/voto
 Crea un nuevo voto y le asigna al ciudadano que votó en ciudadano_mesa.
 - **Input**: Datos del voto
 ```json
@@ -121,7 +121,7 @@ Crea un nuevo voto y le asigna al ciudadano que votó en ciudadano_mesa.
 }
 ```
 
-## GET /mesa/:id/resultados/lista
+## GET /api/mesa/:id/resultados/lista
 Obtiene los resultados de votos por lista en una mesa.
 - **Input**: ID de la mesa (path parameter)
 - **Output**: Array de resultados por lista
@@ -145,7 +145,7 @@ Obtiene los resultados de votos por lista en una mesa.
 ]
 ```
 
-## GET /mesa/:id/resultados/partido
+## GET /api/mesa/:id/resultados/partido
 Obtiene los resultados de votos por partido en una mesa.
 - **Input**: ID de la mesa (path parameter)
 - **Output**: Array de resultados por partido
@@ -159,7 +159,7 @@ Obtiene los resultados de votos por partido en una mesa.
 ]
 ```
 
-## GET /mesa/:id/resultados/candidato
+## GET /api/mesa/:id/resultados/candidato
 Obtiene los resultados de votos por candidato en una mesa.
 - **Input**: ID de la mesa (path parameter)
 - **Output**: Array de resultados por candidato

@@ -1,6 +1,6 @@
 # Establecimiento Endpoints
 
-## GET /establecimiento/:id
+## GET /api/establecimiento/:id
 Obtiene un establecimiento por su ID.
 - **Input**: ID del establecimiento (path parameter)
 - **Output**: Datos del establecimiento
@@ -13,7 +13,7 @@ Obtiene un establecimiento por su ID.
     "zona_id": integer
 }
 ```
-## POST /establecimiento
+## POST /api/establecimiento
 Crea un nuevo establecimiento.
 - **Input**: Datos del establecimiento
 ```json

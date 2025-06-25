@@ -1,6 +1,6 @@
 # Ciudadano Endpoints
 
-## GET /ciudadano/:id
+## GET /api/ciudadano/:id
 Obtiene un ciudadano por su ID.
 - **Input**: ID del ciudadano (path parameter)
 - **Output**: Datos del ciudadano
@@ -16,7 +16,7 @@ Obtiene un ciudadano por su ID.
     "esta_vivo": boolean
 }
 ```
-## POST /ciudadano
+## POST /api/ciudadano
 Crea un nuevo ciudadano.
 - **Input**: Datos del ciudadano
 ```json

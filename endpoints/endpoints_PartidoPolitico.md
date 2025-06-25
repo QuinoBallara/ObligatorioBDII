@@ -1,6 +1,6 @@
 # Partido Político Endpoints
 
-## GET /partido-politico/:id
+## GET /api/partido-politico/:id
 Obtiene un partido político por su ID.
 - **Input**: ID del partido político (path parameter)
 - **Output**: Datos del partido político
@@ -11,7 +11,7 @@ Obtiene un partido político por su ID.
 }
 ```
 
-## POST /partido-politico
+## POST /api/partido-politico
 Crea un nuevo partido político.
 - **Input**: Datos del partido político
 ```json
@@ -20,7 +20,7 @@ Crea un nuevo partido político.
 }
 ```
 
-## GET /partido-politico
+## GET /api/partido-politico
 Lista todos los partidos políticos.
 - **Output**: Array de partidos políticos
 ```json
@@ -32,7 +32,7 @@ Lista todos los partidos políticos.
 ]
 ```
 
-## POST /partido-politico/:id/autoridad
+## POST /api/partido-politico/:id/autoridad
 Crea una nueva autoridad de partido político.
 - **Input**: Datos de la autoridad
 ```json
@@ -44,7 +44,7 @@ Crea una nueva autoridad de partido político.
 }
 ```
 
-## GET /partido-politico/:id/autoridad
+## GET /api/partido-politico/:id/autoridad
 Obtiene las autoridades de un partido político por su id.
 - **Input**: ID de la autoridad en el partido politico (path parameter)
 - **Output**: Array con los datos de las autoridades del partido político

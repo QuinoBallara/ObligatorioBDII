@@ -1,6 +1,6 @@
 # Zona Endpoints
 
-## GET /zona/{id}
+## GET /api/zona/{id}
 Obtiene una zona por su ID.
 - **Input**: ID de la zona (path parameter)
 - **Output**: Datos de la zona
@@ -12,7 +12,7 @@ Obtiene una zona por su ID.
 }
 ```
 
-## POST /zona
+## POST /api/zona
 Crea una nueva zona.
 - **Input**: Datos de la zona
 ```json

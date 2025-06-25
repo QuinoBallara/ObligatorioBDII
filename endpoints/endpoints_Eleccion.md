@@ -1,6 +1,6 @@
 # Elección Endpoints
 
-## GET /eleccion/:id
+## GET /api/eleccion/:id
 Obtiene una elección por su ID.
 - **Input**: ID de la elección (path parameter)
 - **Output**: Datos de la elección
@@ -12,7 +12,7 @@ Obtiene una elección por su ID.
 }
 ```
 
-## POST /eleccion
+## POST /api/eleccion
 Crea una nueva elección.
 - **Input**: Datos de la elección
 ```json
@@ -23,7 +23,7 @@ Crea una nueva elección.
 }
 ```
 
-## GET /eleccion
+## GET /api/eleccion
 Lista todas las elecciones.
 - **Output**: Array de elecciones
 ```json
