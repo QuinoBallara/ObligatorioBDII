@@ -16,7 +16,6 @@ Crea un nuevo tipo de elección.
 - **Input**: Datos del tipo de elección
 ```json
 {
-    "id": integer,
     "nombre": string
 }
 ```
