@@ -31,10 +31,10 @@ app.get('/api', (req, res) => {
 // Auth and unprotected routes go here
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 const authenticate = require('./middlewares/authenticate');
-app.use(authenticate);
+app.use(authenticate)
 
 // Protected routes go here
 
