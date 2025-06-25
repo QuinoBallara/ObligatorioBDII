@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "617ea2ba-d40f-4af9-bb15-e483c4329fef",
+		"name": "Obligatorio BDII",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32819461",
+		"_collection_link": "https://legionarios-del-oeste.postman.co/workspace/Legionarios-del-Oeste-Workspace~9d9adcac-7a3c-4c07-9b72-2d5f449ea12d/collection/32819461-617ea2ba-d40f-4af9-bb15-e483c4329fef?action=share&source=collection_link&creator=32819461"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login ciudadano by id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1827163\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/ciudadano",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"ciudadano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login ciudadano by credencialCivica",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credencialCivica\": \"HXX06011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/ciudadano",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"ciudadano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login ciudadano by both",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credencialCivica\": \"HXX06011\",\r\n    \"id\": \"1845256\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/ciudadano",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"ciudadano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login presidente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credencialCivica\": \"HXX06011\",\r\n    \"id\": \"1845256\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/presidente",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"presidente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout presi mesa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4NDUyNTYsIm1lc2FJZCI6MiwianRpIjoiMmFiZGE2NzQtZTcyNy00ZWQ4LWJiZmItY2IwMWZkMTc5MWYwIiwiaWF0IjoxNzUwODI2MzY0LCJleHAiOjE3NTA4Njk1NjR9.xk0uuDnnr1kymA0ie-C414-admQvRBBRrmxXb3tXuMc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/au",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"au"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		}
+	]
+}
