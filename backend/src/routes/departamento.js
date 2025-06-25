@@ -6,7 +6,7 @@ const { getDepartamento, postDepartamento } = require('../controllers/departamen
 const router = express.Router();
 
 /**
- * @route POST /api/departamento
+ * @route POST /api/departamento/
  * @desc Create a new departamento
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token> 
@@ -18,7 +18,7 @@ const router = express.Router();
 router.post(
     '/',
     [
-        body('nombre').isString().withMessage('The field "nombre" must be a string.'),
+        body('nombre').isString().withMessage('The field nombre must be a string.'),
     ],
     validateRequest,
     postDepartamento
@@ -39,7 +39,7 @@ router.post(
 router.get(
     '/:id',
     [
-        param('id').isString().withMessage('The field "id" must be an integer.'),
+        param('id').isString().withMessage('The field id must be an integer.'),
     ],
     validateRequest,
     getDepartamento

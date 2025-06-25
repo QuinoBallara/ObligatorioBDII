@@ -1,6 +1,6 @@
 # Comisaria Endpoints
 
-## GET /comisaria/:id
+## GET /api/comisaria/:id
 Obtiene una comisaría por su ID.
 - **Input**: ID de la comisaría (path parameter)
 - **Output**: Datos de la comisaría
@@ -12,7 +12,7 @@ Obtiene una comisaría por su ID.
 }
 ```
 
-## POST /comisaria
+## POST /api/comisaria
 Crea una nueva comisaría.
 - **Input**: Datos de la comisaría
 ```json
@@ -22,7 +22,7 @@ Crea una nueva comisaría.
 }
 ```
 
-## GET /comisaria/:id/policia/:policia_id
+## GET /api/comisaria/:id/policia/:policia_id
 Obtiene una asignación de policía a comisaría por sus IDs.
 - **Input**: ID del policía y ID de la comisaría (path parameters)
 - **Output**: Datos de la asignación
@@ -33,7 +33,7 @@ Obtiene una asignación de policía a comisaría por sus IDs.
 }
 ```
 
-## POST /comisaria/:id/policia
+## POST /api/comisaria/:id/policia
 Crea una nueva asignación de policía a comisaría.
 - **Input**: Datos de la asignación
 ```json

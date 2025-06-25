@@ -1,6 +1,6 @@
 # ListaPresidencial Endpoints
 
-## GET /listapresidencial/:id
+## GET /api/listapresidencial/:id
 Obtiene una lista presidencial por su ID.
 - **Input**: ID de la lista presidencial (path parameter)
 - **Output**: Datos de la lista presidencial
@@ -21,7 +21,7 @@ Obtiene una lista presidencial por su ID.
 }
 ```
 
-## POST /listapresidencial
+## POST /api/listapresidencial
 Crea una nueva lista presidencial, debe también crear su padre en Lista y crear una relación de cada ciudadano con la lista presidencial.
 - **Input**: Datos de la lista presidencial
 ```json
@@ -41,7 +41,7 @@ Crea una nueva lista presidencial, debe también crear su padre en Lista y crear
 }
 ```
 
-## GET /listapresidencial/eleccion/:eleccion_id
+## GET /api/listapresidencial/eleccion/:eleccion_id
 Lista todas las listas presidenciales de una eleccion particular.
 - **Output**: Array de listas presidenciales
 ```json
@@ -62,7 +62,7 @@ Lista todas las listas presidenciales de una eleccion particular.
 ]
 ```
 
-## GET /listapresidencial/eleccion/:eleccionId/partidoPolitico/:partido_id
+## GET /api/listapresidencial/eleccion/:eleccionId/partidoPolitico/:partido_id
 Obtiene todas las listas presidenciales de un partido político específico en una elección específica.
 - **Input**: ID del partido político (path parameter) y ID de la elección (path parameter)
 - **Output**: Array de listas presidenciales pertenecientes al partido

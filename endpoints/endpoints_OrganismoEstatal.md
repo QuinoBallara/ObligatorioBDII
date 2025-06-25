@@ -1,6 +1,6 @@
 # OrganismoEstatal Endpoints
 
-## GET /organismoEstatal/:id
+## GET /api/organismoEstatal/:id
 Obtiene un organismo estatal por su ID.
 - **Input**: ID del organismo (path parameter)
 - **Output**: Datos del organismo
@@ -11,7 +11,7 @@ Obtiene un organismo estatal por su ID.
 }
 ```
 
-## POST /organismoEstatal
+## POST /api/organismoEstatal
 Crea un nuevo organismo estatal.
 - **Input**: Datos del organismo
 ```json
@@ -20,7 +20,7 @@ Crea un nuevo organismo estatal.
 }
 ```
 
-## GET /organismoEstatal/:id/ciudadano/:ciudadanoId
+## GET /api/organismoEstatal/:id/ciudadano/:ciudadanoId
 Obtiene una relación ciudadano-organismo por sus IDs.
 - **Input**: ID del ciudadano y ID del organismo (path parameters)
 - **Output**: Datos de la relación
@@ -31,7 +31,7 @@ Obtiene una relación ciudadano-organismo por sus IDs.
 }
 ```
 
-## POST /organismoEstatal/:id/ciudadano
+## POST /api/organismoEstatal/:id/ciudadano
 Crea una nueva relación entre ciudadano y organismo estatal.
 - **Input**: Datos de la relación
 ```json
@@ -41,7 +41,7 @@ Crea una nueva relación entre ciudadano y organismo estatal.
 }
 ```
 
-## GET /organismoEstatal/:id/ciudadano
+## GET /api/organismoEstatal/:id/ciudadano
 Lista todos los ciudadanos asociados a un organismo.
 - **Input**: ID del organismo (path parameter)
 - **Output**: Array de relaciones

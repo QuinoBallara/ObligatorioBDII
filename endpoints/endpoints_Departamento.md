@@ -1,6 +1,6 @@
 # Departamento Endpoints
 
-## GET /departamento/{id}
+## GET /api/departamento/{id}
 Obtiene un departamento por su ID.
 - **Input**: ID del departamento (path parameter)
 - **Output**: Datos del departamento
@@ -11,7 +11,7 @@ Obtiene un departamento por su ID.
 }
 ```
 
-## POST /departamento
+## POST /api/departamento
 Crea un nuevo departamento.
 - **Input**: Datos del departamento
 ```json

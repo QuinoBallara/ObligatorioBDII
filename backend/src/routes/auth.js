@@ -7,7 +7,7 @@ const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
 
 /**
- * @route POST api/auth/login/ciudadano
+ * @route POST /api/auth/login/ciudadano
  * @desc Login user with either ID or credencialCivica. Returns token if successful.
  * @access Public
  * @param {string} id.body - User ID (optional)
@@ -26,7 +26,7 @@ router.post(
 );
 
 /**
- * @route POST api/auth/login/presidente
+ * @route POST /api/auth/login/presidente
  * @desc Login presidente with ID and credencialCivica. Returns token if successful.
  * @access Public
  * @param {string} id.body - Presidente ID (required)
@@ -46,7 +46,7 @@ router.post(
 );
 
 /**
- * @route POST api/auth/logout
+ * @route POST /api/auth/logout
  * @desc Logout user by invalidating the token.
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token>
