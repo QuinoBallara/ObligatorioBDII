@@ -23,15 +23,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(getIsAuthenticatedInitialState());
 
     const handleLogin = (ci, credencialCivica) => {
-        // Call your login API here and set the auth state
-        // For example:
-        // api.login(ci, credencialCivica).then(response => {
-        //     setAuth({
-        //         user: response.data.user,
-        //         token: response.data.token,
-        //         isPresident: response.data.isPresident,
-        //     });
-        // });
+
     }
 
     useEffect(() => {
