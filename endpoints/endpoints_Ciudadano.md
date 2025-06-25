@@ -6,7 +6,7 @@ Obtiene un ciudadano por su ID.
 - **Output**: Datos del ciudadano
 ```json
 {
-    "id": integer,
+    "id": string,
     "credencial_civica": string,
     "primer_nombre": string,
     "segundo_nombre": string | null,
@@ -21,6 +21,7 @@ Crea un nuevo ciudadano.
 - **Input**: Datos del ciudadano
 ```json
 {
+    "id": string,
     "credencial_civica": string,
     "primer_nombre": string,
     "segundo_nombre": string | null,

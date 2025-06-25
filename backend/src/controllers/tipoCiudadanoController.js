@@ -7,23 +7,34 @@ async function getTipoCiudadanoByID(req, res) {
         return res.status(400).json({message: 'ID is required'});
     }
 
-    const resultsQuery = await getByID(id);
-
-    if (!resultsQuery) {
-        return res.status(404).json({message: 'Tipo Ciudadano not found'});
+    try{
+        const resultsQuery = await getByID(id);
+    
+        if (!resultsQuery) {
+            return res.status(404).json({message: 'Tipo Ciudadano not found'});
+        }
+    
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Tipo Ciudadano by ID:', error);
+        next(error);
     }
-
-    return res.status(200).json(resultsQuery);
 }
 
-async function getTipoCiudadano(req, res) {
-    const resultsQuery = await get();
+async function getTipoCiudadano(req, res, next) {
 
-    if (!resultsQuery) {
-        return res.status(404).json({message: 'No Tipo Ciudadano found'});
+    try {
+        const resultsQuery = await get();
+
+        if (!resultsQuery) {
+            return res.status(404).json({message: 'No Tipo Ciudadano found'});
+        }
+
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Tipo Ciudadano:', error);
+        next(error);
     }
-
-    return res.status(200).json(resultsQuery);
 }
 
 async function postTipoCiudadano(req, res) {
@@ -32,10 +43,14 @@ async function postTipoCiudadano(req, res) {
     if (!nombre) {
         return res.status(400).json({message: 'Nombre is required'});
     }
-
-    const resultsQuery = await insert(nombre);
-
-    return res.status(201).json({message: 'Tipo Ciudadano created successfully', id: resultsQuery.insertId});
+    try{
+        const resultsQuery = await insert(nombre);
+    
+        return res.status(201).json({message: 'Tipo Ciudadano created successfully', id: resultsQuery.insertId});
+    }  catch (error) {
+        console.error('Error creating Tipo Ciudadano:', error);
+        next(error);
+    }
 }
 
 module.exports = {

@@ -47,6 +47,9 @@ app.use('/api/tipoEstablecimiento', tipoEstablecimientoRoutes);
 const tipoCiudadanoRoutes = require('./routes/tipoCiudadano');
 app.use('/api/tipoCiudadano', tipoCiudadanoRoutes);
 
+const ciudadanoRoutes = require('./routes/ciudadano');
+app.use('/api/ciudadano', ciudadanoRoutes);
+
 
 // Error handling middleware
 
