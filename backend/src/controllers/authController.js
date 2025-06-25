@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 const { getCiudadano, blacklistToken, getPresidenteMesa, checkTokenInBlacklist } = require('../services/authService');
 
-async function loginCiudadano(req, res) {
+async function loginCiudadano(req, res, next) {
     const { id, credencialCivica } = req.body;
 
     if (!id && !credencialCivica) {
@@ -27,11 +27,11 @@ async function loginCiudadano(req, res) {
         res.status(200).json({ user, token });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        next(error);
     }
 }
 
-async function loginPresidente(req, res) {
+async function loginPresidente(req, res, next) {
     const { id, credencialCivica } = req.body;
 
     if (!id && !credencialCivica) {
@@ -55,12 +55,12 @@ async function loginPresidente(req, res) {
         res.status(200).json({ user, token });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        next(error);
     }
 }
 
 
-async function logout(req, res) {
+async function logout(req, res, next) {
     const token = req.headers['authorization']?.split(' ')[1];
 
     if (!token) {
@@ -83,7 +83,7 @@ async function logout(req, res) {
         }
     } catch (error) {
         console.error('Logout error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        next(error);
     }
 }
 
