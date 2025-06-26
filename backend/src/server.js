@@ -56,6 +56,9 @@ app.use('/api/tipoEleccion', tipoEleccionRoutes);
 const partidoPoliticoRoutes = require('./routes/partidoPolitico');
 app.use('/api/partidoPolitico', partidoPoliticoRoutes);
 
+const municipioRoutes = require('./routes/municipio');
+app.use('/api/municipio', municipioRoutes);
+
 
 // Error handling middleware
 
