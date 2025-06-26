@@ -24,7 +24,6 @@ Crea una nueva mesa.
 - **Input**: Datos de la mesa
 ```json
 {
-    "id": integer,
     "circuito_id": integer,
     "establecimiento_id": integer,
     "accessible": boolean,
@@ -107,6 +106,7 @@ Obtiene un voto por su ID.
 }
 ```
 
+### PARA DISCUTIR
 ## POST /api/mesa/voto
 Crea un nuevo voto y le asigna al ciudadano que votó en ciudadano_mesa.
 - **Input**: Datos del voto
