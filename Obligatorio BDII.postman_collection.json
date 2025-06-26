@@ -531,7 +531,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : \"7998565\",\r\n    \"primer_nombre\": \"mauro\",\r\n    \"segundo_nombre\": \"mauricio\",\r\n    \"primer_apellido\": \"machado\",\r\n    \"segundo_apellido\": \"machicio\",\r\n    \"fecha_nacimiento\": \"1958-11-29\",\r\n    \"esta_vivo\": true,\r\n    \"credencial_civica\": \"HNF74746\"\r\n}",
+							"raw": "{\r\n    \"id\" : \"7998549\",\r\n    \"primer_nombre\": \"mauro\",\r\n    \"segundo_nombre\": \"mauricio\",\r\n    \"primer_apellido\": \"machado\",\r\n    \"segundo_apellido\": \"machicio\",\r\n    \"fecha_nacimiento\": \"1958-11-29\",\r\n    \"esta_vivo\": true,\r\n    \"credencial_civica\": \"HNF74746\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -560,38 +560,11 @@
 			"item": [
 				{
 					"name": "Get tipoEleccion by id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\" : \"Puto\"\r\n}"
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/tipoEleccion/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"tipoEleccion",
-								"1"
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -599,30 +572,10 @@
 				{
 					"name": "Get tipoEleccion",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tipoEleccion/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"tipoEleccion",
-								""
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -630,40 +583,62 @@
 				{
 					"name": "Post tipoEleccion",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Departamental\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/api/tipoEleccion/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"tipoEleccion",
-								""
-							]
+							"raw": ""
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Establecimiento",
+			"item": [
+				{
+					"name": "Get establecimiento by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get establecimiento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post establecimiento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PartidoPolitico",
+			"item": [
+				{
+					"name": "Get partidoPolitico by id",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				},
