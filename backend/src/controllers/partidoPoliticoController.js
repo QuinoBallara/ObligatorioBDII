@@ -62,7 +62,8 @@ async function getPartidoPolitico(req, res, next) {
 }
 
 async function postAutoridadPartidoPolitico(req, res, next) {
-    const {ciudadano_id, partidoPolitico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id} = req.body;
+    const {ciudadano_id, fecha_inicio, fecha_fin, tipo_ciudadano_id} = req.body;
+    const {partidoPolitico_id} = req.params;
 
     if (!ciudadano_id || !partidoPolitico_id || !fecha_inicio || !fecha_fin || !tipo_ciudadano_id) {
         return res.status(400).json({message: 'Ciudadano ID, Partido Politico ID, Fecha Inicio, Fecha Fin and Tipo Ciudadano ID are required'});
