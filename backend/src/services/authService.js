@@ -52,7 +52,7 @@ async function getPresidenteMesa(userId, userCredential) {
     const query = `
         SELECT 
             c.id AS ciudadano_id,
-            m.id AS mesa_id
+            m.id AS mesa_id,
         FROM Ciudadano c
         INNER JOIN Ciudadano_CredencialCivica ccc ON c.id = ccc.ciudadano_id
         INNER JOIN Mesa m ON c.id = m.presidente_id
