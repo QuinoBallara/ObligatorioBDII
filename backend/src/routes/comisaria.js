@@ -11,12 +11,13 @@ const {
 const router = express.Router();
 
 /**
- * @route POST /api/departamento/
- * @desc Create a new departamento
+ * @route POST /api/comisaria/
+ * @desc Create a new comisaria
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token> 
- * @param {string} nombre.body - Departamento name
- * @return {object} 201 - Departamento created successfully
+ * @param {string} nombre.body - Comisaria name
+ * @param {string} municipio_id.body - Municipio ID
+ * @return {object} 201 - Comisaria created successfully
  * @return {object} 400 - Validation error if fields are invalid
  * @return {object} 500 - Internal server error if database operation fails
  */
@@ -24,22 +25,21 @@ router.post(
     '/',
     [
         body('nombre').isString().withMessage('The field nombre must be a string.'),
-        body('municipio_id').isString().withMessage('The field nombre must be a string.'),
+        body('municipio_id').isString().withMessage('The field municipio_id must be a string.'),
     ],
     validateRequest,
     postComisaria
-
 );
 
 /**
- * @route GET /api/departamento/:id
- * @desc Get departamento by ID
+ * @route GET /api/comisaria/:id
+ * @desc Get comisaria by ID
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token>
- * @param {number} id.params - Departamento ID
- * @return {object} 200 - Departamento data
+ * @param {string} id.params.required - Comisaria ID
+ * @return {object} 200 - Comisaria data retrieved successfully
  * @return {object} 400 - Validation error if ID is invalid
- * @return {object} 404 - Not found if departamento doesn't exist
+ * @return {object} 404 - Not found if comisaria doesn't exist
  * @return {object} 500 - Internal server error if database operation fails
  */
 router.get(
@@ -51,12 +51,32 @@ router.get(
     getComisariaByID
 );
 
+/**
+ * @route GET /api/comisaria/
+ * @desc Get all comisarias
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @return {object} 200 - Array of comisarias retrieved successfully
+ * @return {object} 500 - Internal server error if database operation fails
+ */
 router.get(
     '/',
     validateRequest,
     getComisaria
 );
 
+/**
+ * @route POST /api/comisaria/:id/policia
+ * @desc Assign a policia to a comisaria
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @param {string} id.params.required - Comisaria ID
+ * @param {string} policia_id.body - Policia ID to assign
+ * @return {object} 201 - Policia assigned to comisaria successfully
+ * @return {object} 400 - Validation error if fields are invalid
+ * @return {object} 404 - Not found if comisaria or policia doesn't exist
+ * @return {object} 500 - Internal server error if database operation fails
+ */
 router.post(
     '/:id/policia',
     [
@@ -65,7 +85,6 @@ router.post(
     ],
     validateRequest,
     postPolicia
-
 );
 
 module.exports = router;
