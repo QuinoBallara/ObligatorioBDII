@@ -50,6 +50,27 @@ app.use('/api/tipoCiudadano', tipoCiudadanoRoutes);
 const ciudadanoRoutes = require('./routes/ciudadano');
 app.use('/api/ciudadano', ciudadanoRoutes);
 
+const tipoEleccionRoutes = require('./routes/tipoEleccion');
+app.use('/api/tipoEleccion', tipoEleccionRoutes);
+
+const partidoPoliticoRoutes = require('./routes/partidoPolitico');
+app.use('/api/partidoPolitico', partidoPoliticoRoutes);
+
+const comisariaRoutes = require('./routes/comisaria');
+app.use('/api/comisaria', comisariaRoutes);
+
+const municipioRoutes = require('./routes/municipio');
+app.use('/api/municipio', municipioRoutes);
+
+const establecimientoRoutes = require('./routes/establecimiento');
+app.use('/api/establecimiento', establecimientoRoutes);
+
+const zonaRoutes = require('./routes/zona');
+app.use('/api/zona', zonaRoutes);
+
+const organismoEstatalRoutes = require('./routes/organismoEstatal');
+app.use('/api/organismoEstatal', organismoEstatalRoutes);
+
 
 // Error handling middleware
 
@@ -58,7 +79,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
         error: {
             message: err.message || 'Internal Server Error',
-            status: err.status || 500
+            status: err.status || 400
         }
     });
 });
