@@ -45,7 +45,7 @@ async function select(id) {
 
 async function insertAutoridad(ciudadano_id, partidoPolitico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id) {
 
-    const query = 'INSERT INTO Autoridad_PartidoPolitico (ciudadano_id, partidoPolitico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id) VALUES (?, ?, ?,?)';
+    const query = 'INSERT INTO Autoridad_PartidoPolitico (ciudadano_id, partido_politico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id) VALUES (?, ?, ?, ?, ?)';
 
     try {
         const[result] = await pool.query(query, [ciudadano_id, partidoPolitico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id]);

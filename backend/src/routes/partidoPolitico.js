@@ -65,13 +65,12 @@ router.post(
 )
 
 /**
- * @route POST /api/partidoPolitico/:id/autoridad
+ * @route POST /api/partidoPolitico/:partidoPolitico_id/autoridad
  * @desc Create a new autoridad for a partido politico
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token> 
- * @param {string} id.path - PartidoPolitico ID
+ * @param {string} partidoPolitico_id.path - PartidoPolitico ID
  * @param {string} ciudadano_id.body - Ciudadano ID
- * @param {string} partidoPolitico_id.body - PartidoPolitico ID
  * @param {string} fecha_inicio.body - Start date (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ)
  * @param {string} fecha_fin.body - End date (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ)
  * @param {string} tipo_ciudadano_id.body - Tipo ciudadano ID
@@ -80,13 +79,13 @@ router.post(
  * @return {object} 500 - Internal server error if database operation fails
  */
 router.post(
-    '/:id/autoridad',
+    '/:partidoPolitico_id/autoridad',
     [
-        body('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string'),
-        body('partidoPolitico_id').isString().withMessage('The field partidoPolitico_id must be a string'),
+        body('ciudadano_id').isInt().withMessage('The field ciudadano_id must be an integer'),
+        param('partidoPolitico_id').isInt().withMessage('The field partidoPolitico_id must be an integer'),
         body('fecha_inicio').isISO8601().withMessage('The field fecha_inicio must be a valid date'),
         body('fecha_fin').isISO8601().withMessage('The field fecha_fin must be a valid date'),
-        body('tipo_ciudadano_id').isString().withMessage('The field tipo_ciudadano_id must be a string'),
+        body('tipo_ciudadano_id').isInt().withMessage('The field tipo_ciudadano_id must be an integer'),
     ],
     validateRequest,
     postAutoridadPartidoPolitico
