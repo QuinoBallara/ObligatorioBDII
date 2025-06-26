@@ -68,6 +68,8 @@ app.use('/api/establecimiento', establecimientoRoutes);
 const zonaRoutes = require('./routes/zona');
 app.use('/api/zona', zonaRoutes);
 
+const organismoEstatalRoutes = require('./routes/organismoEstatal');
+app.use('/api/organismoEstatal', organismoEstatalRoutes);
 
 
 // Error handling middleware

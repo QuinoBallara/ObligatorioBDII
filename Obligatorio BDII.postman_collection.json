@@ -648,6 +648,16 @@
 				{
 					"name": "Get establecimiento by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -670,10 +680,33 @@
 				{
 					"name": "post establecimiento",
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"A\",\r\n    \"departamento_id\": \"1\"\r\n}"
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/establecimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"establecimiento"
+							]
 						}
 					},
 					"response": []
@@ -757,6 +790,151 @@
 			]
 		},
 		{
+			"name": "OrganismoEstatal",
+			"item": [
+				{
+					"name": "Get organismo estatal by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"A\",\r\n    \"municipio_id\": \"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/organismoEstatal/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"organismoEstatal",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get organismo estatal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/organismoEstatal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"organismoEstatal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post organismo estatal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"IMM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/organismoEstatal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"organismoEstatal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ciudadano Organismo Estatal by Organismo Estatal ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/organismoEstatal/1/ciudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"organismoEstatal",
+								"1",
+								"ciudadano"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Ciudadano Organismo Estatal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ciudadano_id\": \"6242156\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/organismoEstatal/1/ciudadano",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"organismoEstatal",
+								"1",
+								"ciudadano"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Zona",
 			"item": [
 				{
@@ -775,7 +953,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/zona/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"zona",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -783,10 +971,30 @@
 				{
 					"name": "get zona",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/zona/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"zona",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -952,6 +1160,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
