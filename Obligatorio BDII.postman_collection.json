@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aca5b772-0b92-4f6c-901e-e063cc67530d",
+		"_postman_id": "a784f80b-67b6-4965-9bc3-b272f8696630",
 		"name": "Obligatorio BDII",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32810699"
@@ -718,10 +718,114 @@
 				{
 					"name": "post municipio",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"A\",\r\n    \"departamento_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/municipio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"municipio"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Zona",
+			"item": [
+				{
+					"name": "Get zona by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get zona",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post municipio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"A\",\r\n    \"municipio_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/zona",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"zona"
+							]
 						}
 					},
 					"response": []
@@ -735,7 +839,10 @@
 					"name": "Get partidoPolitico by id",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -792,7 +899,10 @@
 					"name": "Get Autoridades",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -800,7 +910,10 @@
 					"name": "Post Autoridad",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
