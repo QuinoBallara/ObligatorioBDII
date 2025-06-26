@@ -17,7 +17,6 @@ Crea una nueva elección.
 - **Input**: Datos de la elección
 ```json
 {
-    "id": integer,
     "fecha": date,
     "tipo_eleccion_id": integer
 }
