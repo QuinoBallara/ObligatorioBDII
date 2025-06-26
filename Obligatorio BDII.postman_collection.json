@@ -162,16 +162,6 @@
 				{
 					"name": "Get departamento by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZDAyODYyMzYtNDIyMi00ZDViLThiODQtMzg1YjY1ZWMxMGFhIiwiaWF0IjoxNzUwODI4MTIzLCJleHAiOjE3NTA4NzEzMjN9.oZ6-VBwLI8UMqSxgXHPYvtanpyR_j7dz0MR1tDFEKhM",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -193,16 +183,6 @@
 				{
 					"name": "Post departamento",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZDAyODYyMzYtNDIyMi00ZDViLThiODQtMzg1YjY1ZWMxMGFhIiwiaWF0IjoxNzUwODI4MTIzLCJleHAiOjE3NTA4NzEzMjN9.oZ6-VBwLI8UMqSxgXHPYvtanpyR_j7dz0MR1tDFEKhM",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -241,16 +221,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -276,16 +246,6 @@
 				{
 					"name": "Get tipoEstablecimiento",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -307,16 +267,6 @@
 				{
 					"name": "Post tipoEstablecimiento",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -351,16 +301,6 @@
 				{
 					"name": "Get tipoCiudadano by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -382,16 +322,6 @@
 				{
 					"name": "Get tipoCiudadano",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -412,16 +342,6 @@
 				{
 					"name": "Post tipoCiudadano",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -456,16 +376,6 @@
 				{
 					"name": "Get ciudadano by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -487,16 +397,6 @@
 				{
 					"name": "Get ciudadano",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -517,16 +417,6 @@
 				{
 					"name": "Post ciudadano",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiZTY0YzllZDctNTFjMi00Y2ViLTkwZTMtNTk3ZTY3MzE3OGEwIiwiaWF0IjoxNzUwODcxODIwLCJleHAiOjE3NTA5MTUwMjB9.mXYi67Mlu4EcNUK5DSaIXXLodD-Bbb_-yIMr-P8s_d4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -564,7 +454,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/tipoEleccion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoEleccion",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -575,7 +475,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/tipoEleccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoEleccion"
+							]
 						}
 					},
 					"response": []
@@ -583,10 +492,28 @@
 				{
 					"name": "Post tipoEleccion",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"plebiscito\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/tipoEleccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tipoEleccion"
+							]
 						}
 					},
 					"response": []
@@ -602,7 +529,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/comisaria/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -613,7 +550,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/comisaria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria"
+							]
 						}
 					},
 					"response": []
@@ -621,10 +567,28 @@
 				{
 					"name": "Post comisaria",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"comisaria 1\",\r\n    \"municipio_id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/comisaria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria"
+							]
 						}
 					},
 					"response": []
@@ -632,10 +596,30 @@
 				{
 					"name": "Post policia",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"policia_id\" : \"6242695\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/comisaria/1/policia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria",
+								"1",
+								"policia"
+							]
 						}
 					},
 					"response": []
@@ -648,20 +632,20 @@
 				{
 					"name": "Get establecimiento by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/establecimiento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"establecimiento",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -672,7 +656,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/establecimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"establecimiento"
+							]
 						}
 					},
 					"response": []
@@ -680,21 +673,16 @@
 				{
 					"name": "post establecimiento",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"A\",\r\n    \"departamento_id\": \"1\"\r\n}"
+							"raw": "{\r\n    \"nombre\": \"casa\",\r\n    \"direccion\" : \"calle 13\",\r\n    \"tipo_establecimiento_id\" : \"1\",\r\n    \"zona_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:3000/api/establecimiento",
@@ -719,20 +707,20 @@
 				{
 					"name": "Get municipio by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/municipio/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"municipio",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -743,7 +731,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/municipio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"municipio"
+							]
 						}
 					},
 					"response": []
@@ -751,16 +748,6 @@
 				{
 					"name": "post municipio",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -843,16 +830,6 @@
 				{
 					"name": "post organismo estatal",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -940,16 +917,6 @@
 				{
 					"name": "Get zona by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -971,16 +938,6 @@
 				{
 					"name": "get zona",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1049,7 +1006,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/partidoPolitico/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"partidoPolitico",
+								"1"
+							]
 						}
 					},
 					"response": []
@@ -1104,12 +1071,23 @@
 					"response": []
 				},
 				{
-					"name": "Get Autoridades",
+					"name": "Get Autoridades by PartidoPolitico",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/partidoPolitico/1/autoridad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"partidoPolitico",
+								"1",
+								"autoridad"
+							]
 						}
 					},
 					"response": []
@@ -1117,25 +1095,35 @@
 				{
 					"name": "Post Autoridad",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ciudadano_id\" : \"7229524\",\r\n    \"tipo_ciudadano_id\" : \"5\",\r\n    \"fecha_inicio\" : \"2015-01-01\",\r\n    \"fecha_fin\" : \"2016-01-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/partidoPolitico/1/autoridad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"partidoPolitico",
+								"1",
+								"autoridad"
+							]
 						}
 					},
 					"response": []
 				}
 			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiOThiMGY2OWMtMmY3Yy00Mzk2LWJhNmEtNmI3Zjg4OWUyZDY1IiwiaWF0IjoxNzUwODkxOTI3LCJleHAiOjE3NTA5MzUxMjd9.-hBvNDwFC8kVgLr-pzqUnYsEyExHKTQTPf_ilwZnCxw",
-						"type": "string"
-					}
-				]
-			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1165,7 +1153,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiMzE1M2VlYWUtMDU1YS00ZDZmLTgxZjktZDI0ZGI3ZjdjMjk4IiwiaWF0IjoxNzUwOTc3MDQyLCJleHAiOjE3NTEwMjAyNDJ9.sJz17JEP70jmaPVTUSTTyYRIwlj-LlYkNEoEebEmPxg",
 				"type": "string"
 			}
 		]
