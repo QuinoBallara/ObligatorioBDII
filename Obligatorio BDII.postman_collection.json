@@ -632,6 +632,54 @@
 			]
 		},
 		{
+			"name": "Municipio",
+			"item": [
+				{
+					"name": "Get municipio by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiNGZjOTkzYTAtNjkxZS00NzRmLTkxZGMtY2U0ZWYwNjFjM2Q2IiwiaWF0IjoxNzUwOTE3OTczLCJleHAiOjE3NTA5NjExNzN9.M6Rvxyrvb7Ovb4F3KKPLoUMNWcVCP6_S5NTeFLJgsKs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get municipio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post municipio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "PartidoPolitico",
 			"item": [
 				{
