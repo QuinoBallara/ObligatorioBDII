@@ -1223,6 +1223,343 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Mesa",
+			"item": [
+				{
+					"name": "Get mesa by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post mesa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"circuito_id\": \"19\",\r\n    \"establecimiento_id\": \"1\",\r\n    \"accessible\": true,\r\n    \"vocal_id\": \"7228648\",\r\n    \"presidente_id\": \"7229524\",\r\n    \"secretario_id\": \"7242650\",\r\n    \"policia_id\": \"7248913\",\r\n    \"eleccion_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch mesa abierta",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"esta_abierta\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ciudadanoMesa by ids",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7998546",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"3",
+								"ciudadano",
+								"7998546"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post ciudadanoMesa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7990423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"3",
+								"ciudadano",
+								"7990423"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post ciudadanoMesa",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emitio_voto\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7990423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"3",
+								"ciudadano",
+								"7990423"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ciudadanoMesa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/3/ciudadano/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"3",
+								"ciudadano",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get voto by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/voto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"voto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post voto PARA DISCUTIR",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get votos por lista",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/1/resultados/lista",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"1",
+								"resultados",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get votos por partido",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/1/resultados/partido",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"1",
+								"resultados",
+								"partido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get votos por candidato",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/mesa/1/resultados/candidato",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa",
+								"1",
+								"resultados",
+								"candidato"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
