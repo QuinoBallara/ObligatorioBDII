@@ -19,9 +19,7 @@ async function selectMesaById(id) {
 async function insertMesa(circuito_id, establecimiento_id, accessible, vocal_id, presidente_id, secretario_id, policia_id, eleccion_id) {
 
     const query = `
-        INSERT INTO Mesa (circuito_id, establecimiento_id, accessible, vocal_id, presidente_id, secretario_id, policia_id, eleccion_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `;
+        INSERT INTO Mesa (circuito_id, establecimiento_id, accesible, vocal_id, presidente_id, secretario_id, policia_id, eleccion_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     try {
         const [result] = await pool.query(query, [circuito_id, establecimiento_id, accessible, vocal_id, presidente_id, secretario_id, policia_id, eleccion_id]);
@@ -63,12 +61,12 @@ async function selectCiudadanoAndMesa(mesa_id, ciudadano_id) {
     }
 }
 
-async function insertOnCiudadanoMesa(ciudadano_id, mesa_id) {
-    const query = 'INSERT INTO Ciudadano_Mesa (ciudadano_id, mesa_id) VALUES (?, ?)';
+async function insertOnCiudadanoMesa(mesa_id, ciudadano_id, emitio_voto = false) {
+    const query = 'INSERT INTO Ciudadano_Mesa (ciudadano_id, mesa_id, emitio_voto) VALUES (?, ?, ?)';
     try {
         const [result] = await pool.query(query, [ciudadano_id, mesa_id, emitio_voto]);
         console.log('Ciudadano_Mesa inserted successfully:', result);
-        return { insertId: result.insertId };
+        return { ciudadano_id: ciudadano_id, mesa_id: mesa_id, emitio_voto: emitio_voto };
     } catch (error) {
         throw error;
     }

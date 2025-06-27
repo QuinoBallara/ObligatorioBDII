@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 
 const {
@@ -22,7 +22,7 @@ const router = express.Router();
 router.get(
     '/:id',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
     ],
     validateRequest,
     getMesaByID
@@ -31,10 +31,16 @@ router.get(
 router.post(
     '/',
     [
-        body('id').isString().withMessage('The field id must be a string.'),
-        body('nombre').isString().withMessage('The field nombre must be a string.'),
-        body('esta_abierta').isBoolean().withMessage('The field esta_abierta must be a boolean.'),
-        body('tipo_mesa_id').isString().withMessage('The field tipo_mesa_id must be a string.'),
+        body('esta_abierta').isBoolean().optional().withMessage('The field esta_abierta must be a boolean.'),
+        body('circuito_id').isString().withMessage('The field circuito_id must be a string.'),
+        body('establecimiento_id').isString().withMessage('The field establecimiento_id must be a string.'),
+        body('accessible').isBoolean().withMessage('The field accessible must be a boolean.'),
+        body('vocal_id').isString().withMessage('The field vocal_id must be a string.'),
+        body('presidente_id').isString().withMessage('The field presidente_id must be a string.'),
+        body('secretario_id').isString().withMessage('The field secretario_id must be a string.'),
+        body('policia_id').isString().withMessage('The field policia_id must be a string.'),
+        body('eleccion_id').isString().withMessage('The field eleccion_id must be a string.'),
+
     ],
     validateRequest,
     postMesa
@@ -43,7 +49,7 @@ router.post(
 router.patch(
     '/:id',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
         body('esta_abierta').isBoolean().withMessage('The field esta_abierta must be a boolean.'),
     ],
     validateRequest,
@@ -53,18 +59,19 @@ router.patch(
 router.get(
     '/:mesa_id/ciudadano/:ciudadano_id',
     [
-        params('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        params('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
+        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
+        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
     ],
     validateRequest,
     getCiudadanoMesa
 );
 
 router.post(
-    '/:mesa_id/ciudadano',
+    '/:mesa_id/ciudadano/:ciudadano_id',
     [
-        params('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        body('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
+        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
+        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
+        body('emitio_voto').isBoolean().optional().withMessage('The field emitio_voto must be a boolean.'),
     ],
     validateRequest,
     postCiudadanoMesa
@@ -73,8 +80,8 @@ router.post(
 router.patch(
     '/:mesa_id/ciudadano/:ciudadano_id',
     [
-        params('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        params('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
+        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
+        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
         body('emitio_voto').isBoolean().withMessage('The field emitio_voto must be a boolean.'),
     ],
     validateRequest,
@@ -84,7 +91,7 @@ router.patch(
 router.get(
     '/:mesa_id/ciudadano',
     [
-        params('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
+        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
     ],
     validateRequest,
     getCiudadanoMesaByMesaID
@@ -93,7 +100,7 @@ router.get(
 router.get(
     '/voto/:id',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
     ],
     validateRequest,
     getVotoByID
@@ -107,27 +114,27 @@ router.get(
 // router.post('voto')
 
 router.get(
-    ':id/resultados/lista',
+    '/:id/resultados/lista',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
     ],
     validateRequest,
     getVotosPerListaPerMesa
 );
 
 router.get(
-    ':id/resultados/partido',
+    '/:id/resultados/partido',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
     ],
     validateRequest,
     getVotosPerPartidoPerMesa
 );
 
 router.get(
-    ':id/resultados/candidato',
+    '/:id/resultados/candidato',
     [
-        params('id').isString().withMessage('The field id must be a string.'),
+        param('id').isString().withMessage('The field id must be a string.'),
     ],
     validateRequest,
     getVotosPerCandidatoPerMesa

@@ -74,6 +74,9 @@ app.use('/api/organismoEstatal', organismoEstatalRoutes);
 const eleccionRoutes = require('./routes/eleccion');
 app.use('/api/eleccion', eleccionRoutes);
 
+const mesaRoutes = require('./routes/mesa');
+app.use('/api/mesa', mesaRoutes);
+
 
 // Error handling middleware
 

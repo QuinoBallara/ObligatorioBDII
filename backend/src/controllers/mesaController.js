@@ -97,14 +97,14 @@ async function getCiudadanoMesa(req, res, next) {
 
 async function postCiudadanoMesa(req, res, next) {
 
-    const { mesa_id, ciudadano_id } = req.body;
+    const { mesa_id, ciudadano_id } = req.params;
+    const { emitio_voto = false } = req.body || {};
 
     if (!mesa_id || !ciudadano_id) {
         return res.status(400).json({ message: 'mesa_id and ciudadano_id are required' });
     }
-
     try {
-        const result = await insertOnCiudadanoMesa(mesa_id, ciudadano_id);
+        const result = await insertOnCiudadanoMesa(mesa_id, ciudadano_id, emitio_voto);
         res.status(201).json({ message: 'CiudadanoMesa created successfully', id: result.insertId });
     } catch (error) {
         console.error('Error creating CiudadanoMesa:', error);
@@ -183,58 +183,58 @@ async function postVoto(req, res, next) {
 }
 
 async function getVotosPerListaPerMesa(req, res, next) {
-    const { mesa_id } = req.params;
+    const { id } = req.params;
 
-    if (!mesa_id) {
-        return res.status(400).json({ message: 'mesa_id is required' });
+    if (!id) {
+        return res.status(400).json({ message: 'id is required' });
     }
 
     try {
-        const results = await selectVotosPerListaPerMesa(mesa_id);
+        const results = await selectVotosPerListaPerMesa(id);
         if (!results) {
-            return res.status(404).json({ message: 'No votos found for this mesa_id' });
+            return res.status(404).json({ message: 'No votos found for this id' });
         }
         res.status(200).json(results);
     } catch (error) {
-        console.error('Error fetching votos per lista by mesa_id:', error);
+        console.error('Error fetching votos per lista by id:', error);
         next(error);
     }
 }
 
 async function getVotosPerPartidoPerMesa(req, res, next) {
-    const { mesa_id } = req.params;
+    const { id } = req.params;
 
-    if (!mesa_id) {
-        return res.status(400).json({ message: 'mesa_id is required' });
+    if (!id) {
+        return res.status(400).json({ message: 'id is required' });
     }
 
     try {
-        const results = await selectVotosPerPartidoPerMesa(mesa_id);
+        const results = await selectVotosPerPartidoPerMesa(id);
         if (!results) {
-            return res.status(404).json({ message: 'No votos found for this mesa_id' });
+            return res.status(404).json({ message: 'No votos found for this id' });
         }
         res.status(200).json(results);
     } catch (error) {
-        console.error('Error fetching votos per partido by mesa_id:', error);
+        console.error('Error fetching votos per partido by id:', error);
         next(error);
     }
 }
 
 async function getVotosPerCandidatoPerMesa(req, res, next) {
-    const { mesa_id } = req.params;
+    const { id } = req.params;
 
-    if (!mesa_id) {
-        return res.status(400).json({ message: 'mesa_id is required' });
+    if (!id) {
+        return res.status(400).json({ message: 'id is required' });
     }
 
     try {
-        const results = await selectVotosPerCandidatoPerMesa(mesa_id);
+        const results = await selectVotosPerCandidatoPerMesa(id);
         if (!results) {
-            return res.status(404).json({ message: 'No votos found for this mesa_id' });
+            return res.status(404).json({ message: 'No votos found for this id' });
         }
         res.status(200).json(results);
     } catch (error) {
-        console.error('Error fetching votos per candidato by mesa_id:', error);
+        console.error('Error fetching votos per candidato by id:', error);
         next(error);
     }
 
