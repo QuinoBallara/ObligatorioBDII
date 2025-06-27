@@ -1,13 +1,14 @@
 const pool = require('../db/db').promise();
 
 async function selectCiudadanoListaPresidencialByListaPresidencialId(lista_presidencial_id) {
-
-    const query = 'SELECT * FROM Lista WHERE lista_presidencial_id = ?';
-
+    console.log('Fetching CiudadanoListaPresidencial by lista_presidencial_id:', lista_presidencial_id);
+    const query = 'SELECT * FROM Ciudadano_ListaPresidencial WHERE lista_presidencial_id = ?';
+    
     try {
         const [rows] = await pool.query(query, [lista_presidencial_id]);
         if (rows.length > 0) {
-            return rows[0];
+            console.log('CiudadanoListaPresidencial found:', rows);
+            return rows;
         }
         return null;
     } catch(error) {
