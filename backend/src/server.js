@@ -77,6 +77,9 @@ app.use('/api/eleccion', eleccionRoutes);
 const mesaRoutes = require('./routes/mesa');
 app.use('/api/mesa', mesaRoutes);
 
+const listaPresidencialRoutes = require('./routes/listaPresidencial');
+app.use('/api/listaPresidencial', listaPresidencialRoutes);
+
 
 // Error handling middleware
 
