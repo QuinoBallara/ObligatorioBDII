@@ -71,6 +71,15 @@ app.use('/api/zona', zonaRoutes);
 const organismoEstatalRoutes = require('./routes/organismoEstatal');
 app.use('/api/organismoEstatal', organismoEstatalRoutes);
 
+const eleccionRoutes = require('./routes/eleccion');
+app.use('/api/eleccion', eleccionRoutes);
+
+const mesaRoutes = require('./routes/mesa');
+app.use('/api/mesa', mesaRoutes);
+
+const listaPresidencialRoutes = require('./routes/listaPresidencial');
+app.use('/api/listaPresidencial', listaPresidencialRoutes);
+
 
 // Error handling middleware
 
