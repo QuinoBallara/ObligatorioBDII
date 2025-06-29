@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { getVotosPerPartido } from "../../services/getViewsService";
-import ResultsTable from "../../components/ResultsTable"; // Adjust path as needed
+import ResultsTable from "../../components/resultsTable"; 
 
 const ResultsPerPartidoPage = () => {
     const [data, setData] = useState([]);
