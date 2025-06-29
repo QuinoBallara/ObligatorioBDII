@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const { getEstablecimientoByID, getEstablecimiento, postEstablecimiento } = require('../controllers/establecimientoController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -26,6 +27,7 @@ router.post(
         body('tipo_establecimiento_id').isInt().withMessage('The field tipo_establecimiento_id must be an integer'),
         body('zona_id').isInt().withMessage('The field zona_id must be an integer'),
     ],
+    forbidCitizen,
     validateRequest,
     postEstablecimiento
 );
@@ -40,6 +42,7 @@ router.post(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getEstablecimiento
 );
@@ -60,6 +63,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string')
     ],
+    forbidCitizen,
     validateRequest,
     getEstablecimientoByID
 )

@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const { getDepartamento, postDepartamento } = require('../controllers/departamentoController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post(
     [
         body('nombre').isString().withMessage('The field nombre must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postDepartamento
 
@@ -41,6 +43,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be an integer.'),
     ],
+    forbidCitizen,
     validateRequest,
     getDepartamento
 );

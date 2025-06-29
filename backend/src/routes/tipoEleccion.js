@@ -5,11 +5,14 @@ const { getTipoEleccionByID, getTipoEleccion, postTipoEleccion } = require('../c
 
 const router = express.Router();
 
+const forbidCitizen = require('../middlewares/forbidCitizen');
+
 router.get(
     '/:id',
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getTipoEleccionByID
 )
@@ -25,6 +28,7 @@ router.post(
     [
         body('nombre').isString().withMessage('The field nombre must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postTipoEleccion
 );

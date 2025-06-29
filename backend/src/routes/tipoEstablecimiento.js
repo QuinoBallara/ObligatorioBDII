@@ -5,6 +5,8 @@ const { getTipoEstablecimientoByID, getTipoEstablecimiento, postTipoEstablecimie
 
 const router = express.Router();
 
+const forbidCitizen = require('../middlewares/forbidCitizen');
+
 /**
  * @route GET /api/tipoEstablecimiento/:id
  * @desc Get tipo de establecimiento by ID
@@ -21,6 +23,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getTipoEstablecimientoByID
 )
@@ -36,6 +39,7 @@ router.get(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getTipoEstablecimiento
 )
@@ -55,6 +59,7 @@ router.post(
     [
         body('nombre').isString().withMessage('The field nombre must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postTipoEstablecimiento
 )

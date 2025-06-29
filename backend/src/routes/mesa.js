@@ -1,6 +1,7 @@
 const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const {
     getMesaByID,
@@ -42,6 +43,7 @@ router.post(
         body('eleccion_id').isString().withMessage('The field eleccion_id must be a string.'),
 
     ],
+    forbidCitizen,
     validateRequest,
     postMesa
 );
@@ -52,6 +54,7 @@ router.patch(
         param('id').isString().withMessage('The field id must be a string.'),
         body('esta_abierta').isBoolean().withMessage('The field esta_abierta must be a boolean.'),
     ],
+    forbidCitizen,
     validateRequest,
     patchMesaAbierta
 );
@@ -73,6 +76,7 @@ router.post(
         param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
         body('emitio_voto').isBoolean().optional().withMessage('The field emitio_voto must be a boolean.'),
     ],
+    forbidCitizen,
     validateRequest,
     postCiudadanoMesa
 );
@@ -93,6 +97,7 @@ router.get(
     [
         param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getCiudadanoMesaByMesaID
 );
@@ -102,6 +107,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getVotoByID
 );
@@ -118,6 +124,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getVotosPerListaPerMesa
 );
@@ -127,6 +134,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getVotosPerPartidoPerMesa
 );
@@ -136,6 +144,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getVotosPerCandidatoPerMesa
 );

@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const { getCiudadanoByID, getCiudadano, postCiudadano } = require('../controllers/ciudadanoController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -10,12 +11,14 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getCiudadanoByID
 )
 
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getCiudadano
 )
@@ -30,6 +33,7 @@ router.post(
         body('fecha_nacimiento').isDate().withMessage('The field fecha_nacimiento must be a valid date.'),
         body('esta_vivo').optional().isBoolean().withMessage('The field esta_vivo must be a boolean if provided.'),
     ],
+    forbidCitizen,
     validateRequest,
     postCiudadano
 )

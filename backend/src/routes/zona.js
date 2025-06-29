@@ -5,6 +5,8 @@ const { getZona, postZona, getZonaByID } = require('../controllers/zonaControlle
 
 const router = express.Router();
 
+const forbidCitizen = require('../middlewares/forbidCitizen');
+
 /**
  * @route POST /api/zona/
  * @desc Create a new zona
@@ -22,6 +24,7 @@ router.post(
         body('nombre').isString().withMessage('The field nombre must be a string.'),
         body('municipio_id').isString().withMessage('The field municipio_id must be a string.')
     ],
+    forbidCitizen,
     validateRequest,
     postZona
 );
@@ -42,6 +45,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getZonaByID
 );
@@ -56,6 +60,7 @@ router.get(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getZona
 );

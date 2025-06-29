@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const { getOrganismoEstatal, postOrganismoEstatal, getOrganismoEstatalByID, postCiudadanoOrganismoEstatal, getCiudadanoOrganismoEstatalByOrganismoEstatalID } = require('../controllers/organismoEstatalController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.post(
     [
         body('nombre').isString().withMessage('The field nombre must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postOrganismoEstatal
 );
@@ -40,6 +42,7 @@ router.get(
     [
         param('id').isInt().withMessage('The field id must be an integer.'),
     ],
+    forbidCitizen,
     validateRequest,
     getOrganismoEstatalByID
 );
@@ -54,6 +57,7 @@ router.get(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getOrganismoEstatal
 );
@@ -74,6 +78,7 @@ router.get(
     [
         param('organismo_estatal_id').isInt().withMessage('The field organismo_estatal_id must be an integer'),
     ],
+    forbidCitizen,
     validateRequest,
     getCiudadanoOrganismoEstatalByOrganismoEstatalID
 );
@@ -96,6 +101,7 @@ router.post(
         param('organismo_estatal_id').isInt().withMessage('The field organismo_estatal_id must be an integer'),
         body('ciudadano_id').isInt().withMessage('The field ciudadano_id must be an integer.'),
     ],
+    forbidCitizen,
     validateRequest,
     postCiudadanoOrganismoEstatal
 );
