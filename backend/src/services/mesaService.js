@@ -132,14 +132,14 @@ async function selectVotosPerListaPerMesa(mesa_id) {
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
         WHEN v.lista_id IS NULL THEN 'En Blanco'
-        ELSE CONCAT('Lista ', v.lista_id)
-    END AS Lista,
+        ELSE COALESCE(pp.nombre, 'Sin Partido')
+    END AS Partido,
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
         WHEN v.lista_id IS NULL THEN 'En Blanco'
-        ELSE COALESCE(pp.nombre, 'Sin Partido')
-    END AS Partido,
-    COUNT(*) AS 'Cantidad de Votos'
+        ELSE CONCAT('Lista ', v.lista_id)
+    END AS Lista,
+    COUNT(*) AS CantidadDeVotos
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
@@ -148,12 +148,12 @@ GROUP BY
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
         WHEN v.lista_id IS NULL THEN 'En Blanco'
-        ELSE CONCAT('Lista ', v.lista_id)
+        ELSE COALESCE(pp.nombre, 'Sin Partido')
     END,
     CASE 
         WHEN v.es_valido = FALSE THEN 'Anulado'
         WHEN v.lista_id IS NULL THEN 'En Blanco'
-        ELSE COALESCE(pp.nombre, 'Sin Partido')
+        ELSE CONCAT('Lista ', v.lista_id)
     END
 ORDER BY Lista;`;
 
@@ -176,7 +176,7 @@ async function selectVotosPerPartidoPerMesa(mesa_id) {
         WHEN v.lista_id IS NULL THEN 'En Blanco'
         ELSE COALESCE(pp.nombre, 'Sin Partido')
     END AS Partido,
-    COUNT(*) AS 'Cantidad de Votos'
+    COUNT(*) AS 'CantidadDeVotos'
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
@@ -219,7 +219,7 @@ async function selectVotosPerCandidatoPerMesa(mesa_id) {
             NULLIF(c.segundo_apellido, '')
         )
     END AS Candidato,
-    COUNT(*) AS 'Cantidad de Votos'
+    COUNT(*) AS 'CantidadDeVotos'
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
