@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const auth = {}
 auth.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiMjI2YWY1OTMtOGI1OC00NjA5LWI1MzMtYjNmZjcyNGQwMjQyIiwiaWF0IjoxNzUxMTY4NDYxLCJleHAiOjE3NTEyMTE2NjF9.Mnvyx0xZPI8Wx-HOJEGu9hbxZV_2rwpMkoChPdfRzOo'
 
-export const getVotosPorLista = async (mesaId) => {
+export const getVotosPerLista = async (mesaId) => {
    
     try {
         const response = await axios.get(
@@ -24,8 +24,8 @@ export const getVotosPorLista = async (mesaId) => {
     }
 }
 
-export const getVotosPorPartido = async (mesaId) => {
-    const { auth } = useAuth();
+export const getVotosPerPartido = async (mesaId) => {
+   
     try {
         const response = await axios.get(
             `${API_URL}/mesa/${mesaId}/resultados/partido`,
@@ -42,8 +42,8 @@ export const getVotosPorPartido = async (mesaId) => {
     }
 }
 
-export const getVotosPorCandidato = async (mesaId) => {
-    const { auth } = useAuth();
+export const getVotosPerCandidato = async (mesaId) => {
+    
     try {
         const response = await axios.get(
             `${API_URL}/mesa/${mesaId}/resultados/candidato`,

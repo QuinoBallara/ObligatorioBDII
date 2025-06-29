@@ -3,7 +3,7 @@ import { Container, Box, Card, CardContent, Typography, Table, TableBody, TableC
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
-import { getVotosPerLista } from "../../services/getViewsService"; 
+import { getVotosPerPartido } from "../../services/getViewsService"; 
 
 const ResultsPerListaPage = () => {
     
@@ -18,7 +18,8 @@ const ResultsPerListaPage = () => {
                 setLoading(true);
                
                 const mesaId = 1;
-                const response = await getVotosPerLista(mesaId);
+                const response = await getVotosPerPartido(mesaId);
+                console.log(response);
                 
                 // Calculate total votes
                 const totalVotes = response.reduce((sum, item) => sum + item.CantidadDeVotos, 0);
@@ -82,10 +83,10 @@ const ResultsPerListaPage = () => {
                             marginBottom: '16px'
                         }} />
                         <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                            Resultados por Lista
+                            Resultados por Partido
                         </Typography>
                         <Typography variant="body1">
-                            Resultados de votación por cada lista.
+                            Resultados de votación por cada partido.
                         </Typography>
                     </Box>
 
@@ -93,7 +94,6 @@ const ResultsPerListaPage = () => {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>Lista</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Partido Político</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Votos</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Porcentaje</TableCell>
@@ -102,9 +102,6 @@ const ResultsPerListaPage = () => {
                             <TableBody>
                                 {data.map((row) => (
                                     <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row">
-                                            {row.Lista}
-                                        </TableCell>
                                         <TableCell align="right">{row.Partido}</TableCell>
                                         <TableCell align="right">{row.CantidadDeVotos}</TableCell>
                                         <TableCell align="right">{row.porcentaje}%</TableCell>

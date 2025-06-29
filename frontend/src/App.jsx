@@ -7,6 +7,7 @@ import { useAuth } from './contexts/authContext'
 import LoginCiudadanoPage from './pages/login/index.jsx'
 import LoginPresidentePage from './pages/loginGestion/index.jsx'
 import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
+import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
 
 function App() {
   const { isAuthenticated, isPresident } = useAuth();
@@ -14,7 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <ResultsPerListaPage /> : <ResultsPerListaPage />} >
+        <Route path="/" element={isAuthenticated ? <ResultsPerCandidatoPage /> : <ResultsPerCandidatoPage />} >
         {/* <Route path="/" element={isAuthenticated ? <><h1>hola</h1><Outlet /></> : <Navigate to='login' />} > */}
           <Route path='gestion' element={isPresident ? <><h1>Gestion</h1><Outlet /></> : <Navigate to='/votacion' />} >
             <Route path='home' index element={<h1>Gestion Index</h1>} />

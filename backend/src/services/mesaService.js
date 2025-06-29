@@ -176,7 +176,7 @@ async function selectVotosPerPartidoPerMesa(mesa_id) {
         WHEN v.lista_id IS NULL THEN 'En Blanco'
         ELSE COALESCE(pp.nombre, 'Sin Partido')
     END AS Partido,
-    COUNT(*) AS 'Cantidad de Votos'
+    COUNT(*) AS 'CantidadDeVotos'
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id
@@ -219,7 +219,7 @@ async function selectVotosPerCandidatoPerMesa(mesa_id) {
             NULLIF(c.segundo_apellido, '')
         )
     END AS Candidato,
-    COUNT(*) AS 'Cantidad de Votos'
+    COUNT(*) AS 'CantidadDeVotos'
 FROM Voto v
 LEFT JOIN ListaPresidencial lp ON v.lista_id = lp.lista_id
 LEFT JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id

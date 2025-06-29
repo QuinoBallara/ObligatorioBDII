@@ -3,9 +3,9 @@ import { Container, Box, Card, CardContent, Typography, Table, TableBody, TableC
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
-import { getVotosPerLista } from "../../services/getViewsService"; 
+import { getVotosPerCandidato } from "../../services/getViewsService"; 
 
-const ResultsPerListaPage = () => {
+const ResultsPerCandidatoPage = () => {
     
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ const ResultsPerListaPage = () => {
                 setLoading(true);
                
                 const mesaId = 1;
-                const response = await getVotosPerLista(mesaId);
+                const response = await getVotosPerCandidato(mesaId);
                 
                 // Calculate total votes
                 const totalVotes = response.reduce((sum, item) => sum + item.CantidadDeVotos, 0);
@@ -93,7 +93,7 @@ const ResultsPerListaPage = () => {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>Lista</TableCell>
+                                    <TableCell sx={{ fontWeight: 'bold' }}>Candidato</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Partido Político</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Votos</TableCell>
                                     <TableCell align="right" sx={{ fontWeight: 'bold' }}>Porcentaje</TableCell>
@@ -103,7 +103,7 @@ const ResultsPerListaPage = () => {
                                 {data.map((row) => (
                                     <TableRow key={row.id}>
                                         <TableCell component="th" scope="row">
-                                            {row.Lista}
+                                            {row.Candidato}
                                         </TableCell>
                                         <TableCell align="right">{row.Partido}</TableCell>
                                         <TableCell align="right">{row.CantidadDeVotos}</TableCell>
@@ -119,4 +119,4 @@ const ResultsPerListaPage = () => {
     );
 };
 
-export default ResultsPerListaPage;
+export default ResultsPerCandidatoPage;
