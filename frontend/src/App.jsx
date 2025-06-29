@@ -6,15 +6,22 @@ import './App.css'
 import { useAuth } from './contexts/authContext'
 import LoginCiudadanoPage from './pages/login/index.jsx'
 import LoginPresidentePage from './pages/loginGestion/index.jsx'
+import ControlPanel from './components/controlPanel/index.jsx'
 
 function App() {
-  const { isAuthenticated, isPresident } = useAuth();
+  const { isAuthenticated, auth } = useAuth();
+  console.log(auth.isPresident)
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <><h1>hola</h1><Outlet /></> : <Navigate to='login' />} >
-          <Route path='gestion' element={isPresident ? <><h1>Gestion</h1><Outlet /></> : <Navigate to='/votacion' />} >
+        <Route path="/" element={isAuthenticated ? <><Outlet /></> : <Navigate to='login' />} >
+          <Route path='gestion' element={auth.isPresident ? <div style={{ display: 'flex', height: '100vh' }}>
+            <ControlPanel />
+            <div style={{ flex: 1 }}>
+              <Outlet />
+            </div>
+          </div> : <Navigate to='/votacion' />} >
             <Route path='home' index element={<h1>Gestion Index</h1>} />
             <Route path='resultados' element={<Outlet />} >
               <Route path='candidatos' element={<h1>Resultados Candidatos</h1>} />
