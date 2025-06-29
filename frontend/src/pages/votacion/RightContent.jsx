@@ -1,7 +1,6 @@
 import React from 'react'
 import BlankVote from '../../components/UI/Votacion/BlankVote'
 import EpicSelector from '../../components/UI/Votacion/EpicSelector'
-import EndVote from '../../components/buttons/endVote'
 
 export default function RightContent() {
   return (
