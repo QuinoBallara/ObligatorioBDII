@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { loginCiudadano, loginPresidente, logout } from '../services/authService'; // Use ES6 import
+import axios from 'axios';
 
 const AuthContext = createContext();
+const API_URL = import.meta.env.VITE_API_URL;
 
 const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
@@ -106,4 +108,56 @@ export const useAuth = () => {
         throw new Error('useAuth must be used within an AuthProvider');
     }
     return context;
+}
+
+export const getVotosPerLista = async (mesaId, token) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/mesa/${mesaId}/resultados/lista`,
+            { 
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' 
+                } 
+            }
+        );
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getVotosPerPartido = async (mesaId, token) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/mesa/${mesaId}/resultados/partido`,
+            { 
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' 
+                } 
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getVotosPerCandidato = async (mesaId, token) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/mesa/${mesaId}/resultados/candidato`,
+            { 
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' 
+                } 
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
 }
