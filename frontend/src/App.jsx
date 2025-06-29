@@ -13,7 +13,6 @@ import ConfirmationPage from './pages/votacion/ConfirmationPage';
 
 function App() {
   const { isAuthenticated, auth } = useAuth();
-  console.log(auth.isPresident)
 
   return (
     <Router>
@@ -36,8 +35,8 @@ function App() {
             <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
             <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
           </Route>
-          <Route path='votacion' element={<Votacion/>} >
-            <Route path='confirmado' element={<ConfirmationPage/>} />
+          <Route path='votacion' element={<Votacion />} >
+            <Route path='confirmado' element={<ConfirmationPage />} />
           </Route>
         </Route>
         <Route path='login' element={<Outlet />} >
