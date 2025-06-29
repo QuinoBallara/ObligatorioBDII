@@ -4,7 +4,8 @@ import viteLogo from '/vite.svg'
 import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import './App.css'
 import { useAuth } from './contexts/authContext'
-import LoginPage from './pages/login/index.jsx'
+import LoginCiudadanoPage from './pages/login/index.jsx'
+import LoginPresidentePage from './pages/loginGestion/index.jsx'
 
 function App() {
   const { isAuthenticated, isPresident } = useAuth();
@@ -30,8 +31,8 @@ function App() {
           </Route>
         </Route>
         <Route path='login' element={<Outlet />} >
-          <Route index element={<><LoginPage /></>} />
-          <Route path='gestion' element={<h1>Login Gestion</h1>} />
+          <Route index element={<><LoginCiudadanoPage /></>} />
+          <Route path='gestion' element={<LoginPresidentePage />} />
         </Route>
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>

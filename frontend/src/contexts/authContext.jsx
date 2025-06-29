@@ -17,13 +17,12 @@ const getAuthInitialState = () => {
 
 const getIsAuthenticatedInitialState = () => {
     const storedToken = localStorage.getItem('token');
-    return storedToken !== null && storedToken !== 'null';
+    return storedToken !== null || storedToken !== 'null';
 }
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(getAuthInitialState());
     const [isAuthenticated, setIsAuthenticated] = useState(getIsAuthenticatedInitialState());
-
     const handleLoginCiudadano = async (ci, credencialCivica) => {
         try {
             const response = await loginCiudadano(ci, credencialCivica);
@@ -37,7 +36,8 @@ export const AuthProvider = ({ children }) => {
             });
             setIsAuthenticated(true);
         } catch (error) {
-            console.error('Login failed:', error);
+            console.error('Login failed:', error.response);
+            alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
             setAuth({ user: null, token: null, isPresident: false });
             setIsAuthenticated(false);
         }
@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleLoginPresidente = async (ci, credencialCivica) => {
         try {
+            console.log('Attempting to login as presidente with CI:', ci, 'and credencialCivica:', credencialCivica);
             const response = await loginPresidente(ci, credencialCivica);
             setAuth({
                 user: {
@@ -54,9 +55,11 @@ export const AuthProvider = ({ children }) => {
                 token: response.token,
                 isPresident: true,
             });
+            console.log('Login successful:', response);
             setIsAuthenticated(true);
         } catch (error) {
-            console.error('Login failed:', error);
+            console.error('Login failed:', error.response);
+            alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
             setAuth({ user: null, token: null, isPresident: false });
             setIsAuthenticated(false);
         }
@@ -68,7 +71,7 @@ export const AuthProvider = ({ children }) => {
                 await logout();
             }
         } catch (error) {
-            console.warn('Server logout failed:', error);
+            console.warn('Server logout failed:', error.response);
         } finally {
             setAuth({ user: null, token: null, isPresident: false });
             setIsAuthenticated(false);
@@ -79,7 +82,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(auth.user));
         localStorage.setItem('token', auth.token);
         localStorage.setItem('isPresident', auth.isPresident.toString());
-        setIsAuthenticated(!!auth.token);
+        setIsAuthenticated(auth.token !== null && auth.token !== 'null');
     }, [auth]);
 
     return (

@@ -4,33 +4,25 @@ import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
 
-const LoginCiudadanoPage = () => {
-    const { handleLoginCiudadano, isAuthenticated } = useAuth();
-    const [authData, setAuthData] = useState("");
+const LoginPresidentePage = () => {
+    const { handleLoginPresidente, isAuthenticated, auth } = useAuth();
+    const [ci, setCi] = useState("");
+    const [credencialCivica, setCredencialCivica] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        if (isCredencial()) {
-            await handleLoginCiudadano(null, authData.replace(" ", ""));
-        }
-        else {
-            await handleLoginCiudadano(authData.replace("-", ""), null);
-        }
+        await handleLoginPresidente(ci.replace("-", ""), credencialCivica.replace(" ", ""));
     };
 
     const handleRedirect = () => {
-        navigate('/login/gestion')
-    }
-
-    const isCredencial = () => {
-        return authData.split(" ").length === 2
+        navigate('/login')
     }
 
     useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/votacion');
+        if (isAuthenticated && auth && auth.isPresident) {
+            navigate('/gestion/home');
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, auth])
 
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -53,20 +45,31 @@ const LoginCiudadanoPage = () => {
                             marginBottom: '16px'
                         }} />
                         <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                            Empezar
+                            Iniciar Sesión
                         </Typography>
                         <Typography variant="body1" sx={{}}>
-                            Empiece el proceso de votación.
+                            Accede como presidente de mesa.
                         </Typography>
                     </Box>
 
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Typography variant="subtitle1" sx={{ marginBottom: 0 }}>
-                            Ingrese su credencial cívica o cédula de identidad
+                            Credencial Cívica
                         </Typography>
-                        <TextField id="outlined-basic" variant="outlined" placeholder="'ABC 12345' o '1234567-8'" fullWidth
-                            value={authData}
-                            onChange={(e) => setAuthData(e.target.value)}
+                        <TextField id="outlined-basic" variant="outlined" placeholder="ABC 12345" fullWidth
+                            value={credencialCivica}
+                            onChange={(e) => setCredencialCivica(e.target.value)}
+                            sx={{ marginBottom: 2, width: '100%' }}
+                        />
+                    </Box>
+
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography variant="subtitle1" sx={{ marginBottom: 0 }}>
+                            Cédula de identidad
+                        </Typography>
+                        <TextField id="outlined-basic" variant="outlined" placeholder="1234567-8" fullWidth
+                            value={ci}
+                            onChange={(e) => setCi(e.target.value)}
                             sx={{ marginBottom: 2, width: '100%' }}
                         />
                     </Box>
@@ -88,14 +91,17 @@ const LoginCiudadanoPage = () => {
                             sx={{ textTransform: 'none' }}
                         >
                             <Typography variant="body2" color="textSecondary">
-                                Hacer login como presidente de mesa.
+                                ¿No sos un presidente de mesa?{' '}
+                                <span style={{ fontWeight: 'bold' }}>
+                                    Retornar
+                                </span>
                             </Typography>
                         </Button>
                     </Box>
                 </CardContent>
             </Card>
-        </Container>
+        </Container >
     )
 }
 
-export default LoginCiudadanoPage;
+export default LoginPresidentePage;
