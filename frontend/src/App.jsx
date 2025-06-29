@@ -6,6 +6,7 @@ import './App.css'
 import { useAuth } from './contexts/authContext'
 import LoginCiudadanoPage from './pages/login/index.jsx'
 import LoginPresidentePage from './pages/loginGestion/index.jsx'
+import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 
 function App() {
   const { isAuthenticated, isPresident } = useAuth();
@@ -13,12 +14,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <><h1>hola</h1><Outlet /></> : <Navigate to='login' />} >
+        <Route path="/" element={isAuthenticated ? <ResultsPerListaPage /> : <ResultsPerListaPage />} >
+        {/* <Route path="/" element={isAuthenticated ? <><h1>hola</h1><Outlet /></> : <Navigate to='login' />} > */}
           <Route path='gestion' element={isPresident ? <><h1>Gestion</h1><Outlet /></> : <Navigate to='/votacion' />} >
             <Route path='home' index element={<h1>Gestion Index</h1>} />
             <Route path='resultados' element={<Outlet />} >
               <Route path='candidatos' element={<h1>Resultados Candidatos</h1>} />
-              <Route path='listas' element={<h1>Resultados Listas</h1>} />
+              <Route path='listas' element={<ResultsPerListaPage />} />
               <Route path='partidos' element={<h1>Resultados Partidos</h1>} />
             </Route>
             <Route path='listas' element={<h1>Listas</h1>} />
