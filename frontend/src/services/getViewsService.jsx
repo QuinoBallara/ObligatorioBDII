@@ -2,14 +2,14 @@ import axios from 'axios';
 import { useAuth } from '../contexts/authContext';
 const API_URL = import.meta.env.VITE_API_URL;
 
-const auth = {}
-auth.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxODI3MTYzIiwianRpIjoiMjI2YWY1OTMtOGI1OC00NjA5LWI1MzMtYjNmZjcyNGQwMjQyIiwiaWF0IjoxNzUxMTY4NDYxLCJleHAiOjE3NTEyMTE2NjF9.Mnvyx0xZPI8Wx-HOJEGu9hbxZV_2rwpMkoChPdfRzOo'
 
-export const getVotosPerLista = async (mesaId) => {
+
+
+export const getVotosPerLista = async (auth) => {
    
     try {
         const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/lista`,
+            `${API_URL}/mesa/${auth.user.mesaId}/resultados/lista`,
             { 
                 headers: { 
                     'Authorization': `Bearer ${auth.token}`,
@@ -24,11 +24,11 @@ export const getVotosPerLista = async (mesaId) => {
     }
 }
 
-export const getVotosPerPartido = async (mesaId) => {
+export const getVotosPerPartido = async (auth) => {
    
     try {
         const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/partido`,
+            `${API_URL}/mesa/${auth.user.mesaId}/resultados/partido`,
             { 
                 headers: { 
                     'Authorization': `Bearer ${auth.token}`,
@@ -42,11 +42,11 @@ export const getVotosPerPartido = async (mesaId) => {
     }
 }
 
-export const getVotosPerCandidato = async (mesaId) => {
-    
+export const getVotosPerCandidato = async (auth) => {
+   
     try {
         const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/candidato`,
+            `${API_URL}/mesa/${auth.user.mesaId}/resultados/candidato`,
             { 
                 headers: { 
                     'Authorization': `Bearer ${auth.token}`,

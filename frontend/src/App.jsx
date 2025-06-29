@@ -8,21 +8,28 @@ import LoginCiudadanoPage from './pages/login/index.jsx'
 import LoginPresidentePage from './pages/loginGestion/index.jsx'
 import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
+import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
+import ControlPanel from './components/controlPanel/index.jsx'
 
 function App() {
-  const { isAuthenticated, isPresident } = useAuth();
+  const { isAuthenticated, auth } = useAuth();
+  console.log(auth.isPresident)
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isAuthenticated ? <ResultsPerCandidatoPage /> : <ResultsPerCandidatoPage />} >
-        {/* <Route path="/" element={isAuthenticated ? <><h1>hola</h1><Outlet /></> : <Navigate to='login' />} > */}
-          <Route path='gestion' element={isPresident ? <><h1>Gestion</h1><Outlet /></> : <Navigate to='/votacion' />} >
+        <Route path="/" element={isAuthenticated ? <><Outlet /></> : <Navigate to='login' />} >
+          <Route path='gestion' element={auth.isPresident ? <div style={{ display: 'flex', height: '100vh' }}>
+            <ControlPanel />
+            <div style={{ flex: 1 }}>
+              <Outlet />
+            </div>
+          </div> : <Navigate to='/votacion' />} >
             <Route path='home' index element={<h1>Gestion Index</h1>} />
             <Route path='resultados' element={<Outlet />} >
-              <Route path='candidatos' element={<h1>Resultados Candidatos</h1>} />
+              <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
               <Route path='listas' element={<ResultsPerListaPage />} />
-              <Route path='partidos' element={<h1>Resultados Partidos</h1>} />
+              <Route path='partidos' element={<ResultsPerPartidoPage />} />
             </Route>
             <Route path='listas' element={<h1>Listas</h1>} />
             <Route path='votantes' element={<h1>Votantes</h1>} />

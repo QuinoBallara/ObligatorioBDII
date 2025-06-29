@@ -11,14 +11,15 @@ const ResultsPerCandidatoPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const { auth } = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                
-                const mesaId = 1;
-                const response = await getVotosPerCandidato(mesaId);
+                
+                const response = await getVotosPerCandidato(auth);
                 
                 // Calculate total votes
                 const totalVotes = response.reduce((sum, item) => sum + item.CantidadDeVotos, 0);

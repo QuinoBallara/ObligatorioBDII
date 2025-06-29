@@ -11,14 +11,14 @@ const ResultsPerListaPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const {auth} = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                
-                const mesaId = 1;
-                const response = await getVotosPerLista(mesaId);
+                const response = await getVotosPerLista(auth);
                 
                 // Calculate total votes
                 const totalVotes = response.reduce((sum, item) => sum + item.CantidadDeVotos, 0);
