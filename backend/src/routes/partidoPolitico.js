@@ -10,6 +10,7 @@ const {
 } = require('../controllers/partidoPoliticoController');
 
 const router = express.Router();
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 /**
  * @route GET /api/partidoPolitico/:id
@@ -60,6 +61,7 @@ router.post(
     [
         body('nombre').isString().withMessage('The field nombre must be a string')
     ],
+    forbidCitizen,
     validateRequest,
     postPartidoPolitico
 )
@@ -87,6 +89,7 @@ router.post(
         body('fecha_fin').isISO8601().withMessage('The field fecha_fin must be a valid date'),
         body('tipo_ciudadano_id').isInt().withMessage('The field tipo_ciudadano_id must be an integer'),
     ],
+    forbidCitizen,
     validateRequest,
     postAutoridadPartidoPolitico
 );

@@ -8,6 +8,8 @@ const {
     getListaPresidencialByEleccion,
     getListaPresidencialByEleccionAndPartidoPolitico
 } = require('../controllers/listaPresidencialController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
+
 
 const router = express.Router();
 
@@ -40,6 +42,7 @@ router.post(
         body('ciudadanos.*.tipo_ciudadano_id').isInt().withMessage('Each ciudadano must have a tipo_ciudadano_id that is an integer'),
         body('ciudadanos.*.numero').isInt().withMessage('Each ciudadano must have a numero that is an integer')
     ],
+    forbidCitizen,
     validateRequest,
     postListaPresidencial
 );

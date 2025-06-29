@@ -2,6 +2,7 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const { getMunicipio, postMunicipio, getMunicipioByID } = require('../controllers/municipioController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -22,6 +23,7 @@ router.post(
         body('nombre').isString().withMessage('The field nombre must be a string.'),
         body('departamento_id').isString().withMessage('The field departamento_id must be a string.')
     ],
+    forbidCitizen,
     validateRequest,
     postMunicipio
 );
@@ -42,6 +44,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     getMunicipioByID
 );
@@ -56,6 +59,7 @@ router.get(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getMunicipio
 );

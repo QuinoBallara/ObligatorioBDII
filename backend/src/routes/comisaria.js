@@ -7,6 +7,7 @@ const {
     postComisaria,
     postPolicia
 } = require('../controllers/comisariaController');
+const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
 
@@ -27,6 +28,7 @@ router.post(
         body('nombre').isString().withMessage('The field nombre must be a string.'),
         body('municipio_id').isString().withMessage('The field municipio_id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postComisaria
 );
@@ -47,6 +49,7 @@ router.get(
     [
         param('id').isString().withMessage('The field id must be a string'),
     ],
+    forbidCitizen,
     validateRequest,
     getComisariaByID
 );
@@ -61,6 +64,7 @@ router.get(
  */
 router.get(
     '/',
+    forbidCitizen,
     validateRequest,
     getComisaria
 );
@@ -83,6 +87,7 @@ router.post(
         param('id').isString().withMessage('The field id must be a string.'),
         body('policia_id').isString().withMessage('The field policia_id must be a string.'),
     ],
+    forbidCitizen,
     validateRequest,
     postPolicia
 );
