@@ -13,12 +13,13 @@ import { useAuth } from '../../contexts/authContext';
 import { getTableInfo, changeTableState } from '../../services/controlPanelService';
 import ControlPanelButton from '../buttons/controlPanelButton';
 import { useNavigate } from 'react-router-dom';
+import { useSidebar } from '../../contexts/sidebarContext';
 
 function ControlPanel() {
-    const [showSidebar, setShowSidebar] = useState(true);
     const { auth, handleLogout } = useAuth();
     const [tableInfo, setTableInfo] = useState({});
     const navigate = useNavigate();
+    const { showSidebar, setShowSidebar } = useSidebar();
 
     useEffect(() => {
         const fetchTableInfo = async () => {
@@ -74,8 +75,10 @@ function ControlPanel() {
                         padding: '0 !important',
                         borderRadius: 0,
                         backgroundColor: '#f5f5f5',
-                        width: '25vw',
-                        minWidth: '350px',
+                        width: showSidebar ? '25vw' : '0vw', // Dynamically adjust width
+                        minWidth: showSidebar ? '350px' : '0px',
+                        overflow: 'hidden',
+                        transition: 'width 0.5s ease, min-width 0.5s ease'
                     }}
                 >
                     <Card raised sx={{
