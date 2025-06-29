@@ -49,7 +49,8 @@ async function getCiudadano(userId = null, credential = null) {
 }
 
 async function getPresidenteMesa(userId, userCredential) {
-    const query = `
+    try {
+        const query = `
         SELECT 
             c.id AS ciudadano_id,
             m.id AS mesa_id
@@ -59,14 +60,19 @@ async function getPresidenteMesa(userId, userCredential) {
         WHERE c.id = ? 
         AND ccc.credencial_civica = ?;
     `;
-    const [rows] = await pool.query(query, [userId, userCredential]);
-    if (rows.length > 0) {
-        return {
-            ciudadano_id: rows[0].ciudadano_id,
-            mesa_id: rows[0].mesa_id
-        };
+        const [rows] = await pool.query(query, [userId, userCredential]);
+        if (rows.length > 0) {
+            return {
+                ciudadano_id: rows[0].ciudadano_id,
+                mesa_id: rows[0].mesa_id
+            };
+        }
+        return { ciudadano_id: null, mesa_id: null };
     }
-    return { ciudadano_id: null, mesa_id: null };
+    catch (error) {
+        console.error('Database query error:', error);
+        throw error;
+    }
 }
 
 // store tokens in an array for simplicity
