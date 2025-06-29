@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import './App.css'
 import { useAuth } from './contexts/authContext'
@@ -10,6 +8,8 @@ import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
 import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
 import ControlPanel from './components/controlPanel/index.jsx'
+import Votacion from './pages/votacion/Index';
+import ConfirmationPage from './pages/votacion/ConfirmationPage';
 
 function App() {
   const { isAuthenticated, auth } = useAuth();
@@ -36,8 +36,8 @@ function App() {
             <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
             <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
           </Route>
-          <Route path='votacion' element={<><h1>Votacion</h1><Outlet /></>} >
-            <Route path='confirmado' element={<h1>Votacion Confirmado</h1>} />
+          <Route path='votacion' element={<Votacion/>} >
+            <Route path='confirmado' element={<ConfirmationPage/>} />
           </Route>
         </Route>
         <Route path='login' element={<Outlet />} >
