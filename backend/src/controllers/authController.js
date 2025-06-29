@@ -27,7 +27,7 @@ async function loginCiudadano(req, res, next) {
         res.status(200).json({ user, token });
     } catch (error) {
         console.error('Login error:', error);
-        next(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 }
 
@@ -55,7 +55,7 @@ async function loginPresidente(req, res, next) {
         res.status(200).json({ user, token });
     } catch (error) {
         console.error('Login error:', error);
-        next(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
@@ -83,7 +83,7 @@ async function logout(req, res, next) {
         }
     } catch (error) {
         console.error('Logout error:', error);
-        next(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
