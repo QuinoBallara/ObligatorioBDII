@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
-import escudoUruguay from "../../assets/escudo_uruguay.png";
-import { getVotosPerLista } from "../../services/getViewsService"; 
+import { getVotosPerLista } from "../../services/getViewsService";
+import ResultsTable from "../../components/resultsTable"; 
 
 const ResultsPerListaPage = () => {
-    
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const {auth} = useAuth();
+    const { auth } = useAuth();
+
+    const columns = [
+        { key: 'Lista', label: 'Lista', align: 'left' },
+        { key: 'Partido', label: 'Partido Político', align: 'right' },
+        { key: 'CantidadDeVotos', label: 'Votos', align: 'right' },
+        { 
+            key: 'porcentaje', 
+            label: 'Porcentaje', 
+            align: 'right',
+            render: (value) => `${value}%`
+        }
+    ];
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-               
                 const response = await getVotosPerLista(auth);
                 
                 // Calculate total votes
@@ -42,80 +51,17 @@ const ResultsPerListaPage = () => {
         };
 
         fetchData();
-    }, []);
-
-    if (loading) {
-        return (
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <Typography>Cargando...</Typography>
-            </Container>
-        );
-    }
-
-    if (error) {
-        return (
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <Typography color="error">{error}</Typography>
-            </Container>
-        );
-    }
+    }, [auth]);
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <Card raised sx={{
-                padding: 5,
-                paddingBottom: 3,
-                backgroundColor: '#f5f5f5',
-                borderRadius: 3,
-                minWidth: '70vh',
-                minHeight: '65vh',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <CardContent sx={{ width: '100%' }}>
-                    <Box sx={{ textAlign: 'center', marginBottom: 3 }}>
-                        <img src={escudoUruguay} alt="Escudo de Uruguay" style={{
-                            width: '100px',
-                            height: '100px',
-                            marginBottom: '16px'
-                        }} />
-                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                            Resultados por Lista
-                        </Typography>
-                        <Typography variant="body1">
-                            Resultados de votación por cada lista.
-                        </Typography>
-                    </Box>
-
-                    <TableContainer component={Paper} sx={{ marginTop: 2 }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>Lista</TableCell>
-                                    <TableCell align="right" sx={{ fontWeight: 'bold' }}>Partido Político</TableCell>
-                                    <TableCell align="right" sx={{ fontWeight: 'bold' }}>Votos</TableCell>
-                                    <TableCell align="right" sx={{ fontWeight: 'bold' }}>Porcentaje</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {data.map((row) => (
-                                    <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row">
-                                            {row.Lista}
-                                        </TableCell>
-                                        <TableCell align="right">{row.Partido}</TableCell>
-                                        <TableCell align="right">{row.CantidadDeVotos}</TableCell>
-                                        <TableCell align="right">{row.porcentaje}%</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </CardContent>
-            </Card>
-        </Container>
+        <ResultsTable
+            data={data}
+            loading={loading}
+            error={error}
+            title="Resultados por Lista"
+            subtitle="Resultados de votación por cada lista."
+            columns={columns}
+        />
     );
 };
 
