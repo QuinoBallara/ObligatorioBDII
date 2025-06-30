@@ -8,12 +8,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
-    const storedIsPresident = localStorage.getItem('isPresident') === 'true';
-
+    const storedVoter = localStorage.getItem('voter');
     return {
         user: storedUser ? JSON.parse(storedUser) : null,
         token: storedToken || null,
-        isPresident: storedIsPresident,
+        voter: storedVoter ? JSON.parse(storedVoter) : null
     };
 }
 
@@ -25,23 +24,22 @@ const getIsAuthenticatedInitialState = () => {
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(getAuthInitialState());
     const [isAuthenticated, setIsAuthenticated] = useState(getIsAuthenticatedInitialState());
+
     const handleLoginCiudadano = async (ci, credencialCivica) => {
         try {
             const response = await loginCiudadano(ci, credencialCivica);
-            setAuth({
-                user: {
+            setAuth(prev => ({
+                ...prev,
+                voter: {
                     id: response.user.id,
                     credencialCivica: response.user.credencialCivica,
+                    token: response.token,
                 },
-                token: response.token,
-                isPresident: false,
-            });
-            setIsAuthenticated(true);
+            }));
         } catch (error) {
             console.error('Login failed:', error.response);
             alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-            setAuth({ user: null, token: null, isPresident: false });
-            setIsAuthenticated(false);
+            setAuth(prev => ({ ...prev, voter: null }));
         }
     }
 
@@ -55,19 +53,19 @@ export const AuthProvider = ({ children }) => {
                     mesaId: response.user.mesa_id,
                 },
                 token: response.token,
-                isPresident: true,
+                voter: null
             });
             console.log('Login successful:', response);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Login failed:', error.response);
             alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-            setAuth({ user: null, token: null, isPresident: false });
+            setAuth({ user: null, token: null, voter: null });
             setIsAuthenticated(false);
         }
     }
 
-    const handleLogout = async () => {
+    const handleLogoutPresidente = async () => {
         try {
             if (auth.token) {
                 await logout();
@@ -75,31 +73,46 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.warn('Server logout failed:', error.response);
         } finally {
-            setAuth({ user: null, token: null, isPresident: false });
+            setAuth({ user: null, token: null });
             setIsAuthenticated(false);
         }
     }
 
-    useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(auth.user));
-        localStorage.setItem('token', auth.token);
-        localStorage.setItem('isPresident', auth.isPresident.toString());
-        setIsAuthenticated(auth.token !== null && auth.token !== 'null');
-    }, [auth]);
+    const handleLogoutVoter = async () => {
+        try {
+            if (auth.voter && auth.voter.token) {
+                await logout();
+            }
+        }
+        catch (error) {
+            console.warn('Server logout failed:', error.response);
+        } finally {
+            setAuth({ ...prev, voter: null });
+        }
 
-    return (
-        <AuthContext.Provider value={{
-            auth,
-            setAuth,
-            isAuthenticated,
-            setIsAuthenticated,
-            handleLoginCiudadano,
-            handleLoginPresidente,
-            handleLogout
-        }}>
-            {children}
-        </AuthContext.Provider>
-    );
+        useEffect(() => {
+            localStorage.setItem('user', JSON.stringify(auth.user));
+            localStorage.setItem('token', auth.token);
+            localStorage.setItem('voter', JSON.stringify(auth.voter));
+            setIsAuthenticated(auth.token !== null && auth.token !== 'null');
+        }, [auth]);
+
+        return (
+            <AuthContext.Provider value={{
+                auth,
+                setAuth,
+                isAuthenticated,
+                setIsAuthenticated,
+                handleLoginCiudadano,
+                handleLoginPresidente,
+                handleLogoutPresidente,
+                handleLogoutVoter
+            }}>
+                {children}
+            </AuthContext.Provider>
+        );
+    }
+
 }
 
 export const useAuth = () => {
@@ -110,15 +123,16 @@ export const useAuth = () => {
     return context;
 }
 
+
 export const getVotosPerLista = async (mesaId, token) => {
     try {
         const response = await axios.get(
             `${API_URL}/mesa/${mesaId}/resultados/lista`,
-            { 
-                headers: { 
+            {
+                headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
+                    'Content-Type': 'application/json'
+                }
             }
         );
         console.log(response.data);
@@ -132,11 +146,11 @@ export const getVotosPerPartido = async (mesaId, token) => {
     try {
         const response = await axios.get(
             `${API_URL}/mesa/${mesaId}/resultados/partido`,
-            { 
-                headers: { 
+            {
+                headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
+                    'Content-Type': 'application/json'
+                }
             }
         );
         return response.data;
@@ -149,11 +163,11 @@ export const getVotosPerCandidato = async (mesaId, token) => {
     try {
         const response = await axios.get(
             `${API_URL}/mesa/${mesaId}/resultados/candidato`,
-            { 
-                headers: { 
+            {
+                headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
+                    'Content-Type': 'application/json'
+                }
             }
         );
         return response.data;

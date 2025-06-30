@@ -21,8 +21,8 @@ function App() {
     <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
       <Router>
         <Routes>
-          <Route path="/" element={isAuthenticated ? <><Outlet /></> : <Navigate to='login' />} >
-            <Route path='gestion' element={auth.isPresident ?
+          <Route path="/"
+            element={isAuthenticated ?
               <div style={{ display: 'flex', height: '100vh' }}>
                 <ControlPanel />
                 <div style={{
@@ -32,26 +32,25 @@ function App() {
                 }}>
                   <Outlet />
                 </div>
-              </div> : <Navigate to='/votacion' />} >
-              <Route path='home' index element={<GestionHome />} />
-              <Route path='resultados' element={<Outlet />} >
-                <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
-                <Route path='listas' element={<ResultsPerListaPage />} />
-                <Route path='partidos' element={<ResultsPerPartidoPage />} />
-              </Route>
-              <Route path='listas' element={<h1>Listas</h1>} />
-              <Route path='votantes' element={<h1>Votantes</h1>} />
-              <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
-              <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
+              </div>
+              : <Navigate to='login' />} >
+            <Route index path='home' element={<GestionHome />} />
+            <Route path='resultados' element={<Outlet />} >
+              <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
+              <Route path='listas' element={<ResultsPerListaPage />} />
+              <Route path='partidos' element={<ResultsPerPartidoPage />} />
             </Route>
-            <Route path='votacion' element={<Votacion />} >
+            <Route path='listas' element={<h1>Listas</h1>} />
+            <Route path='votantes' element={<h1>Votantes</h1>} />
+            <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
+            <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
+            <Route path='votacion' element={<Outlet />} >
+              <Route index path='login' element={<><LoginCiudadanoPage /></>} />
+              <Route path='votar' element={<Votacion />} />
               <Route path='confirmado' element={<ConfirmationPage />} />
             </Route>
           </Route>
-          <Route path='login' element={<Outlet />} >
-            <Route index element={<><LoginCiudadanoPage /></>} />
-            <Route path='gestion' element={<LoginPresidentePage />} />
-          </Route>
+          <Route path='login' element={<LoginPresidentePage />} />
           <Route path='*' element={<h1>404 Not Found</h1>} />
         </Routes>
       </Router>
