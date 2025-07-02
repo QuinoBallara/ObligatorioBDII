@@ -14,36 +14,38 @@ import GestionHome from './pages/gestionHome/index.jsx'
 import { SidebarContext } from './contexts/sidebarContext.jsx'
 
 function App() {
-  const { isAuthenticated, auth } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [showSidebar, setShowSidebar] = useState(true);
 
   return (
     <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
       <Router>
         <Routes>
-          <Route path="/"
-            element={isAuthenticated ?
-              <div style={{ display: 'flex', height: '100vh' }}>
-                <ControlPanel />
-                <div style={{
-                  flex: 1,
-                  marginLeft: showSidebar ? '0' : '0',
-                  transition: 'margin-left 0.3s ease'
-                }}>
-                  <Outlet />
+          <Route path='/' element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
+            <Route path="/gestion" 
+              element={
+                <div style={{ display: 'flex', height: '100vh' }}>
+                  <ControlPanel />
+                  <div style={{
+                    flex: 1,
+                    marginLeft: showSidebar ? '0' : '0',
+                    transition: 'margin-left 0.3s ease'
+                  }}>
+                    <Outlet />
+                  </div>
                 </div>
-              </div>
-              : <Navigate to='login' />} >
-            <Route index path='home' element={<GestionHome />} />
-            <Route path='resultados' element={<Outlet />} >
-              <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
-              <Route path='listas' element={<ResultsPerListaPage />} />
-              <Route path='partidos' element={<ResultsPerPartidoPage />} />
+              } >
+              <Route index path='home' element={<GestionHome />} />
+              <Route path='resultados' element={<Outlet />} >
+                <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
+                <Route path='listas' element={<ResultsPerListaPage />} />
+                <Route path='partidos' element={<ResultsPerPartidoPage />} />
+              </Route>
+              <Route path='listas' element={<h1>Listas</h1>} />
+              <Route path='votantes' element={<h1>Votantes</h1>} />
+              <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
+              <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
             </Route>
-            <Route path='listas' element={<h1>Listas</h1>} />
-            <Route path='votantes' element={<h1>Votantes</h1>} />
-            <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
-            <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
             <Route path='votacion' element={<Outlet />} >
               <Route index path='login' element={<><LoginCiudadanoPage /></>} />
               <Route path='votar' element={<Votacion />} />
