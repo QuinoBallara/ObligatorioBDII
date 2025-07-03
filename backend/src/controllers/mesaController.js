@@ -62,6 +62,12 @@ async function patchMesaAbierta(req, res, next) {
     }
 
     try {
+        const hasBeenOpened = await selectVotosPerListaPerMesa(id);
+        console.log(hasBeenOpened)
+        if (hasBeenOpened) {
+            return res.status(400).json({ message: 'Cannot reopen a mesa that has already been closed after voting.' });
+        }
+
         const result = await updateAbierta(id, esta_abierta);
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Mesa not found' });
@@ -92,7 +98,7 @@ async function getCiudadanoMesa(req, res, next) {
         console.error('Error fetching Ciudadano and Mesa:', error);
         next(error);
     }
-    
+
 }
 
 async function postCiudadanoMesa(req, res, next) {
@@ -151,7 +157,7 @@ async function getCiudadanoMesaByMesaID(req, res, next) {
         console.error('Error fetching CiudadanoMesa by mesa_id:', error);
         next(error);
     }
-    
+
 }
 
 async function getVotoByID(req, res, next) {
