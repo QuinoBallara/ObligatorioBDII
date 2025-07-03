@@ -9,3 +9,21 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     min-height: 70vh;
 }
+
+.votacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px;
+    gap: 75vh;
+    background-color: #173363;
+    margin-top: -14px;
+}
+
+.votacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}

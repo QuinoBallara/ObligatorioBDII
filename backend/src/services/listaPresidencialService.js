@@ -45,7 +45,7 @@ async function insertListaPresidencial(lista_id, partido_politico_id, departamen
 
 async function selectListaPresidencialByEleccion(eleccion_id) {
 
-    const query = 'SELECT lp.* FROM ListaPresidencial lp JOIN Lista l ON l.id = lp.lista_id WHERE l.eleccion_id = ?';
+    const query = 'SELECT lp.*, d.nombre as departamento_nombre, pp.nombre as partido_nombre FROM ListaPresidencial lp JOIN Lista l ON l.id = lp.lista_id JOIN Departamento d ON lp.departamento_id = d.id JOIN PartidoPolitico pp ON lp.partido_politico_id = pp.id WHERE l.eleccion_id = ?';
 
     try {
         const [rows] = await pool.query(query, [eleccion_id]);

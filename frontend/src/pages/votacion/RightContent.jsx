@@ -1,6 +1,7 @@
 import React from 'react'
 import BlankVote from '../../components/UI/Votacion/BlankVote'
 import EpicSelector from '../../components/UI/Votacion/EpicSelector'
+import Button from '@mui/material/Button'
 
 export default function RightContent() {
   return (
