@@ -97,6 +97,7 @@ async function postListaPresidencial(req, res, next) {
 
 async function getListaPresidencialByEleccion(req, res, next) {
     const { eleccion_id } = req.params;
+    console.log('Received request to get Lista Presidencial by Eleccion ID:', eleccion_id);
 
     if (!eleccion_id) {
         return res.status(400).json({ message: 'Eleccion ID is required' });

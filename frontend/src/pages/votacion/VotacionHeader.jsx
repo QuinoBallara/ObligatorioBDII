@@ -1,12 +1,16 @@
 import React from 'react'
 import Volver from '../../components/buttons/back'
 import SearchBar from '../../components/UI/Votacion/SearchBar'
+import './votacion.css'
 
-function VotacionHeader() {
+function VotacionHeader({listaAFiltrar, setListaAFiltrar}) {
+
+  
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', gap: '75vh' }}>
-        <Volver/>
-        <SearchBar/>
+    <div className='votacion-header'>
+        <Volver to='/login'/>
+        <SearchBar listaAFiltrar={listaAFiltrar} setListaAFiltrar={setListaAFiltrar} />
     </div>
   )
 }

@@ -3,11 +3,13 @@ import './votacion.css'
 import CardList from '../../components/UI/Votacion/CardList'
 import RightContent from './RightContent'
 
-function VotacionContent() {
+function VotacionContent({listaAFiltrar}) {
+
+
   return (
     <div className="votacion-content">
-      <CardList />
-      <RightContent/>
+      <CardList listaAFiltrar={listaAFiltrar}/>
+      <RightContent />
     </div>
   )
 }
