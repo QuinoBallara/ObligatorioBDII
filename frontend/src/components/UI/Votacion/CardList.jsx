@@ -1,18 +1,75 @@
 import { Button, List, ListItem } from '@mui/material'
 import React from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Card from './Card'
+import { useVoto, VotoContext } from '../../../contexts/votoContext'
+import { getListas } from '../../../services/votacionService'
+import { useAuth } from '../../../contexts/authContext'
 
-export default function CardList() {
+export default function CardList({listaAFiltrar}) {
 
-  const [cards, setCards] = React.useState([1,2,3,4,5])
+  const [cards, setCards] = useState([])
+
+  const { voto, setVoto } = useVoto();
+
+
+
+  const handleClick = (card) => {
+    console.log("nuevo voto", card);
+    setVoto(card);
+  }
+  const {auth} = useAuth();
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const listas = await getListas(auth);
+        console.log("Listas obtenidas:", listas);
+        if (listas) {
+          setCards(listas);
+        } else {
+          console.error("No se encontraron listas");
+        }
+      } catch (error) {
+        console.error("Error al obtener las listas:", error);
+      }
+    }
+
+    fetchData();
+
+  }, []);
+
+  // Filtrar las cards basándose en listaAFiltrar
+  const cardsFiltradas = useMemo(() => {
+    if (!listaAFiltrar || listaAFiltrar.trim() === '') {
+      return cards;
+    }
+    
+    return cards.filter((card) => {
+      // Filtrar por número de lista
+      const numeroCoincide = card.numero?.toString().includes(listaAFiltrar);
+
+      const partidoCoincide = card.partido_nombre?.toLowerCase().includes(listaAFiltrar.toLowerCase().trim());
+
+      const departamentoCoincide = card.departamento_nombre?.toLowerCase().includes(listaAFiltrar.toLowerCase().trim());
+
+      return numeroCoincide || partidoCoincide || departamentoCoincide;
+    });
+
+  }, [cards, listaAFiltrar]);
 
   return (
-    <List style={{
-      maxHeight: '550px',
-      overflowY: 'auto',
-    }}>
-        {cards.map((card, index) => (
-            <ListItem key={index} style={{
+    <List 
+      className="custom-scrollbar"
+      style={{
+        minHeight: '70vh',
+        maxHeight: '70vh',
+        overflowY: 'auto',
+        minWidth: '80vh',
+      }}>
+        {cardsFiltradas.map((card) => (
+            <ListItem key={card.lista_id} style={{
                display: 'flex', 
                alignItems: 'center', 
                justifyContent: 'space-between',
@@ -22,9 +79,9 @@ export default function CardList() {
                border: '1px solid #ccc', 
                borderRadius: '15px', 
                margin: '10px 0',
-               maxWidth: '450px',}}>
+               maxWidth: '100%',}}>
                 <Card {...card} />
-                <Button variant="contained" color="primary">Seleccionar</Button>
+                <Button onClick={() => handleClick(card)} variant="contained" color="primary">Seleccionar</Button>
             </ListItem>
         ))}
     </List>

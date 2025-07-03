@@ -12,14 +12,16 @@ import Votacion from './pages/votacion/Index';
 import ConfirmationPage from './pages/votacion/ConfirmationPage';
 import GestionHome from './pages/gestionHome/index.jsx'
 import { SidebarContext } from './contexts/sidebarContext.jsx'
+import { VotoProvider } from './contexts/votoContext.jsx'
 
 function App() {
   const { isAuthenticated, auth } = useAuth();
   const [showSidebar, setShowSidebar] = useState(true);
 
   return (
-    <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
-      <Router>
+    <VotoProvider>
+      <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
+        <Router>
         <Routes>
           <Route path="/" element={isAuthenticated ? <><Outlet /></> : <Navigate to='login' />} >
             <Route path='gestion' element={auth.isPresident ?
@@ -56,6 +58,7 @@ function App() {
         </Routes>
       </Router>
     </SidebarContext.Provider>
+    </VotoProvider>
   )
 }
 
