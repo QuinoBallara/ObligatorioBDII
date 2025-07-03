@@ -14,9 +14,9 @@ export default function CardList({listaAFiltrar}) {
 
 
 
-  const handleClick = (listaId) => {
-    console.log(listaId);
-    setVoto(listaId);
+  const handleClick = (card) => {
+    console.log("nuevo voto", card);
+    setVoto(card);
   }
   const {auth} = useAuth();
 
@@ -81,7 +81,7 @@ export default function CardList({listaAFiltrar}) {
                margin: '10px 0',
                maxWidth: '100%',}}>
                 <Card {...card} />
-                <Button onClick={() => handleClick(card.lista_id)} variant="contained" color="primary">Seleccionar</Button>
+                <Button onClick={() => handleClick(card)} variant="contained" color="primary">Seleccionar</Button>
             </ListItem>
         ))}
     </List>
