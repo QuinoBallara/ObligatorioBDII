@@ -7,9 +7,6 @@ export default function EpicSelector() {
 
   const {voto, setVoto } = useVoto();
 
-  const handleChange = () => {
-
-  }
 
   return (
     <div style={{
@@ -31,23 +28,23 @@ export default function EpicSelector() {
             setVoto(e.target.value);}}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={typeof voto === 'number' ? "" : voto}
+            value={typeof voto.lista_id === 'number' ? "" : voto}
           >
           <MenuItem value="">Nada</MenuItem>
-          <MenuItem value={"0"}>Pizza</MenuItem>
-          <MenuItem value={"1"}>Salame</MenuItem>
-          <MenuItem value={"2"}>600 doláres</MenuItem>
-          <MenuItem value={"3"}>Un gato</MenuItem>
-          <MenuItem value={"4"}>Un preservativo</MenuItem>
-          <MenuItem value={"5"}>3 gramos de marihuana</MenuItem>
-          <MenuItem value={"6"}>Una cuchara de plástico usada</MenuItem>
-          <MenuItem value={"7"}>Una foto de Nicolas Cage</MenuItem>
-          <MenuItem value={"8"}>Un manual de IKEA en japonés</MenuItem>
-          <MenuItem value={"9"}>Un USB con 47 fotos de patos</MenuItem>
-          <MenuItem value={"10"}>Una copia pirata de Los Sims en CD</MenuItem>
-          <MenuItem value={"11"}>Una bolsa de té usada 3 veces</MenuItem>
-          <MenuItem value={"12"}>Un manual de Windows 95 en ruso</MenuItem>
-          <MenuItem value={"13"}>Un par de medias distintas</MenuItem>
+          <MenuItem value={"0"}>0 - Pizza</MenuItem>
+          <MenuItem value={"1"}>1 - Salame</MenuItem>
+          <MenuItem value={"2"}>2 - 600 doláres</MenuItem>
+          <MenuItem value={"3"}>3 - Un gato</MenuItem>
+          <MenuItem value={"4"}>4 - Un preservativo</MenuItem>
+          <MenuItem value={"5"}>5 - 3 gramos de marihuana</MenuItem>
+          <MenuItem value={"6"}>6 - Una cuchara de plástico usada</MenuItem>
+          <MenuItem value={"7"}>7 - Una foto de Nicolas Cage</MenuItem>
+          <MenuItem value={"8"}>8 - Un manual de IKEA en japonés</MenuItem>
+          <MenuItem value={"9"}>9 - Un USB con 47 fotos de patos</MenuItem>
+          <MenuItem value={"10"}>10 - Una copia pirata de Los Sims en CD</MenuItem>
+          <MenuItem value={"11"}>11 - Una bolsa de té usada 3 veces</MenuItem>
+          <MenuItem value={"12"}>12 - Un manual de Windows 95 en ruso</MenuItem>
+          <MenuItem value={"13"}>13 - Un par de medias distintas</MenuItem>
         </Select>
       </FormControl>
           </div>
