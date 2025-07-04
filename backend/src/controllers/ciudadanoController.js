@@ -1,5 +1,5 @@
 
-const { getByID, get, insert , insertCredencial} = require('../services/ciudadanoService');
+const { selectCiudadano, selectCiudadanoByID, insertCiudadano, insertCredencialCiudadano} = require('../services/ciudadanoService');
 
 
 async function getCiudadanoByID(req, res, next) {
@@ -10,7 +10,7 @@ async function getCiudadanoByID(req, res, next) {
         return res.status(400).json({ message: 'ID is required' });
     }
     try {
-        const resultsQuery = await getByID(id);
+        const resultsQuery = await selectCiudadanoByID(id);
     
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Ciudadano not found' });
@@ -26,7 +26,7 @@ async function getCiudadanoByID(req, res, next) {
 async function getCiudadano(req, res, next) {
 
     try {
-        const resultsQuery = await get();
+        const resultsQuery = await selectCiudadano();
     
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Ciudadano found' });
@@ -48,7 +48,7 @@ async function postCiudadano(req, res, next) {
     }
 
     try{
-        const existingCiudadano = await getByID(id);
+        const existingCiudadano = await selectCiudadanoByID(id);
 
         if (existingCiudadano) {
             return res.status(409).json({ message: 'Ciudadano with this ID already exists' });
@@ -60,9 +60,9 @@ async function postCiudadano(req, res, next) {
     }
 
     try {
-        const resultsQueryCiudadano = await insert(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo);
+        const resultsQueryCiudadano = await insertCiudadano(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo);
     
-        const resultsQueryCredencial = await insertCredencial(credencial_civica, id);
+        const resultsQueryCredencial = await insertCredencialCiudadano(credencial_civica, id);
     
         return res.status(201).json({ message: 'Ciudadano created successfully', ciudadano_id: resultsQueryCiudadano.insertId, credencial_id: resultsQueryCredencial.insertId });
     } catch(error) {
