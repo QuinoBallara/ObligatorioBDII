@@ -545,6 +545,29 @@
 					"response": []
 				},
 				{
+					"name": "Get Policia Comisaria by IDs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/comisaria/1/policia/3404870",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria",
+								"1",
+								"policia",
+								"3404870"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get comisaria",
 					"request": {
 						"method": "GET",
