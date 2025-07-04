@@ -1,4 +1,4 @@
-const { selectByID, select, insert, insertPolicia } = require('../services/comisariaService');
+const { selectByID, select, insert, insertPolicia, selectPoliciaComisariaByComisariaIDAndPoliciaID } = require('../services/comisariaService');
 
 async function getComisariaByID(req, res, next) {
     const { id } = req.params;
@@ -78,10 +78,33 @@ async function postPolicia(req, res, next) {
 
 }
 
+async function getPoliciaComisariaByComisariaIDAndCiudadanoID(req, res, next) {
+    const { comisaria_id, policia_id } = req.params;
+
+    if (!comisaria_id || !policia_id) {
+        return res.status(400).json({ message: 'comisaria_id and policia_id are required' });
+    }
+
+    try {
+        const resultsQuery = await selectPoliciaComisariaByComisariaIDAndPoliciaID(comisaria_id, policia_id);
+    
+        console.log('Results from getPoliciaComisariaByComisariaIDAndPoliciaID:', resultsQuery);
+    
+        if (!resultsQuery) {
+            return res.status(404).json({ message: 'Policia not found in Comisaria' });
+        }
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Policia by Comisaria ID and Policia ID:', error);
+        next(error);
+    }
+}
+
 
 module.exports = {
     getComisaria,
     getComisariaByID,
     postComisaria,
-    postPolicia
+    postPolicia,
+    getPoliciaComisariaByComisariaIDAndCiudadanoID
 };
