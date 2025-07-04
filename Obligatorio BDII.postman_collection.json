@@ -181,6 +181,26 @@
 					"response": []
 				},
 				{
+					"name": "Get departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/departamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Post departamento",
 					"request": {
 						"method": "POST",
@@ -539,6 +559,29 @@
 								"api",
 								"comisaria",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Policia Comisaria by IDs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/comisaria/1/policia/3404870",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comisaria",
+								"1",
+								"policia",
+								"3404870"
 							]
 						}
 					},
@@ -1266,6 +1309,26 @@
 								"api",
 								"mesa",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get mesa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/mesa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mesa"
 							]
 						}
 					},

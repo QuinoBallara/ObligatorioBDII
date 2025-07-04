@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
-const { getDepartamento, postDepartamento } = require('../controllers/departamentoController');
+const { getDepartamento, postDepartamento, getDepartamentoByID } = require('../controllers/departamentoController');
 const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
@@ -45,6 +45,21 @@ router.get(
     ],
     forbidCitizen,
     validateRequest,
+    getDepartamentoByID
+);
+
+/**
+ * @route GET /api/departamento/
+ * @desc Get all departamentos
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @return {object} 200 - Array of departamentos
+ * @return {object} 500 - Internal server error if database operation fails
+ */
+
+router.get(
+    '/',
+    forbidCitizen,
     getDepartamento
 );
 
