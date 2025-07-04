@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
-const { getOrganismoEstatal, postOrganismoEstatal, getOrganismoEstatalByID, postCiudadanoOrganismoEstatal, getCiudadanoOrganismoEstatalByOrganismoEstatalID } = require('../controllers/organismoEstatalController');
+const { getOrganismoEstatal, postOrganismoEstatal, getOrganismoEstatalByID, postCiudadanoOrganismoEstatal, getCiudadanoOrganismoEstatalByOrganismoEstatalID, getCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID } = require('../controllers/organismoEstatalController');
 const forbidCitizen = require('../middlewares/forbidCitizen');
 
 const router = express.Router();
@@ -82,6 +82,29 @@ router.get(
     validateRequest,
     getCiudadanoOrganismoEstatalByOrganismoEstatalID
 );
+
+/**
+ * @route GET /api/organismo-estatal/:organismo_estatal_id/ciudadano/:ciudadano_id
+ * @desc Get a specific ciudadano associated with a specific organismo estatal
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @param {number} organismo_estatal_id.params.required - Organismo estatal ID
+ * @param {number} ciudadano_id.params.required - Ciudadano ID
+ * @return {object} 200 - Ciudadano data associated with the organismo estatal retrieved successfully
+ * @return {object} 400 - Validation error if parameters are invalid
+ * @return {object} 404 - Not found if organismo estatal or ciudadano doesn't exist or association doesn't exist
+ * @return {object} 500 - Internal server error if database operation fails
+ */
+router.get(
+    '/:organismo_estatal_id/ciudadano/:ciudadano_id',
+    [
+        param('organismo_estatal_id').isInt().withMessage('The field organismo_estatal_id must be an integer'),
+        param('ciudadano_id').isInt().withMessage('The field ciudadano_id must be an integer.'),
+    ],
+    forbidCitizen,
+    validateRequest,
+    getCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID
+)
 
 /**
  * @route POST /api/organismo-estatal/:organismo_estatal_id/ciudadano

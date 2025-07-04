@@ -1,4 +1,4 @@
-const { selectOrganismoEstatalByID, selectOrganismoEstatal, insertOrganismoEstatal, insertCiudadanoOrganismoEstatal, selectCiudadanoOrganismoEstatalByOrganismoEstatalID } = require('../services/organismoEstatalService');
+const { selectOrganismoEstatalByID, selectOrganismoEstatal, insertOrganismoEstatal, insertCiudadanoOrganismoEstatal, selectCiudadanoOrganismoEstatalByOrganismoEstatalID, selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID } = require('../services/organismoEstatalService');
 
 async function getOrganismoEstatalByID(req, res, next) {
     const { id } = req.params;
@@ -99,10 +99,33 @@ async function getCiudadanoOrganismoEstatalByOrganismoEstatalID(req, res, next) 
     }
 }
 
+async function getCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID(req, res, next) {
+    const { organismo_estatal_id, ciudadano_id } = req.params;
+
+    if (!organismo_estatal_id || !ciudadano_id) {
+        return res.status(400).json({ message: 'organismo_estatal_id and ciudadano_id are required' });
+    }
+    
+    try {
+        const resultsQuery = await selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID(organismo_estatal_id, ciudadano_id);
+    
+        console.log('Results from selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID:', resultsQuery);
+    
+        if (!resultsQuery) {
+            return res.status(404).json({ message: 'No Ciudadano Organismo Estatal found for the given IDs' });
+        }
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Ciudadano Organismo Estatal by Organismo EstatalID and CiudadanoID:', error);
+        next(error);
+    }
+}
+
 module.exports = {
     getOrganismoEstatal,
     getOrganismoEstatalByID,
     postOrganismoEstatal,
     postCiudadanoOrganismoEstatal,
-    getCiudadanoOrganismoEstatalByOrganismoEstatalID
+    getCiudadanoOrganismoEstatalByOrganismoEstatalID,
+    getCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID
 };
