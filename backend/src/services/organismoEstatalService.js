@@ -75,10 +75,28 @@ async function selectCiudadanoOrganismoEstatalByOrganismoEstatalID(organismo_est
 
 }
 
+async function selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID(organismo_estatal_id, ciudadano_id) {
+    const query = 'SELECT * FROM Ciudadano_OrganismoEstatal WHERE organismo_estatal_id = ? AND ciudadano_id = ?';
+
+    try {
+        const [rows] = await pool.query(query, [organismo_estatal_id, ciudadano_id]);
+        if (rows.length > 0) {
+            return rows[0];
+        }
+        return null;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+
+
 module.exports = {
     selectOrganismoEstatalByID,
     selectOrganismoEstatal,
     insertOrganismoEstatal,
     insertCiudadanoOrganismoEstatal,
-    selectCiudadanoOrganismoEstatalByOrganismoEstatalID
+    selectCiudadanoOrganismoEstatalByOrganismoEstatalID,
+    selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID
 };
