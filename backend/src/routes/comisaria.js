@@ -5,7 +5,8 @@ const {
     getComisaria,
     getComisariaByID,
     postComisaria,
-    postPolicia
+    postPolicia,
+    getPoliciaComisariaByComisariaIDAndCiudadanoID
 } = require('../controllers/comisariaController');
 const forbidCitizen = require('../middlewares/forbidCitizen');
 
@@ -91,5 +92,29 @@ router.post(
     validateRequest,
     postPolicia
 );
+
+/**
+ * @route GET /api/comisaria/:comisaria_id/policia/:policia_id
+ * @desc Get policia assignment by comisaria ID and policia ID
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @param {string} comisaria_id.params.required - Comisaria ID
+ * @param {string} policia_id.params.required - Policia ID
+ * @return {object} 200 - Policia assignment data retrieved successfully
+ * @return {object} 400 - Validation error if IDs are invalid
+ * @return {object} 404 - Not found if assignment doesn't exist
+ * @return {object} 500 - Internal server error if database operation fails
+ */
+
+router.get(
+    '/:comisaria_id/policia/:policia_id',
+    [
+        param('comisaria_id').isString().withMessage('The field comisaria_id must be a string.'),
+        param('policia_id').isString().withMessage('The field policia_id must be a string.'),
+    ],
+    forbidCitizen,
+    validateRequest,
+    getPoliciaComisariaByComisariaIDAndCiudadanoID
+)
 
 module.exports = router;
