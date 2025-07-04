@@ -55,11 +55,26 @@ async function insertPolicia(policia_id, comisaria_id) {
     }
 }
 
+async function selectPoliciaComisariaByComisariaIDAndPoliciaID(comisaria_id, policia_id) {
+    const query = 'SELECT * FROM Policia_Comisaria WHERE comisaria_id = ? AND policia_id = ?';
+
+    try {
+        const [rows] = await pool.query(query, [comisaria_id, policia_id]);
+        if (rows.length > 0) {
+            return rows[0];
+        }
+        return null;
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 
 module.exports = {
     selectByID,
     insert,
     select,
-    insertPolicia
+    insertPolicia,
+    selectPoliciaComisariaByComisariaIDAndPoliciaID
 };
