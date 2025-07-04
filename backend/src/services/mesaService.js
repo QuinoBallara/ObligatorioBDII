@@ -1,5 +1,18 @@
 const pool = require('../db/db').promise();
 
+async function selectMesa() {
+    const query = 'SELECT * FROM Mesa';
+
+    try {
+        const [rows] = await pool.query(query);
+        if (rows.length > 0) {
+            return rows;
+        }
+        return null;
+    } catch (error) {
+        throw error;
+    }
+}
 
 async function selectMesaById(id) {
 
@@ -269,5 +282,6 @@ module.exports = {
     insertVoto, // PARA DISCUTIR
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
-    selectVotosPerCandidatoPerMesa
+    selectVotosPerCandidatoPerMesa,
+    selectMesa
 };
