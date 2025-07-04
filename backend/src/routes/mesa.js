@@ -15,10 +15,18 @@ const {
     postVoto, // PARA DISCUTIR
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
-    getVotosPerCandidatoPerMesa
+    getVotosPerCandidatoPerMesa,
+    getMesa
 } = require('../controllers/mesaController');
 
 const router = express.Router();
+
+router.get(
+    '/',
+    forbidCitizen,
+    validateRequest,
+    getMesa
+)
 
 router.get(
     '/:id',

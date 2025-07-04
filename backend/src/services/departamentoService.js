@@ -1,7 +1,22 @@
 const pool = require('../db/db').promise();
 
+async function selectDepartamento() {
 
-async function getDepartamentoByID(id) {
+    const query = 'SELECT * FROM Departamento';
+
+    try {
+        const [rows] = await pool.query(query);
+        if (rows.length > 0) {
+            return rows;
+        }
+        return null;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+async function selectDepartamentoByID(id) {
 
     const query = 'SELECT * FROM Departamento WHERE id = ?';
 
@@ -31,6 +46,7 @@ async function insertDepartamento(nombre) {
 }
 
 module.exports = {
-    getDepartamentoByID,
-    insertDepartamento
+    selectDepartamentoByID,
+    insertDepartamento,
+    selectDepartamento
 };

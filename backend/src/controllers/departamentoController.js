@@ -1,6 +1,23 @@
-const { getDepartamentoByID, insertDepartamento } = require('../services/departamentoService');
+const { selectDepartamentoByID, insertDepartamento, selectDepartamento } = require('../services/departamentoService');
 
 async function getDepartamento(req, res, next) {
+    try {
+        const resultsQuery = await selectDepartamento();
+    
+        console.log('Results from selectDepartamento:', resultsQuery);
+    
+        if (!resultsQuery) {
+            return res.status(404).json({ message: 'No Departamento found' });
+        }
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Departamento:', error);
+        next(error);
+    }
+}
+
+
+async function getDepartamentoByID(req, res, next) {
     const { id } = req.params;
 
     if (!id) {
@@ -8,9 +25,9 @@ async function getDepartamento(req, res, next) {
     }
     
     try {
-        const resultsQuery = await getDepartamentoByID(id);
+        const resultsQuery = await selectDepartamentoByID(id);
     
-        console.log('Results from getDepartamentoByID:', resultsQuery);
+        console.log('Results from selectDepartamentoByID:', resultsQuery);
     
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Departamento not found' });
@@ -42,5 +59,6 @@ async function postDepartamento(req, res, next) {
 
 module.exports = {
     getDepartamento,
-    postDepartamento
+    postDepartamento,
+    getDepartamentoByID
 };

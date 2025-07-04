@@ -10,9 +10,25 @@ const {
     insertVoto, // PARA DISCUTIR
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
-    selectVotosPerCandidatoPerMesa
+    selectVotosPerCandidatoPerMesa,
+    selectMesa
 } = require('../services/mesaService');
 
+async function getMesa(req, res, next) {
+    try {
+        const resultsQuery = await selectMesa();
+        console.log('Results from selectMesa:', resultsQuery);
+
+        if (!resultsQuery) {
+            return res.status(404).json({ message: 'No mesas found' });
+        }
+
+        return res.status(200).json(resultsQuery);
+    } catch (error) {
+        console.error('Error fetching Mesa:', error);
+        throw error;
+    }
+}
 
 async function getMesaByID(req, res, next) {
 
@@ -258,5 +274,6 @@ module.exports = {
     postVoto, // PARA DISCUTIR
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
-    getVotosPerCandidatoPerMesa
+    getVotosPerCandidatoPerMesa,
+    getMesa
 };
