@@ -15,7 +15,7 @@ import { SidebarContext } from './contexts/sidebarContext.jsx'
 import { VotoProvider } from './contexts/votoContext.jsx'
 
 function App() {
-  const { isAuthenticated, auth } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [showSidebar, setShowSidebar] = useState(true);
 
   return (
@@ -23,19 +23,21 @@ function App() {
       <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
         <Router>
         <Routes>
-          <Route path="/" element={isAuthenticated ? <><Outlet /></> : <Navigate to='login' />} >
-            <Route path='gestion' element={auth.isPresident ?
-              <div style={{ display: 'flex', height: '100vh' }}>
-                <ControlPanel />
-                <div style={{
-                  flex: 1,
-                  marginLeft: showSidebar ? '0' : '0',
-                  transition: 'margin-left 0.3s ease'
-                }}>
-                  <Outlet />
+          <Route path='/' element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
+            <Route path="/" 
+              element={
+                <div style={{ display: 'flex', height: '100vh' }}>
+                  <ControlPanel />
+                  <div style={{
+                    flex: 1,
+                    marginLeft: showSidebar ? '0' : '0',
+                    transition: 'margin-left 0.3s ease'
+                  }}>
+                    <Outlet />
+                  </div>
                 </div>
-              </div> : <Navigate to='/votacion' />} >
-              <Route path='home' index element={<GestionHome />} />
+              } >
+              <Route index path='home' element={<GestionHome />} />
               <Route path='resultados' element={<Outlet />} >
                 <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
                 <Route path='listas' element={<ResultsPerListaPage />} />
@@ -46,14 +48,13 @@ function App() {
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
               <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
             </Route>
-            <Route path='votacion' element={<Votacion />} >
+            <Route path='votacion' element={<Outlet />} >
+              <Route index path='login' element={<><LoginCiudadanoPage /></>} />
+              <Route path='votar' element={<Votacion />} />
               <Route path='confirmado' element={<ConfirmationPage />} />
             </Route>
           </Route>
-          <Route path='login' element={<Outlet />} >
-            <Route index element={<><LoginCiudadanoPage /></>} />
-            <Route path='gestion' element={<LoginPresidentePage />} />
-          </Route>
+          <Route path='login' element={<LoginPresidentePage />} />
           <Route path='*' element={<h1>404 Not Found</h1>} />
         </Routes>
       </Router>

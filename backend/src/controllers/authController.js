@@ -21,7 +21,7 @@ async function loginCiudadano(req, res, next) {
         const token = jwt.sign(
             { userId: user.id, jti: uuid.v4() },
             process.env.JWT_SECRET_KEY,
-            { expiresIn: '12h' }
+            { expiresIn: '10m' }
         );
 
         res.status(200).json({ user, token });

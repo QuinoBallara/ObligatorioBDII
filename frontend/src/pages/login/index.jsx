@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
 
 const LoginCiudadanoPage = () => {
-    const { handleLoginCiudadano, isAuthenticated } = useAuth();
+    const { handleLoginCiudadano, isAuthenticated, auth } = useAuth();
     const [authData, setAuthData] = useState("");
     const navigate = useNavigate();
 
@@ -18,22 +18,38 @@ const LoginCiudadanoPage = () => {
         }
     };
 
-    const handleRedirect = () => {
-        navigate('/login/gestion')
-    }
-
     const isCredencial = () => {
         return authData.split(" ").length === 2
     }
 
     useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/votacion');
+        if (isAuthenticated && auth && auth.voter && auth.voter.token) {
+            navigate('/votacion/votar');
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, auth])
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
+            <Button
+                onClick={() => navigate('/home')}
+                sx={{
+                    position: 'absolute',
+                    bottom: 1,
+                    left: 1,
+                    minWidth: '20px',
+                    minHeight: '20px',
+                    padding: '5px',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    opacity: 0.3,
+                    '&:hover': {
+                        opacity: 0.3,
+                        backgroundColor: 'rgba(0,0,0,0.1)'
+                    }
+                }}
+            >
+                ←
+            </Button>
             <Card raised sx={{
                 padding: 5,
                 paddingBottom: 3,
@@ -78,18 +94,6 @@ const LoginCiudadanoPage = () => {
                             sx={{ padding: '10px 20px', borderRadius: '4px' }}
                         >
                             Iniciar sesión
-                        </Button>
-                    </Box>
-                    <Box sx={{ textAlign: 'center', marginTop: 2 }}>
-                        <Button
-                            variant="text"
-                            color="primary"
-                            onClick={handleRedirect}
-                            sx={{ textTransform: 'none' }}
-                        >
-                            <Typography variant="body2" color="textSecondary">
-                                Hacer login como presidente de mesa.
-                            </Typography>
                         </Button>
                     </Box>
                 </CardContent>
