@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import BallotIcon from '@mui/icons-material/Ballot';
 import PollIcon from '@mui/icons-material/Poll';
 import PeopleIcon from '@mui/icons-material/People';
+import HowToVoteIcon from '@mui/icons-material/HowToVote';
 import { useAuth } from '../../contexts/authContext';
 import { getTableInfo, changeTableState } from '../../services/controlPanelService';
 import ControlPanelButton from '../buttons/controlPanelButton';
@@ -16,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../../contexts/sidebarContext';
 
 function ControlPanel() {
-    const { auth, handleLogout } = useAuth();
+    const { auth, handleLogoutPresidente } = useAuth();
     const [tableInfo, setTableInfo] = useState({});
     const navigate = useNavigate();
     const { showSidebar, setShowSidebar } = useSidebar();
@@ -32,9 +33,9 @@ function ControlPanel() {
     }, [auth]);
 
     const logout = async () => {
-        const response = await handleLogout();
+        const response = await handleLogoutPresidente();
         console.log('Logout response:', response);
-        navigate('/login/gestion');
+        navigate('/login');
     }
 
     return (
@@ -97,7 +98,7 @@ function ControlPanel() {
                                 justifyContent: 'flex-start',
                             }}
                         >
-                            <Box sx={{ display: 'flex', marginBottom: 3, flexDirection: 'row', cursor: 'pointer' }} onClick={() => navigate('/gestion/home')}>
+                            <Box sx={{ display: 'flex', marginBottom: 3, flexDirection: 'row', cursor: 'pointer' }} onClick={() => navigate('/')}>
                                 <img src={escudoUruguay} alt="Escudo de Uruguay" style={{ width: '60px', aspectRatio: '1:1' }} />
                                 <Box sx={{ textAlign: 'left', marginTop: 2, alignContent: 'flex-start', marginLeft: 2 }}>
                                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
@@ -152,7 +153,7 @@ function ControlPanel() {
                             </ControlPanelButton>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/votantes');
+                                navigate('/votantes');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Votantes
@@ -161,7 +162,7 @@ function ControlPanel() {
                             </ControlPanelButton>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/listas');
+                                navigate('/listas');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Listas
@@ -170,7 +171,7 @@ function ControlPanel() {
                             </ControlPanelButton>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/resultados/candidatos');
+                                navigate('/resultados/candidatos');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Resultados por Candidato
@@ -179,7 +180,7 @@ function ControlPanel() {
                             </ControlPanelButton>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/resultados/listas');
+                                navigate('/resultados/listas');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Resultados por Lista
@@ -188,7 +189,7 @@ function ControlPanel() {
                             </ControlPanelButton>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/resultados/partidos');
+                                navigate('/resultados/partidos');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Resultados por Partido
@@ -206,7 +207,16 @@ function ControlPanel() {
                         }}>
                             <Divider />
                             <ControlPanelButton onClick={() => {
-                                navigate('/gestion/cargarDatos');
+                                navigate('/votacion/login');
+                            }}>
+                                <Typography variant="body1" sx={{ textAlign: 'left' }}>
+                                    Modo Votación
+                                </Typography>
+                                <HowToVoteIcon sx={{ fontSize: 30, color: 'black' }} />
+                            </ControlPanelButton>
+                            <Divider />
+                            <ControlPanelButton onClick={() => {
+                                navigate('/cargarDatos');
                             }}>
                                 <Typography variant="body1" sx={{ textAlign: 'left' }}>
                                     Cargar datos

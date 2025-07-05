@@ -8,40 +8,57 @@ const API_URL = import.meta.env.VITE_API_URL;
 const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
-    const storedIsPresident = localStorage.getItem('isPresident') === 'true';
-
+    const storedVoter = localStorage.getItem('voter');
+    console.log(storedUser, storedToken, storedVoter);
+    
+    let user = null;
+    let voter = null;
+    
+    try {
+        user = (storedUser && storedUser !== 'null' && storedUser !== 'undefined') ? JSON.parse(storedUser) : null;
+    } catch (e) {
+        console.warn('Failed to parse stored user:', e);
+        user = null;
+    }
+    
+    try {
+        voter = (storedVoter && storedVoter !== 'null' && storedVoter !== 'undefined') ? JSON.parse(storedVoter) : null;
+    } catch (e) {
+        console.warn('Failed to parse stored voter:', e);
+        voter = null;
+    }
+    
     return {
-        user: storedUser ? JSON.parse(storedUser) : null,
-        token: storedToken || null,
-        isPresident: storedIsPresident,
+        user,
+        token: (storedToken && storedToken !== 'null' && storedToken !== 'undefined') ? storedToken : null,
+        voter
     };
 }
 
 const getIsAuthenticatedInitialState = () => {
     const storedToken = localStorage.getItem('token');
-    return storedToken !== null || storedToken !== 'null';
+    return storedToken !== null && storedToken !== 'null' && storedToken !== 'undefined';
 }
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(getAuthInitialState());
     const [isAuthenticated, setIsAuthenticated] = useState(getIsAuthenticatedInitialState());
+
     const handleLoginCiudadano = async (ci, credencialCivica) => {
         try {
             const response = await loginCiudadano(ci, credencialCivica);
-            setAuth({
-                user: {
+            setAuth(prev => ({
+                ...prev,
+                voter: {
                     id: response.user.id,
                     credencialCivica: response.user.credencialCivica,
+                    token: response.token,
                 },
-                token: response.token,
-                isPresident: false,
-            });
-            setIsAuthenticated(true);
+            }));
         } catch (error) {
             console.error('Login failed:', error.response);
             alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-            setAuth({ user: null, token: null, isPresident: false });
-            setIsAuthenticated(false);
+            setAuth(prev => ({ ...prev, voter: null }));
         }
     }
 
@@ -55,19 +72,19 @@ export const AuthProvider = ({ children }) => {
                     mesaId: response.user.mesa_id,
                 },
                 token: response.token,
-                isPresident: true,
+                voter: null
             });
             console.log('Login successful:', response);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Login failed:', error.response);
             alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
-            setAuth({ user: null, token: null, isPresident: false });
+            setAuth({ user: null, token: null, voter: null });
             setIsAuthenticated(false);
         }
     }
 
-    const handleLogout = async () => {
+    const handleLogoutPresidente = async () => {
         try {
             if (auth.token) {
                 await logout();
@@ -75,16 +92,44 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.warn('Server logout failed:', error.response);
         } finally {
-            setAuth({ user: null, token: null, isPresident: false });
+            setAuth({ user: null, token: null, voter: null });
             setIsAuthenticated(false);
         }
     }
 
+    const handleLogoutVoter = async () => {
+        try {
+            if (auth.voter && auth.voter.token) {
+                await logout();
+            }
+        }
+        catch (error) {
+            console.warn('Server logout failed:', error.response);
+        } finally {
+            setAuth(prev => ({ ...prev, voter: null }));
+        }
+    }
+
     useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(auth.user));
-        localStorage.setItem('token', auth.token);
-        localStorage.setItem('isPresident', auth.isPresident.toString());
-        setIsAuthenticated(auth.token !== null && auth.token !== 'null');
+        if (auth.user && auth.user !== undefined) {
+            localStorage.setItem('user', JSON.stringify(auth.user));
+        } else {
+            localStorage.removeItem('user');
+        }
+        
+        if (auth.token && auth.token !== undefined && auth.token !== 'undefined') {
+            localStorage.setItem('token', auth.token);
+        } else {
+            localStorage.removeItem('token');
+        }
+        
+        if (auth.voter && auth.voter !== undefined) {
+            localStorage.setItem('voter', JSON.stringify(auth.voter));
+        } else {
+            localStorage.removeItem('voter');
+        }
+        
+        setIsAuthenticated(auth.token !== null && auth.token !== 'null' && auth.token !== undefined && auth.token !== 'undefined');
     }, [auth]);
 
     return (
@@ -95,11 +140,13 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated,
             handleLoginCiudadano,
             handleLoginPresidente,
-            handleLogout
+            handleLogoutPresidente,
+            handleLogoutVoter
         }}>
             {children}
         </AuthContext.Provider>
     );
+
 }
 
 export const useAuth = () => {
@@ -108,56 +155,4 @@ export const useAuth = () => {
         throw new Error('useAuth must be used within an AuthProvider');
     }
     return context;
-}
-
-export const getVotosPerLista = async (mesaId, token) => {
-    try {
-        const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/lista`,
-            { 
-                headers: { 
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
-            }
-        );
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-export const getVotosPerPartido = async (mesaId, token) => {
-    try {
-        const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/partido`,
-            { 
-                headers: { 
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
-            }
-        );
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-export const getVotosPerCandidato = async (mesaId, token) => {
-    try {
-        const response = await axios.get(
-            `${API_URL}/mesa/${mesaId}/resultados/candidato`,
-            { 
-                headers: { 
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json' 
-                } 
-            }
-        );
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
 }
