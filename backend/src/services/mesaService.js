@@ -56,18 +56,6 @@ async function updateAbierta(id, esta_abierta) {
 }
 
 
-async function selectVotoByID(id) {
-    const query = 'SELECT * FROM Voto WHERE id = ?';
-    try {
-        const [rows] = await pool.query(query, [id]);
-        if (rows.length > 0) {
-            return rows[0];
-        }
-        return null;
-    } catch (error) {
-        throw error;
-    }
-}
 
 
 
@@ -207,7 +195,6 @@ module.exports = {
     selectMesaById,
     insertMesa,
     updateAbierta,
-    selectVotoByID,
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
     selectVotosPerCandidatoPerMesa,

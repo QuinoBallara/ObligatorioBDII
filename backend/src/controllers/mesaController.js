@@ -2,7 +2,6 @@ const {
     selectMesaById,
     insertMesa,
     updateAbierta,
-    selectVotoByID,
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
     selectVotosPerCandidatoPerMesa,
@@ -93,26 +92,6 @@ async function patchMesaAbierta(req, res, next) {
 
 
 
-async function getVotoByID(req, res, next) {
-    const { id } = req.params;
-
-    if (!id) {
-        return res.status(400).json({ message: 'ID is required' });
-    }
-
-    try {
-        const result = await selectVotoByID(id);
-        if (!result) {
-            return res.status(404).json({ message: 'Voto not found' });
-        }
-        res.status(200).json(result);
-    } catch (error) {
-        console.error('Error fetching voto:', error);
-        next(error);
-    }
-}
-
-
 
 async function getVotosPerListaPerMesa(req, res, next) {
     const { id } = req.params;
@@ -176,7 +155,6 @@ module.exports = {
     getMesaByID,
     postMesa,
     patchMesaAbierta,
-    getVotoByID,
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
     getVotosPerCandidatoPerMesa,

@@ -7,7 +7,6 @@ const {
     getMesaByID,
     postMesa,
     patchMesaAbierta,
-    getVotoByID,
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
     getVotosPerCandidatoPerMesa,
@@ -63,15 +62,6 @@ router.patch(
 );
 
 
-router.get(
-    '/voto/:id',
-    [
-        param('id').isString().withMessage('The field id must be a string.'),
-    ],
-    forbidCitizen,
-    validateRequest,
-    getVotoByID
-);
 
 
 router.get(
