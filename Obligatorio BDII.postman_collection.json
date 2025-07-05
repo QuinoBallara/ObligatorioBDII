@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ee9f5239-5dae-4002-b07b-91da730f7c0f",
+		"_postman_id": "7d053190-064f-4046-8d34-e11becb3ca8e",
 		"name": "Obligatorio BDII",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32810699"
@@ -1395,170 +1395,6 @@
 					"response": []
 				},
 				{
-					"name": "Get ciudadanoMesa by ids",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7998546",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"mesa",
-								"3",
-								"ciudadano",
-								"7998546"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post ciudadanoMesa",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7990423",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"mesa",
-								"3",
-								"ciudadano",
-								"7990423"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post ciudadanoMesa",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"emitio_voto\" : true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/mesa/3/ciudadano/7990423",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"mesa",
-								"3",
-								"ciudadano",
-								"7990423"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get ciudadanoMesa",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/mesa/3/ciudadano/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"mesa",
-								"3",
-								"ciudadano",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get voto by id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/mesa/voto/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"mesa",
-								"voto",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Post voto PARA DISCUTIR",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get votos por lista",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1798,6 +1634,220 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "CiudadanoMesa",
+			"item": [
+				{
+					"name": "Post ciudadanoMesa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emitio_voto\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/ciudadanoMesa/mesa/1/ciudadano/7990423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ciudadanoMesa",
+								"mesa",
+								"1",
+								"ciudadano",
+								"7990423"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post ciudadanoMesa",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/ciudadanoMesa/mesa/3/ciudadano/7990423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ciudadanoMesa",
+								"mesa",
+								"3",
+								"ciudadano",
+								"7990423"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ciudadanoMesa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/ciudadanoMesa/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ciudadanoMesa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ciudadanoMesa by ids",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"esta_abierta\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/ciudadanoMesa/mesa/3/ciudadano/7998546",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"ciudadanoMesa",
+								"mesa",
+								"3",
+								"ciudadano",
+								"7998546"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voto",
+			"item": [
+				{
+					"name": "Get voto by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/voto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"voto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post voto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mesa_id\": 1,\r\n    \"lista_id\": 1,\r\n    \"es_observado\": false,\r\n    \"es_valido\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/voto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"voto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get voto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/voto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"voto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -1805,7 +1855,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4NDUyNTYsIm1lc2FJZCI6MiwianRpIjoiNjg2NjFiNzQtZmEyMi00Nzc2LWJiMjMtOGQ4MjRlMjJkMGQzIiwiaWF0IjoxNzUxNjQwMDIwLCJleHAiOjE3NTE2ODMyMjB9.aGD93QriOLvPmOBd7YGL93AoF79Q0C2O-vUt1eZz-I4",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4NDUyNTYsIm1lc2FJZCI6MiwianRpIjoiYzVmZDFjMTUtMzY5ZS00MDBjLWJhMjQtOTI5ZmY5YzUxMzBlIiwiaWF0IjoxNzUxNzUwNTg2LCJleHAiOjE3NTE3OTM3ODZ9.3_2oMDbvrhROCk6rssTUEP8JVYJVtucEWN94FF0kiuE",
 				"type": "string"
 			}
 		]

@@ -7,12 +7,6 @@ const {
     getMesaByID,
     postMesa,
     patchMesaAbierta,
-    getCiudadanoMesa,
-    postCiudadanoMesa,
-    patchEmitioVoto,
-    getCiudadanoMesaByMesaID,
-    getVotoByID,
-    postVoto, // PARA DISCUTIR
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
     getVotosPerCandidatoPerMesa,
@@ -67,65 +61,8 @@ router.patch(
     patchMesaAbierta
 );
 
-router.get(
-    '/:mesa_id/ciudadano/:ciudadano_id',
-    [
-        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
-    ],
-    validateRequest,
-    getCiudadanoMesa
-);
 
-router.post(
-    '/:mesa_id/ciudadano/:ciudadano_id',
-    [
-        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
-        body('emitio_voto').isBoolean().optional().withMessage('The field emitio_voto must be a boolean.'),
-    ],
-    forbidCitizen,
-    validateRequest,
-    postCiudadanoMesa
-);
 
-router.patch(
-    '/:mesa_id/ciudadano/:ciudadano_id',
-    [
-        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
-        body('emitio_voto').isBoolean().withMessage('The field emitio_voto must be a boolean.'),
-    ],
-    validateRequest,
-    patchEmitioVoto
-);
-
-router.get(
-    '/:mesa_id/ciudadano',
-    [
-        param('mesa_id').isString().withMessage('The field mesa_id must be a string.'),
-    ],
-    forbidCitizen,
-    validateRequest,
-    getCiudadanoMesaByMesaID
-);
-
-router.get(
-    '/voto/:id',
-    [
-        param('id').isString().withMessage('The field id must be a string.'),
-    ],
-    forbidCitizen,
-    validateRequest,
-    getVotoByID
-);
-
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// router.post('voto')
 
 router.get(
     '/:id/resultados/lista',
