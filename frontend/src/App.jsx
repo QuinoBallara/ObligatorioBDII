@@ -24,7 +24,7 @@ function App() {
         <Router>
         <Routes>
           <Route path='/' element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
-            <Route path="/gestion" 
+            <Route path="/" 
               element={
                 <div style={{ display: 'flex', height: '100vh' }}>
                   <ControlPanel />

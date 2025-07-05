@@ -9,16 +9,35 @@ const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
     const storedVoter = localStorage.getItem('voter');
+    console.log(storedUser, storedToken, storedVoter);
+    
+    let user = null;
+    let voter = null;
+    
+    try {
+        user = (storedUser && storedUser !== 'null' && storedUser !== 'undefined') ? JSON.parse(storedUser) : null;
+    } catch (e) {
+        console.warn('Failed to parse stored user:', e);
+        user = null;
+    }
+    
+    try {
+        voter = (storedVoter && storedVoter !== 'null' && storedVoter !== 'undefined') ? JSON.parse(storedVoter) : null;
+    } catch (e) {
+        console.warn('Failed to parse stored voter:', e);
+        voter = null;
+    }
+    
     return {
-        user: storedUser ? JSON.parse(storedUser) : null,
-        token: storedToken || null,
-        voter: storedVoter ? JSON.parse(storedVoter) : null
+        user,
+        token: (storedToken && storedToken !== 'null' && storedToken !== 'undefined') ? storedToken : null,
+        voter
     };
 }
 
 const getIsAuthenticatedInitialState = () => {
     const storedToken = localStorage.getItem('token');
-    return storedToken !== null || storedToken !== 'null';
+    return storedToken !== null && storedToken !== 'null' && storedToken !== 'undefined';
 }
 
 export const AuthProvider = ({ children }) => {
@@ -73,7 +92,7 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.warn('Server logout failed:', error.response);
         } finally {
-            setAuth({ user: null, token: null });
+            setAuth({ user: null, token: null, voter: null });
             setIsAuthenticated(false);
         }
     }
@@ -87,31 +106,46 @@ export const AuthProvider = ({ children }) => {
         catch (error) {
             console.warn('Server logout failed:', error.response);
         } finally {
-            setAuth({ ...prev, voter: null });
+            setAuth(prev => ({ ...prev, voter: null }));
         }
-
-        useEffect(() => {
-            localStorage.setItem('user', JSON.stringify(auth.user));
-            localStorage.setItem('token', auth.token);
-            localStorage.setItem('voter', JSON.stringify(auth.voter));
-            setIsAuthenticated(auth.token !== null && auth.token !== 'null');
-        }, [auth]);
-
-        return (
-            <AuthContext.Provider value={{
-                auth,
-                setAuth,
-                isAuthenticated,
-                setIsAuthenticated,
-                handleLoginCiudadano,
-                handleLoginPresidente,
-                handleLogoutPresidente,
-                handleLogoutVoter
-            }}>
-                {children}
-            </AuthContext.Provider>
-        );
     }
+
+    useEffect(() => {
+        if (auth.user && auth.user !== undefined) {
+            localStorage.setItem('user', JSON.stringify(auth.user));
+        } else {
+            localStorage.removeItem('user');
+        }
+        
+        if (auth.token && auth.token !== undefined && auth.token !== 'undefined') {
+            localStorage.setItem('token', auth.token);
+        } else {
+            localStorage.removeItem('token');
+        }
+        
+        if (auth.voter && auth.voter !== undefined) {
+            localStorage.setItem('voter', JSON.stringify(auth.voter));
+        } else {
+            localStorage.removeItem('voter');
+        }
+        
+        setIsAuthenticated(auth.token !== null && auth.token !== 'null' && auth.token !== undefined && auth.token !== 'undefined');
+    }, [auth]);
+
+    return (
+        <AuthContext.Provider value={{
+            auth,
+            setAuth,
+            isAuthenticated,
+            setIsAuthenticated,
+            handleLoginCiudadano,
+            handleLoginPresidente,
+            handleLogoutPresidente,
+            handleLogoutVoter
+        }}>
+            {children}
+        </AuthContext.Provider>
+    );
 
 }
 

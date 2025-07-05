@@ -11,16 +11,16 @@ const LoginPresidentePage = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+        if (!ci.includes("-") || !credencialCivica.includes(" ")) {
+            alert("La cédula debe contener un guión y la credencial debe contener un espacio.");
+            return;
+        }
         await handleLoginPresidente(ci.replace("-", ""), credencialCivica.replace(" ", ""));
     };
 
-    const handleRedirect = () => {
-        navigate('/login')
-    }
-
     useEffect(() => {
-        if (isAuthenticated && auth && auth.isPresident) {
-            navigate('/gestion/home');
+        if (isAuthenticated) {
+            navigate('/home');
         }
     }, [isAuthenticated, auth])
 
@@ -81,21 +81,6 @@ const LoginPresidentePage = () => {
                             sx={{ padding: '10px 20px', borderRadius: '4px' }}
                         >
                             Iniciar sesión
-                        </Button>
-                    </Box>
-                    <Box sx={{ textAlign: 'center', marginTop: 2 }}>
-                        <Button
-                            variant="text"
-                            color="primary"
-                            onClick={handleRedirect}
-                            sx={{ textTransform: 'none' }}
-                        >
-                            <Typography variant="body2" color="textSecondary">
-                                ¿No sos un presidente de mesa?{' '}
-                                <span style={{ fontWeight: 'bold' }}>
-                                    Retornar
-                                </span>
-                            </Typography>
                         </Button>
                     </Box>
                 </CardContent>
