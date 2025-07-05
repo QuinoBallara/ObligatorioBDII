@@ -8,6 +8,7 @@ import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
 import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
 import ControlPanel from './components/controlPanel/index.jsx'
+import VotantesPage from './pages/votantes/index.jsx'
 import Votacion from './pages/votacion/Index';
 import ConfirmationPage from './pages/votacion/ConfirmationPage';
 import GestionHome from './pages/gestionHome/index.jsx'
@@ -44,7 +45,7 @@ function App() {
                 <Route path='partidos' element={<ResultsPerPartidoPage />} />
               </Route>
               <Route path='listas' element={<h1>Listas</h1>} />
-              <Route path='votantes' element={<h1>Votantes</h1>} />
+              <Route path='votantes' element={<VotantesPage/>} />
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
               <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
             </Route>
