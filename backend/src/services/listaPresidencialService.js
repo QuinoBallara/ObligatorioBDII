@@ -83,6 +83,8 @@ ORDER BY
         const listaPresidencial = {
             lista_id: firstRow.lista_id,
             partido_politico_id: firstRow.partido_politico_id,
+            departamento_nombre: firstRow.departamento_nombre,
+            partido_nombre: firstRow.partido_politico,
             departamento_id: firstRow.departamento_id,
             numero: firstRow.numero_lista,
             ciudadanos: []
@@ -198,6 +200,8 @@ ORDER BY
                 listasMap.set(row.lista_id, {
                     lista_id: row.lista_id,
                     partido_politico_id: row.partido_politico_id,
+                    departamento_nombre: row.departamento_nombre,
+                    partido_nombre: row.partido_politico,
                     departamento_id: row.departamento_id,
                     numero: row.numero_lista,
                     ciudadanos: []
@@ -326,6 +330,8 @@ ORDER BY
                     lista_id: row.lista_id,
                     partido_politico_id: row.partido_politico_id,
                     departamento_id: row.departamento_id,
+                    departamento_nombre: row.departamento_nombre,
+                    partido_nombre: row.partido_politico,
                     numero: row.numero_lista,
                     ciudadanos: []
                 });
@@ -442,6 +448,8 @@ ORDER BY
                     lista_id: row.lista_id,
                     partido_politico_id: row.partido_politico_id,
                     departamento_id: row.departamento_id,
+                    departamento_nombre: row.departamento_nombre,
+                    partido_nombre: row.partido_politico,
                     numero: row.numero_lista,
                     ciudadanos: []
                 });
