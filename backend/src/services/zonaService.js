@@ -35,7 +35,6 @@ async function insert(nombre, municipio_id) {
     const query = 'INSERT INTO Zona (nombre, municipio_id) VALUES (?, ?)';
     try {
         const [result] = await pool.query(query, [nombre, municipio_id]);
-        console.log('Municipio inserted successfully:', result);
         return { insertId: result.insertId }; 
     } catch(error) {
         throw error;

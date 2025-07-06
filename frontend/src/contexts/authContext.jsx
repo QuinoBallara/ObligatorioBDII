@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { loginCiudadano, loginPresidente, logout } from '../services/authService'; // Use ES6 import
+import { loginCiudadano, loginPresidente, logout, validateToken } from '../services/authService'; // Use ES6 import
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -9,8 +9,7 @@ const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
     const storedVoter = localStorage.getItem('voter');
-    console.log(storedUser, storedToken, storedVoter);
-    
+
     let user = null;
     let voter = null;
     
@@ -43,6 +42,7 @@ const getIsAuthenticatedInitialState = () => {
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(getAuthInitialState());
     const [isAuthenticated, setIsAuthenticated] = useState(getIsAuthenticatedInitialState());
+    const [isValidating, setIsValidating] = useState(false);
 
     const handleLoginCiudadano = async (ci, credencialCivica) => {
         try {
@@ -64,17 +64,15 @@ export const AuthProvider = ({ children }) => {
 
     const handleLoginPresidente = async (ci, credencialCivica) => {
         try {
-            console.log('Attempting to login as presidente with CI:', ci, 'and credencialCivica:', credencialCivica);
             const response = await loginPresidente(ci, credencialCivica);
             setAuth({
                 user: {
-                    id: response.user.id,
+                    id: response.user.ciudadano_id,
                     mesaId: response.user.mesa_id,
                 },
                 token: response.token,
                 voter: null
             });
-            console.log('Login successful:', response);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Login failed:', error.response);
@@ -110,6 +108,64 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const validateCurrentToken = async () => {
+        setIsValidating(true);
+        try {
+            // Check presidente token
+            if (auth.token) {
+                await validateToken(auth.token);
+                setIsAuthenticated(true);
+                return true;
+            }
+            
+            // Check voter token
+            if (auth.voter && auth.voter.token) {
+                await validateToken(auth.voter.token);
+                return true;
+            }
+            
+            // No valid tokens found
+            clearAuth();
+            return false;
+        } catch (error) {
+            console.warn('Token validation failed:', error);
+            clearAuth();
+            return false;
+        } finally {
+            setIsValidating(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!isAuthenticated) return;
+
+        const intervalId = setInterval(async () => {
+            await validateCurrentToken();
+        }, 5 * 60 * 1000); // 5 minutes
+
+        return () => clearInterval(intervalId);
+    }, [isAuthenticated]);
+
+    const clearAuth = () => {
+        setAuth({ user: null, token: null, voter: null });
+        setIsAuthenticated(false);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.removeItem('voter');
+    };
+
+    // Validate token on app load
+    useEffect(() => {
+        const initializeAuth = async () => {
+            if (auth.token || (auth.voter && auth.voter.token)) {
+                await validateCurrentToken();
+            }
+        };
+        
+        initializeAuth();
+    }, []); // Only run once on mount
+
+
     useEffect(() => {
         if (auth.user && auth.user !== undefined) {
             localStorage.setItem('user', JSON.stringify(auth.user));
@@ -138,6 +194,7 @@ export const AuthProvider = ({ children }) => {
             setAuth,
             isAuthenticated,
             setIsAuthenticated,
+            isValidating,
             handleLoginCiudadano,
             handleLoginPresidente,
             handleLogoutPresidente,

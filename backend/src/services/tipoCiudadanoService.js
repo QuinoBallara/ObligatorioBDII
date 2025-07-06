@@ -1,6 +1,6 @@
 const pool = require('../db/db').promise();
 
-async function getByID(id) {
+async function selectTipoCiudadanoByID(id) {
 
     const query = 'SELECT * FROM TipoCiudadano WHERE id = ?';
 
@@ -16,7 +16,7 @@ async function getByID(id) {
     }
 }
 
-async function get() {
+async function selectTipoCiudadano() {
 
     const query = 'SELECT * FROM TipoCiudadano';
 
@@ -31,12 +31,11 @@ async function get() {
     }
 }
 
-async function insert(nombre) {
+async function insertTipoCiudadano(nombre) {
 
     const query = 'INSERT INTO TipoCiudadano (nombre) VALUES (?)';
     try {
         const [result] = await pool.query(query, [nombre]);
-        console.log('TipoCiudadano inserted successfully:', result);
         return { insertId: result.insertId };
     } catch(error) {
         throw error;
@@ -44,7 +43,7 @@ async function insert(nombre) {
 }
 
 module.exports = {
-    getByID,
-    get,
-    insert
+    selectTipoCiudadanoByID,
+    selectTipoCiudadano,
+    insertTipoCiudadano
 }

@@ -24,7 +24,6 @@ export default function EpicSelector() {
         {/* <label>¿Desea agregar un objeto extraño?</label> */}
         <InputLabel id="demo-simple-select-label">Objeto extraño</InputLabel>
         <Select onChange={(e) => {
-            console.log(e.target.value);
             setVoto(e.target.value);}}
             labelId="demo-simple-select-label"
             id="demo-simple-select"

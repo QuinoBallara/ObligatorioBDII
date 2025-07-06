@@ -8,8 +8,10 @@ import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
 import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
 import ControlPanel from './components/controlPanel/index.jsx'
+import VotantesPage from './pages/votantes/index.jsx'
 import Votacion from './pages/votacion/Index';
 import ConfirmationPage from './pages/votacion/ConfirmationPage';
+import CargarDatosPage from './pages/cargarDatos/index.jsx'
 import GestionHome from './pages/gestionHome/index.jsx'
 import { SidebarContext } from './contexts/sidebarContext.jsx'
 import { VotoProvider } from './contexts/votoContext.jsx'
@@ -24,20 +26,23 @@ function App() {
       <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
         <Router>
         <Routes>
-          <Route path='/' element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
+          <Route path="/" element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
             <Route path="/" 
               element={
                 <div style={{ display: 'flex', height: '100vh' }}>
                   <ControlPanel />
                   <div style={{
                     flex: 1,
-                    marginLeft: showSidebar ? '0' : '0',
+                    padding: '20px',
+                    marginLeft: showSidebar ? '25vw' : '0',
+                    minMarginLeft: showSidebar ? '350px' : '0',
                     transition: 'margin-left 0.3s ease'
                   }}>
                     <Outlet />
                   </div>
                 </div>
               } >
+              <Route index path='/' element={<GestionHome />} />
               <Route index path='home' element={<GestionHome />} />
               <Route path='resultados' element={<Outlet />} >
                 <Route path='candidatos' element={<ResultsPerCandidatoPage />} />
@@ -45,9 +50,9 @@ function App() {
                 <Route path='partidos' element={<ResultsPerPartidoPage />} />
               </Route>
               <Route path='listas' element={<Listas />} />
-              <Route path='votantes' element={<h1>Votantes</h1>} />
+              <Route path='votantes' element={<VotantesPage/>} />
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
-              <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
+              <Route path='cargarDatos' element={<CargarDatosPage/>} />
             </Route>
             <Route path='votacion' element={<Outlet />} >
               <Route index path='login' element={<><LoginCiudadanoPage /></>} />

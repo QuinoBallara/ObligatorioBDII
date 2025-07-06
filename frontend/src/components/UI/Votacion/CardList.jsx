@@ -15,7 +15,6 @@ export default function CardList({listaAFiltrar}) {
 
 
   const handleClick = (card) => {
-    console.log("nuevo voto", card);
     setVoto(card);
   }
   const {auth} = useAuth();
@@ -25,7 +24,6 @@ export default function CardList({listaAFiltrar}) {
     const fetchData = async () => {
       try {
         const listas = await getListas(auth);
-        console.log("Listas obtenidas:", listas);
         if (listas) {
           setCards(listas);
         } else {

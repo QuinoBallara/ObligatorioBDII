@@ -36,7 +36,6 @@ async function insertMesa(circuito_id, establecimiento_id, accessible, vocal_id,
 
     try {
         const [result] = await pool.query(query, [circuito_id, establecimiento_id, accessible, vocal_id, presidente_id, secretario_id, policia_id, eleccion_id]);
-        console.log('Mesa inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
         throw error;
@@ -48,7 +47,6 @@ async function updateAbierta(id, esta_abierta) {
     const query = 'UPDATE Mesa SET esta_abierta = ? WHERE id = ?';
     try {
         const [result] = await pool.query(query, [esta_abierta, id]);
-        console.log('Mesa updated successfully:', result);
         return { affectedRows: result.affectedRows };
     } catch (error) {
         throw error;

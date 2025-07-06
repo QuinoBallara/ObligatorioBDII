@@ -35,7 +35,6 @@ async function insert(nombre, direccion, tipo_establecimiento_id, zona_id) {
     const query = 'INSERT INTO Establecimiento (nombre, direccion, tipo_establecimiento_id, zona_id) VALUES (?, ?, ?, ?)';
     try {
         const [result] = await pool.query(query, [nombre, direccion, tipo_establecimiento_id, zona_id]);
-        console.log('Establecimiento inserted successfully:', result);
         return { insertId: result.insertId }; 
     } catch(error) {
         throw error;

@@ -9,9 +9,7 @@ async function getEstablecimientoByID(req, res, next) {
     
     try {
         const resultsQuery = await selectByID(id);
-    
-        console.log('Results from selectEstablecimientoByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Establecimiento not found' });
         }

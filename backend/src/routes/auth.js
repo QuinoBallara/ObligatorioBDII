@@ -56,4 +56,16 @@ router.post(
  */
 router.post('/logout', logout);
 
+/**
+ * @route GET /api/auth/validate
+ * @desc Validate if the current token is still valid
+ * @access Protected (Bearer token required)
+ * @headers Authorization: Bearer <token>
+ * @return {object} 200 - Success if token is valid
+ * @return {object} 401 - Unauthorized if token is invalid or expired
+ */
+router.get('/validate', authenticate, (req, res) => {
+    res.status(200).json({ message: 'Token is valid', user: req.auth });
+});
+
 module.exports = router;

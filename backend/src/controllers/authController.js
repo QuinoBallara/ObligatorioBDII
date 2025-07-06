@@ -12,7 +12,6 @@ async function loginCiudadano(req, res, next) {
     try {
         let user;
         user = await getCiudadano(id, credencialCivica);
-        console.log('User found:', user);
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -49,7 +48,7 @@ async function loginPresidente(req, res, next) {
         const token = jwt.sign(
             { userId: user.ciudadano_id, mesaId: user.mesa_id, jti: uuid.v4() },
             process.env.JWT_SECRET_KEY,
-            { expiresIn: '12h' }
+            { expiresIn: '24h' }
         );
 
         res.status(200).json({ user, token });

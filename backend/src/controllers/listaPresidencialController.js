@@ -8,7 +8,11 @@ const {
 
 const { insertCiudadanoListaPresidencial, selectCiudadanoListaPresidencialByListaPresidencialId } = require('../services/ciudadanoListaPresidencialService');
 
+
+
 const { insertLista } = require('../services/listaService');
+
+
 
 async function getListaPresidencialByID(req, res, next) {
     const { id } = req.params;
@@ -23,9 +27,7 @@ async function getListaPresidencialByID(req, res, next) {
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Lista Presidencial not found' });
         }
-
-        const ciudadanos = await selectCiudadanoListaPresidencialByListaPresidencialId(resultsQuery.lista_id);
-        resultsQuery.ciudadanos = ciudadanos || [];
+        
 
         return res.status(200).json(resultsQuery);
     } catch (error) {
@@ -42,12 +44,7 @@ async function getListaPresidencial(req, res, next) {
             return res.status(404).json({ message: 'No Lista Presidencial found' });
         }
 
-        // Fetch ciudadanos for each listaPresidencial
-        for (const listaPresidencial of resultsQuery) {
-            const ciudadanos = await selectCiudadanoListaPresidencialByListaPresidencialId(listaPresidencial.lista_id);
-            listaPresidencial.ciudadanos = ciudadanos || [];
-        }
-
+        
 
         return res.status(200).json(resultsQuery);
     } catch (error) {
@@ -57,7 +54,6 @@ async function getListaPresidencial(req, res, next) {
 }
 
 async function postListaPresidencial(req, res, next) {
-    console.log('Received request to create Lista Presidencial:', req.body);
     const { eleccion_id, partido_politico_id, departamento_id, numero, ciudadanos } = req.body;
 
     if (!eleccion_id || !partido_politico_id || !departamento_id || !numero || !ciudadanos || !Array.isArray(ciudadanos)) {
@@ -109,6 +105,8 @@ async function getListaPresidencialByEleccion(req, res, next) {
             return res.status(404).json({ message: 'No Lista Presidencial found for this Eleccion' });
         }
 
+        
+
         return res.status(200).json(resultsQuery);
     } catch (error) {
         console.error('Error fetching Lista Presidencial by Eleccion ID:', error);
@@ -129,6 +127,7 @@ async function getListaPresidencialByEleccionAndPartidoPolitico(req, res, next) 
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Lista Presidencial found for this Eleccion and Partido Politico' });
         }
+        
 
         return res.status(200).json(resultsQuery);
     } catch (error) {

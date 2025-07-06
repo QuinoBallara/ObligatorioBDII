@@ -40,7 +40,6 @@ async function insertOrganismoEstatal(nombre) {
 
     try {
         const [result] = await pool.query(query, [nombre]);
-        console.log('Organismo Estatal inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
         throw error;
@@ -53,7 +52,6 @@ async function insertCiudadanoOrganismoEstatal(organismo_estatal_id, ciudadano_i
 
     try {
         const [result] = await pool.query(query, [organismo_estatal_id, ciudadano_id]);
-        console.log('Ciudadano Organismo Estatal inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
         throw error;

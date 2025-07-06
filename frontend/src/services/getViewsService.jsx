@@ -17,7 +17,6 @@ export const getVotosPerLista = async (auth) => {
                 } 
             }
         );
-        console.log(response.data);
         return response.data;
     } catch (error) {
         throw error;
