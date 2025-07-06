@@ -27,7 +27,7 @@ const ResultsTable = ({
     }
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4, paddingBottom: 4 }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', alignItems: 'center', gap: 3, m: '15vh auto 0vh auto', width: '100%' }}>
             <Card raised sx={{
                 padding: 5,
                 paddingBottom: 3,
