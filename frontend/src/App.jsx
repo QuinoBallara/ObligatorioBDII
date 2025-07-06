@@ -13,6 +13,7 @@ import ConfirmationPage from './pages/votacion/ConfirmationPage';
 import GestionHome from './pages/gestionHome/index.jsx'
 import { SidebarContext } from './contexts/sidebarContext.jsx'
 import { VotoProvider } from './contexts/votoContext.jsx'
+import Listas from './pages/listas/index.jsx'
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -43,7 +44,7 @@ function App() {
                 <Route path='listas' element={<ResultsPerListaPage />} />
                 <Route path='partidos' element={<ResultsPerPartidoPage />} />
               </Route>
-              <Route path='listas' element={<h1>Listas</h1>} />
+              <Route path='listas' element={<Listas />} />
               <Route path='votantes' element={<h1>Votantes</h1>} />
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
               <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
