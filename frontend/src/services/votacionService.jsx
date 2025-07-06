@@ -44,7 +44,8 @@ export const getListas = async (auth) => {
 export const postCiudadanoMesa = async (auth) => {
     try {
         const response = await axios.post(
-            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${auth.voter.id}`,
+            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${3486895}`,
+            {}, // Empty body since no body data is needed
             { headers: { 'Authorization': `Bearer ${auth.token}` } }
         );
         return response.data;
@@ -73,7 +74,7 @@ export const postVoto = async (auth, voto, es_observado = false) => {
         const response = await axios.post(
             `${API_URL}/voto`,
             {...voto, es_observado: es_observado},
-            { headers: { 'Authorization': `Bearer ${auth.voter.token}` } }
+            { headers: { 'Authorization': `Bearer ${auth.token}` } }
         );
         return response.data;
     } catch (error) {
@@ -94,11 +95,11 @@ export const handleVoto = async (auth, voto) => {
 
     } catch (error) {
 
-        console.error('Error handling voto:', error);
+        console.log('handling voto because there was an error:', error);
         const responsePatch = await patchEmitioVoto(auth);
-        console.error('Error patching emitio_voto:', responsePatch);
+        console.log('patching emitio_voto:', responsePatch);
         const responseVoto = await postVoto(auth, voto);
-        console.error('Error posting voto:', responseVoto);
+        console.log('posting voto:', responseVoto);
 
     }
 }
