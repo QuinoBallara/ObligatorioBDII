@@ -40,7 +40,7 @@ export const getListas = async (auth) => {
 export const postCiudadanoMesa = async (auth) => {
     try {
         const response = await axios.post(
-            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${3486895}`,
+            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${auth.voter.id}`,
             {}, // Empty body since no body data is needed
             { headers: { 'Authorization': `Bearer ${auth.token}` } }
         );
@@ -79,23 +79,44 @@ export const postVoto = async (auth, voto, es_observado = false) => {
     }
 }
 
+export const getCiudadanoMesaByMesaIDAndCiudadanoID = async (auth) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${auth.voter.id}`,
+            { headers: { 'Authorization': `Bearer ${auth.token}` } }
+        );
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching ciudadano mesa by mesa_id and ciudadano_id:', error);
+        throw error;
+    }
+}
+
 export const handleVoto = async (auth, voto) => {
     try {
-
-        const responseCiudadanoMesa = await postCiudadanoMesa(auth);
+        const responseCiudadanoMesa = await getCiudadanoMesaByMesaIDAndCiudadanoID(auth);
         console.log('CiudadanoMesa response:', responseCiudadanoMesa);
-        const responsePatch = await patchEmitioVoto(auth);
-        console.log('Patch response:', responsePatch);
-        const responseVoto = await postVoto(auth, voto, true);
-        console.log('Voto response:', responseVoto);
+        votoNoObservado(auth, voto);
 
-    } catch (error) {
-
+    } catch (error) {   
         console.log('handling voto because there was an error:', error);
-        const responsePatch = await patchEmitioVoto(auth);
-        console.log('patching emitio_voto:', responsePatch);
-        const responseVoto = await postVoto(auth, voto);
-        console.log('posting voto:', responseVoto);
+        votoObservado(auth, voto);
 
     }
+}
+
+const votoNoObservado = async (auth, voto) => {
+    const responsePatch = await patchEmitioVoto(auth);
+    console.log('Patch response:', responsePatch);
+    const responseVoto = await postVoto(auth, voto);
+    console.log('Voto response:', responseVoto);
+}
+
+const votoObservado = async (auth, voto) => {
+    const responseCiudadanoMesa = await postCiudadanoMesa(auth);
+    console.log('CiudadanoMesa response:', responseCiudadanoMesa);
+    const responsePatch = await patchEmitioVoto(auth);
+    console.log('patching emitio_voto:', responsePatch);
+    const responseVoto = await postVoto(auth, voto, true);
+    console.log('posting voto:', responseVoto);
 }
