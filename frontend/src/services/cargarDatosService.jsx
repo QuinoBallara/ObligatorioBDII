@@ -233,9 +233,7 @@ export const cargarDatos = async (data, token) => {
             data.listaPresidencial.partido_politico_id && data.listaPresidencial.departamento_id && 
             data.listaPresidencial.nombre && data.listaPresidencial.ciudadanos && 
             Array.isArray(data.listaPresidencial.ciudadanos)) {
-            
-            console.log('ListaPresidencial data before sending:', JSON.stringify(data.listaPresidencial, null, 2));
-            
+                        
             await postData('/listaPresidencial', {
                 eleccion_id: data.listaPresidencial.eleccion_id,
                 partido_politico_id: data.listaPresidencial.partido_politico_id,

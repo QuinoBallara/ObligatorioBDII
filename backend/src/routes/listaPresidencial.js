@@ -94,10 +94,10 @@ router.get(
  * @return {object} 500 - Internal server error if database operation fails
  */
 router.get(
-    '/eleccion/:eleccion_id',
+    '/eleccion/:eleccion_id/:departamento_id',
     [
         param('eleccion_id').isInt().withMessage('The field eleccion_id must be an integer'),
-        body('departamento_id').isInt().withMessage('The field departamento_id must be an integer')
+        param('departamento_id').isInt().withMessage('The field departamento_id must be an integer')
     ],
     validateRequest,
     getListaPresidencialByEleccion

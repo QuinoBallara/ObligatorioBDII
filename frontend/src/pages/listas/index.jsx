@@ -14,7 +14,6 @@ const Listas = () => {
     const columns = [
         { key: 'numero', label: 'N° Lista', align: 'left' },
         { key: 'partido_nombre', label: 'Partido Político', align: 'left' },
-        { key: 'departamento_nombre', label: 'Departamento', align: 'left' },
     ];
 
     useEffect(() => {
