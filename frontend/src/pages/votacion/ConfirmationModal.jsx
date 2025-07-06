@@ -5,31 +5,36 @@ import { Typography } from '@mui/material';
 import Card from '../../components/UI/Votacion/Card';
 import './votacion.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/authContext';
+import { handleVoto } from '../../services/votacionService';
 
 export default function ConfirmationModal() {
 
     const {voto, modal, setModal} = useVoto();
 
+    const {auth} = useAuth();
+
 
     const navigate = useNavigate();
 
-    const handleConfirmar = () => {
-
-        setModal(!modal);
-        
+    const handleConfirmar = async () => {
         try {
-            // TODO Lógica para enviar el voto al backend
-            // TODO Lógica para enviar el voto al backend
-            // TODO Lógica para enviar el voto al backend
-            
+            const votoData = {
+                lista_id: voto.lista_id,
+                mesa_id: auth.user.mesaId,
+                es_valido: voto.lista_id !== null && typeof voto.lista_id === 'number' ? true : false,
+            };
 
+            await handleVoto(auth, votoData)
+
+            setModal(!modal);
             navigate('/votacion/confirmado');
 
         }catch (error) {
             console.error("Error al confirmar el voto:", error);
+            setModal(!modal);
             alert("Hubo un error al confirmar el voto. Por favor, inténtelo de nuevo más tarde.");
         }
-
     }
 
 

@@ -60,7 +60,7 @@ export default function Card({
         </Typography>
 
 
-        {/* Lista de ciudadanos */}
+        {/* Lista de ciudadanos
         {ciudadanosOrdenados.length > 0 && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <Typography variant="body2" style={{ fontWeight: 'bold', textAlign: 'center' }}>
@@ -81,7 +81,7 @@ export default function Card({
               </Box>
             ))}
           </Box>
-        )}
+        )} */}
       </Box>
     </div>
   )

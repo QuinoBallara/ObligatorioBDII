@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogoutPresidente = async () => {
         try {
             if (auth.token) {
-                await logout();
+                await logout(auth.token);
             }
         } catch (error) {
             console.warn('Server logout failed:', error.response);
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogoutVoter = async () => {
         try {
             if (auth.voter && auth.voter.token) {
-                await logout();
+                await logout(auth.voter.token);
             }
         }
         catch (error) {

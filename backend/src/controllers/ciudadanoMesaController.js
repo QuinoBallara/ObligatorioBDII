@@ -1,15 +1,14 @@
 const {insertCiudadanoMesa, updateCiudadanoMesaToEmitioVotoTrue, selectCiudadanoMesaByMesaIDAndCiudadanoID, selectCiudadanoMesaByMesaId} = require('../services/ciudadanoMesaService');
 
 async function postCiudadanoMesa(req, res, next) {
-    const { emitio_voto } = req.body;
     const { ciudadano_id, mesa_id } = req.params;
 
-    if (!ciudadano_id || !mesa_id || emitio_voto === undefined) {
-        return res.status(400).json({ message: 'ciudadano_id, mesa_id and emitio_voto are required' });
+    if (!ciudadano_id || !mesa_id) {
+        return res.status(400).json({ message: 'ciudadano_id and mesa_id are required' });
     }
 
     try {
-        const result = await insertCiudadanoMesa(ciudadano_id, mesa_id, emitio_voto);
+        const result = await insertCiudadanoMesa(ciudadano_id, mesa_id);
         res.status(201).json({ message: 'CiudadanoMesa inserted successfully', id: result.insertId });
     } catch (error) {
         console.error('Error inserting CiudadanoMesa:', error);

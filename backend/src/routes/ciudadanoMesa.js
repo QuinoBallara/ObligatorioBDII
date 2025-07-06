@@ -14,7 +14,6 @@ router.post(
         param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
         body('emitio_voto').isBoolean().optional().withMessage('The field emitio_voto must be a boolean.')
     ],
-    forbidCitizen,
     validateRequest,
     postCiudadanoMesa
 );
