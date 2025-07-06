@@ -6,7 +6,6 @@ async function insertCiudadanoMesa(ciudadano_id, mesa_id, emitio_voto) {
 
     try {
         const [result] = await pool.query(query, [ciudadano_id, mesa_id, emitio_voto]);
-        console.log('CiudadanoMesa inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
         throw error;
@@ -19,7 +18,6 @@ async function updateCiudadanoMesaToEmitioVotoTrue(ciudadano_id, mesa_id) {
 
     try {
         const [result] = await pool.query(query, [ciudadano_id, mesa_id]);
-        console.log('CiudadanoMesa updated successfully:', result);
         return { affectedRows: result.affectedRows };
     } catch (error) {
         throw error;
@@ -43,7 +41,18 @@ async function selectCiudadanoMesaByMesaIDAndCiudadanoID(mesa_id, ciudadano_id) 
 
 async function selectCiudadanoMesaByMesaId(mesa_id) {
     const query = `
-        SELECT * FROM Ciudadano_Mesa WHERE mesa_id = ?`;
+        SELECT 
+            cm.*,
+            c.primer_nombre,
+            c.segundo_nombre,
+            c.primer_apellido,
+            c.segundo_apellido,
+            c.fecha_nacimiento,
+            c.esta_vivo
+        FROM Ciudadano_Mesa cm
+        INNER JOIN Ciudadano c ON cm.ciudadano_id = c.id
+        WHERE cm.mesa_id = ?
+        ORDER BY c.primer_apellido, c.segundo_apellido, c.primer_nombre`;
 
     try {
         const [rows] = await pool.query(query, [mesa_id]);

@@ -9,8 +9,7 @@ const getAuthInitialState = () => {
     const storedUser = localStorage.getItem('user');
     const storedToken = localStorage.getItem('token');
     const storedVoter = localStorage.getItem('voter');
-    console.log(storedUser, storedToken, storedVoter);
-    
+
     let user = null;
     let voter = null;
     
@@ -64,17 +63,15 @@ export const AuthProvider = ({ children }) => {
 
     const handleLoginPresidente = async (ci, credencialCivica) => {
         try {
-            console.log('Attempting to login as presidente with CI:', ci, 'and credencialCivica:', credencialCivica);
             const response = await loginPresidente(ci, credencialCivica);
             setAuth({
                 user: {
-                    id: response.user.id,
+                    id: response.user.ciudadano_id,
                     mesaId: response.user.mesa_id,
                 },
                 token: response.token,
                 voter: null
             });
-            console.log('Login successful:', response);
             setIsAuthenticated(true);
         } catch (error) {
             console.error('Login failed:', error.response);

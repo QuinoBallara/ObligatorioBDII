@@ -8,6 +8,7 @@ import ResultsPerListaPage from './pages/resultsPerLista/index.jsx'
 import ResultsPerCandidatoPage from './pages/resultsPerCandidato/index.jsx'
 import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
 import ControlPanel from './components/controlPanel/index.jsx'
+import VotantesPage from './pages/votantes/index.jsx'
 import Votacion from './pages/votacion/Index';
 import ConfirmationPage from './pages/votacion/ConfirmationPage';
 import CargarDatosPage from './pages/cargarDatos/index.jsx'
@@ -32,7 +33,9 @@ function App() {
                   <ControlPanel />
                   <div style={{
                     flex: 1,
-                    marginLeft: showSidebar ? '0' : '0',
+                    padding: '20px',
+                    marginLeft: showSidebar ? '25vw' : '0',
+                    minMarginLeft: showSidebar ? '350px' : '0',
                     transition: 'margin-left 0.3s ease'
                   }}>
                     <Outlet />
@@ -46,7 +49,7 @@ function App() {
                 <Route path='partidos' element={<ResultsPerPartidoPage />} />
               </Route>
               <Route path='listas' element={<Listas />} />
-              <Route path='votantes' element={<h1>Votantes</h1>} />
+              <Route path='votantes' element={<VotantesPage/>} />
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
               <Route path='cargarDatos' element={<CargarDatosPage/>} />
             </Route>

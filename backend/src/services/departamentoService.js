@@ -38,7 +38,6 @@ async function insertDepartamento(nombre) {
 
     try {
         const [result] = await pool.query(query, [nombre]);
-        console.log('Departamento inserted successfully:', result);
         return { insertId: result.insertId };
     } catch (error) {
         throw error;

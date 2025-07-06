@@ -9,9 +9,7 @@ async function getZonaByID(req, res, next) {
     
     try {
         const resultsQuery = await selectByID(id);
-    
-        console.log('Results from getZonaByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Zona not found' });
         }
@@ -27,9 +25,7 @@ async function getZona(req, res, next) {
     
     try {
         const resultsQuery = await select();
-    
-        console.log('Results from getZona:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Zona found' });
         }

@@ -38,7 +38,6 @@ async function insert(fecha, tipo) {
 
     try {
         const [result] = await pool.query(query, [fecha, tipo]);
-        console.log('Eleccion inserted successfully:', result);
         return { insertId: result.insertId };
     } catch(error) {
         throw error;

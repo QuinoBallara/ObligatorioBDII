@@ -54,7 +54,6 @@ async function getListaPresidencial(req, res, next) {
 }
 
 async function postListaPresidencial(req, res, next) {
-    console.log('Received request to create Lista Presidencial:', req.body);
     const { eleccion_id, partido_politico_id, departamento_id, numero, ciudadanos } = req.body;
 
     if (!eleccion_id || !partido_politico_id || !departamento_id || !numero || !ciudadanos || !Array.isArray(ciudadanos)) {

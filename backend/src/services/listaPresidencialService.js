@@ -234,7 +234,6 @@ async function insertListaPresidencial(lista_id, partido_politico_id, departamen
     const query = 'INSERT INTO ListaPresidencial (lista_id, partido_politico_id, departamento_id, numero) VALUES (?, ?, ?, ?)';
     try {
         const [result] = await pool.query(query, [lista_id, partido_politico_id, departamento_id, numero]);
-        console.log('ListaPresidencial inserted successfully:', result);
         return { insertId: result.insertId };
     } catch(error) {
         throw error;

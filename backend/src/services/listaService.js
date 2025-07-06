@@ -35,7 +35,6 @@ async function insertLista(eleccion_id) {
     const query = 'INSERT INTO Lista (eleccion_id) VALUES (?)';
     try {
         const [result] = await pool.query(query, [eleccion_id]);
-        console.log('Lista inserted successfully:', result);
         return { insertId: result.insertId };
     } catch(error) {
         throw error;

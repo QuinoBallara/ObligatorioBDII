@@ -22,7 +22,6 @@ const Listas = () => {
             try {
                 setLoading(true);
                 const listas = await getListas(auth);
-                console.log("Listas obtenidas:", listas);
                 setData(listas);
                 
                 

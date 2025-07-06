@@ -21,7 +21,6 @@ async function insert(nombre) {
 
     try {
         const [result] = await pool.query(query, [nombre]);
-        console.log('PartidoPolitico inserted successfully', result);
         return { insertId: result.insertId};
     } catch (error) {
         throw error;
@@ -49,7 +48,6 @@ async function insertAutoridad(ciudadano_id, partidoPolitico_id, fecha_inicio, f
 
     try {
         const[result] = await pool.query(query, [ciudadano_id, partidoPolitico_id, fecha_inicio, fecha_fin, tipo_ciudadano_id]);
-        console.log('Autoridad inserted soccessfully:', result);
         return {insertId: result.insertId};
     } catch(error) {
         throw error;

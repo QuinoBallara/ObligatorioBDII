@@ -3,9 +3,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const getListas = async (auth) => {
 
-    console.log('Fetching listas for mesa:', auth.user.mesaId);
-    console.log('Using token:', auth.token);
-
     const fecthMesa = async (auth) => {
         try {
             const response = await axios.get(

@@ -20,7 +20,7 @@ export default function BlankVote() {
         <Typography component="div" style={{ textAlign: 'center'}}>
             ¿Desea votar en blanco?
         </Typography>
-        <Button onClick={() => {setVoto("");console.log(voto);}} variant='contained' color='primary'>Votar en blanco</Button>
+        <Button onClick={() => {setVoto("");}} variant='contained' color='primary'>Votar en blanco</Button>
     </div>
   )
 }

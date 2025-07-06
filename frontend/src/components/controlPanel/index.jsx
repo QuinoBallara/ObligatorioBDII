@@ -34,7 +34,6 @@ function ControlPanel() {
 
     const logout = async () => {
         const response = await handleLogoutPresidente();
-        console.log('Logout response:', response);
         navigate('/login');
     }
 
@@ -69,6 +68,10 @@ function ControlPanel() {
             }}>
                 <Container
                     sx={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        zIndex: 1200,
                         display: 'flex',
                         height: '100vh',
                         marginLeft: 0,
@@ -86,8 +89,9 @@ function ControlPanel() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
-                        minHeight: '65vh',
+                        height: '100vh',
                         width: '100%',
+                        overflow: 'auto'
                     }}>
                         <Box
                             sx={{
@@ -127,7 +131,6 @@ function ControlPanel() {
                                         const newState = !tableInfo.esta_abierta;
                                         const response = await changeTableState(auth.user.mesaId, auth.token, newState);
                                         setTableInfo({ ...tableInfo, esta_abierta: newState });
-                                        console.log('Table state changed:', response);
                                     }
                                 }}
                             >

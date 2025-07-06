@@ -9,9 +9,7 @@ async function getComisariaByID(req, res, next) {
     
     try {
         const resultsQuery = await selectByID(id);
-    
-        console.log('Results from getComisariaByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Comisaria not found' });
         }
@@ -27,8 +25,6 @@ async function getComisaria(req, res, next) {
     
     try {
         const resultsQuery = await select();
-    
-        console.log('Results from getComisaria:', resultsQuery);
     
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No comisaria found' });
@@ -59,7 +55,6 @@ async function postComisaria(req, res, next) {
 }
 
 async function postPolicia(req, res, next) {
-    console.log(req.params)
     const { id } = req.params;
     const { policia_id } = req.body
     
@@ -87,9 +82,7 @@ async function getPoliciaComisariaByComisariaIDAndCiudadanoID(req, res, next) {
 
     try {
         const resultsQuery = await selectPoliciaComisariaByComisariaIDAndPoliciaID(comisaria_id, policia_id);
-    
-        console.log('Results from getPoliciaComisariaByComisariaIDAndPoliciaID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Policia not found in Comisaria' });
         }

@@ -35,7 +35,6 @@ async function insertCiudadano(id, primer_nombre, segundo_nombre, primer_apellid
     const query = 'INSERT INTO Ciudadano (id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo) VALUES (?, ?, ?, ?, ?, ?, ?)';
     try {
         const [result] = await pool.query(query, [id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo]);
-        console.log('Ciudadano inserted successfully:', result);
         return { insertId: id }; // Return the provided ID since it's not auto-generated
     } catch(error) {
         throw error;
@@ -49,7 +48,6 @@ async function insertCredencialCiudadano(credencial_civica, id) {
 
     try {
         const [result] = await pool.query(query, [id, credencial_civica]);
-        console.log('Credencial inserted successfully:', result);
         return { insertId: credencial_civica }; // Return the ciudadano_id since it's the identifier for this relationship
     } catch(error) {
         throw error;
