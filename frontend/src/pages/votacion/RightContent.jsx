@@ -29,7 +29,7 @@ export default function RightContent() {
           </Typography>
           {typeof voto.lista_id === 'number' ? <Card {...voto} /> : <Typography variant='subtitle1' style={{color: 'gray'}}>VOTO EN BLANCO/ANULADO</Typography>}
         </div>
-        <Button onClick={()=> {setModal(!modal);console.log(modal)}} variant='contained' >Finalizar votación</Button>
+        <Button onClick={()=> {setModal(!modal);}} variant='contained' >Finalizar votación</Button>
     </div>
   )
 }
