@@ -1,4 +1,10 @@
-const {insertCiudadanoMesa, updateCiudadanoMesaToEmitioVotoTrue, selectCiudadanoMesaByMesaIDAndCiudadanoID, selectCiudadanoMesaByMesaId} = require('../services/ciudadanoMesaService');
+const {
+    insertCiudadanoMesa,
+    updateCiudadanoMesaToEmitioVotoTrue,
+    selectCiudadanoMesaByMesaIDAndCiudadanoID,
+    selectCiudadanoMesaByMesaId,
+    selectCiudadanoMesaByCiudadanoId
+} = require('../services/ciudadanoMesaService');
 
 async function postCiudadanoMesa(req, res, next) {
     const { ciudadano_id, mesa_id } = req.params;
@@ -68,9 +74,29 @@ async function getCiudadanoMesaByMesaIDAndCiudadanoID(req, res, next) {
     }
 }
 
+async function getCiudadanoMesaByCiudadanoId(req, res, next) {
+    const { ciudadano_id } = req.params;
+
+    if (!ciudadano_id) {
+        return res.status(400).json({ message: 'ciudadano_id is required' });
+    }
+
+    try {
+        const result = await selectCiudadanoMesaByCiudadanoId(ciudadano_id);
+        if (!result) {
+            return res.status(404).json({ message: 'CiudadanoMesa not found' });
+        }
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error fetching CiudadanoMesa by ciudadano_id:', error);
+        next(error);
+    }
+}
+
 module.exports = {
     postCiudadanoMesa,
     patchEmitioVoto,
     getCiudadanoMesaByMesaID,
-    getCiudadanoMesaByMesaIDAndCiudadanoID
+    getCiudadanoMesaByMesaIDAndCiudadanoID,
+    getCiudadanoMesaByCiudadanoId
 };
