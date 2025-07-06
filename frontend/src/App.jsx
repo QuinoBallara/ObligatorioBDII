@@ -26,7 +26,7 @@ function App() {
       <SidebarContext.Provider value={{ showSidebar, setShowSidebar }}>
         <Router>
         <Routes>
-          <Route path='/' element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
+          <Route path="/" element={isAuthenticated ? <Outlet/> : <Navigate to='login'/>} >
             <Route path="/" 
               element={
                 <div style={{ display: 'flex', height: '100vh' }}>
@@ -42,6 +42,7 @@ function App() {
                   </div>
                 </div>
               } >
+              <Route index path='/' element={<GestionHome />} />
               <Route index path='home' element={<GestionHome />} />
               <Route path='resultados' element={<Outlet />} >
                 <Route path='candidatos' element={<ResultsPerCandidatoPage />} />

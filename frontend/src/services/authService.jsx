@@ -48,3 +48,15 @@ export const logout = async (token) => {
         throw error;
     }
 }
+
+export const validateToken = async (token) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/auth/validate`,
+            { headers: { 'Authorization': `Bearer ${token}` } }
+        );
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
