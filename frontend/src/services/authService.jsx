@@ -60,3 +60,16 @@ export const validateToken = async (token) => {
         throw error;
     }
 }
+
+export const checkEmitioVoto = async (auth) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${auth.voter.id}`,
+            { headers: { 'Authorization': `Bearer ${auth.token}` } }
+        );
+        return response.data;
+    } catch (error) {
+        console.error('Error checking if voto was emitted:', error);
+        throw error;
+    }
+}
