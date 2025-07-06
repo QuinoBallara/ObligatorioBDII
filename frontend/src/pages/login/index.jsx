@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
 import { checkEmitioVoto } from "../../services/authService";
+import { fecthMesa } from "../../services/authService";
 
 const LoginCiudadanoPage = () => {
     const { handleLoginCiudadano, isAuthenticated, auth, handleLogoutVoter } = useAuth();
@@ -11,6 +12,11 @@ const LoginCiudadanoPage = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+        const response = await fecthMesa(auth);
+        if (!response.esta_abierta) {
+            alert("La votación no está abierta. Por favor, inténtelo más tarde.");
+            return;
+        }
         if (isCredencial()) {
             await handleLoginCiudadano(null, authData.replace(" ", ""));
         }
