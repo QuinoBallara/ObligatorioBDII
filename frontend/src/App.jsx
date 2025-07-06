@@ -10,6 +10,7 @@ import ResultsPerPartidoPage from './pages/resultsPerPartido/index.jsx'
 import ControlPanel from './components/controlPanel/index.jsx'
 import Votacion from './pages/votacion/Index';
 import ConfirmationPage from './pages/votacion/ConfirmationPage';
+import CargarDatosPage from './pages/cargarDatos/index.jsx'
 import GestionHome from './pages/gestionHome/index.jsx'
 import { SidebarContext } from './contexts/sidebarContext.jsx'
 import { VotoProvider } from './contexts/votoContext.jsx'
@@ -47,7 +48,7 @@ function App() {
               <Route path='listas' element={<Listas />} />
               <Route path='votantes' element={<h1>Votantes</h1>} />
               <Route path='votosObservados' element={<h1>Votos Observados</h1>} />
-              <Route path='cargarDatos' element={<h1>Cargar Datos</h1>} />
+              <Route path='cargarDatos' element={<CargarDatosPage/>} />
             </Route>
             <Route path='votacion' element={<Outlet />} >
               <Route index path='login' element={<><LoginCiudadanoPage /></>} />
