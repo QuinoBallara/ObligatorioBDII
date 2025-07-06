@@ -5,14 +5,16 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import './votacion.css'
 import { useVoto } from '../../contexts/votoContext'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/authContext'
 
 export default function ConfirmationPage() {
 
   const {voto} = useVoto();
 
+  const {handleLogoutVoter} = useAuth();
+
   const navigate = useNavigate();
 
-  console.log("Voto en ConfirmationPage:", voto);
 
   return (
     <div className="confirmation-page">
@@ -41,7 +43,7 @@ export default function ConfirmationPage() {
           Gracias por participar en el proceso democrático. Su voto es importante y ha sido contabilizado de forma segura.
         </Typography>
         
-        <Button onClick={() => navigate('/')}
+        <Button onClick={async () => {await handleLogoutVoter() ;navigate('/votacion/login')}}
           variant='contained' 
           className="confirmation-button"
           size="large"

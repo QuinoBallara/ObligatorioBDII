@@ -12,7 +12,7 @@ const ResultsTable = ({
 }) => {
     if (loading) {
         return (
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4 }}>
                 <Typography>Cargando...</Typography>
             </Container>
         );
@@ -20,14 +20,14 @@ const ResultsTable = ({
 
     if (error) {
         return (
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4 }}>
                 <Typography color="error">{error}</Typography>
             </Container>
         );
     }
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4, paddingBottom: 4 }}>
             <Card raised sx={{
                 padding: 5,
                 paddingBottom: 3,
