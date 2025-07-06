@@ -31,11 +31,11 @@ Joaquín Ballara, Facundo Dutra, Mauro Machado
    ```env
    PORT=3000
    JWT_SECRET_KEY= tu_clave_secreta
-   DB_HOST=127.0.0.1
-   DB_PORT=3307
-   DB_USER=myappuser
-   DB_PASSWORD=mypassword
-   DB_NAME=myappdb
+   DB_HOST=mysql.reto-ucu.net
+   DB_PORT=50006
+   DB_USER=fv_g1_admin
+   DB_PASSWORD=contraseña # Reemplaza con la contraseña proporcionada en clase
+   DB_NAME=FV_Grupo1
    ```
 
 4. Crea un archivo `.env` en la carpeta `frontend` con la siguiente variable de entorno:
