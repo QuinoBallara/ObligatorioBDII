@@ -87,6 +87,7 @@ router.get(
  * @access Protected (Bearer token required)
  * @headers Authorization: Bearer <token>
  * @param {number} eleccion_id.params.required - Election ID
+ * @param {number} eleccion_id.params.required - Election ID
  * @return {object} 200 - Array of listas presidenciales for the election retrieved successfully
  * @return {object} 400 - Validation error if eleccion_id format is invalid
  * @return {object} 404 - No listas presidenciales found for the election
@@ -95,7 +96,8 @@ router.get(
 router.get(
     '/eleccion/:eleccion_id',
     [
-        param('eleccion_id').isInt().withMessage('The field eleccion_id must be an integer')
+        param('eleccion_id').isInt().withMessage('The field eleccion_id must be an integer'),
+        body('departamento_id').isInt().withMessage('The field departamento_id must be an integer')
     ],
     validateRequest,
     getListaPresidencialByEleccion
