@@ -2,12 +2,6 @@ const {
     selectMesaById,
     insertMesa,
     updateAbierta,
-    selectCiudadanoAndMesa,
-    insertOnCiudadanoMesa,
-    updateEmitioVoto,
-    selectCiudadanoMesaByMesaId,
-    selectVotoByID,
-    insertVoto, // PARA DISCUTIR
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
     selectVotosPerCandidatoPerMesa,
@@ -96,113 +90,8 @@ async function patchMesaAbierta(req, res, next) {
 
 }
 
-async function getCiudadanoMesa(req, res, next) {
 
-    const { mesa_id, ciudadano_id } = req.params;
 
-    if (!mesa_id || !ciudadano_id) {
-        return res.status(400).json({ message: 'mesa_id and ciudadano_id are required' });
-    }
-
-    try {
-        const result = await selectCiudadanoAndMesa(mesa_id, ciudadano_id);
-        if (!result) {
-            return res.status(404).json({ message: 'CiudadanoMesa not found' });
-        }
-        res.status(200).json(result);
-    } catch (error) {
-        console.error('Error fetching Ciudadano and Mesa:', error);
-        next(error);
-    }
-
-}
-
-async function postCiudadanoMesa(req, res, next) {
-
-    const { mesa_id, ciudadano_id } = req.params;
-    const { emitio_voto = false } = req.body || {};
-
-    if (!mesa_id || !ciudadano_id) {
-        return res.status(400).json({ message: 'mesa_id and ciudadano_id are required' });
-    }
-    try {
-        const result = await insertOnCiudadanoMesa(mesa_id, ciudadano_id, emitio_voto);
-        res.status(201).json({ message: 'CiudadanoMesa created successfully', id: result.insertId });
-    } catch (error) {
-        console.error('Error creating CiudadanoMesa:', error);
-        next(error);
-    }
-
-}
-
-async function patchEmitioVoto(req, res, next) {
-    const { emitio_voto } = req.body;
-    const { ciudadano_id, mesa_id } = req.params;
-
-    if (typeof emitio_voto !== 'boolean' || !ciudadano_id || !mesa_id) {
-        return res.status(400).json({ message: 'emitio_voto, ciudadano_id and mesa_id are required' });
-    }
-
-    try {
-        const result = await updateEmitioVoto(emitio_voto, ciudadano_id, mesa_id);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'CiudadanoMesa not found' });
-        }
-        res.status(200).json({ message: 'CiudadanoMesa updated successfully' });
-    } catch (error) {
-        console.error('Error updating CiudadanoMesa:', error);
-        next(error);
-    }
-}
-
-async function getCiudadanoMesaByMesaID(req, res, next) {
-
-    const { mesa_id } = req.params;
-
-    if (!mesa_id) {
-        return res.status(400).json({ message: 'mesa_id is required' });
-    }
-
-    try {
-        const results = await selectCiudadanoMesaByMesaId(mesa_id);
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'No CiudadanoMesa found for this mesa_id' });
-        }
-        res.status(200).json(results);
-    } catch (error) {
-        console.error('Error fetching CiudadanoMesa by mesa_id:', error);
-        next(error);
-    }
-
-}
-
-async function getVotoByID(req, res, next) {
-    const { id } = req.params;
-
-    if (!id) {
-        return res.status(400).json({ message: 'ID is required' });
-    }
-
-    try {
-        const result = await selectVotoByID(id);
-        if (!result) {
-            return res.status(404).json({ message: 'Voto not found' });
-        }
-        res.status(200).json(result);
-    } catch (error) {
-        console.error('Error fetching voto:', error);
-        next(error);
-    }
-}
-
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-async function postVoto(req, res, next) {
-
-}
 
 async function getVotosPerListaPerMesa(req, res, next) {
     const { id } = req.params;
@@ -266,12 +155,6 @@ module.exports = {
     getMesaByID,
     postMesa,
     patchMesaAbierta,
-    getCiudadanoMesa,
-    postCiudadanoMesa,
-    patchEmitioVoto,
-    getCiudadanoMesaByMesaID,
-    getVotoByID,
-    postVoto, // PARA DISCUTIR
     getVotosPerListaPerMesa,
     getVotosPerPartidoPerMesa,
     getVotosPerCandidatoPerMesa,

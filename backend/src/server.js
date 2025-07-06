@@ -80,6 +80,12 @@ app.use('/api/mesa', mesaRoutes);
 const listaPresidencialRoutes = require('./routes/listaPresidencial');
 app.use('/api/listaPresidencial', listaPresidencialRoutes);
 
+const ciudadanoMesaRoutes = require('./routes/ciudadanoMesa');
+app.use('/api/ciudadanoMesa', ciudadanoMesaRoutes);
+
+const votoRoutes = require('./routes/voto');
+app.use('/api/voto', votoRoutes);
+
 
 // Error handling middleware
 

@@ -8,14 +8,20 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ConfirmationModal() {
 
+    const {voto, modal, setModal} = useVoto();
+
+
     const navigate = useNavigate();
 
     const handleConfirmar = () => {
+
+        setModal(!modal);
         
         try {
             // TODO Lógica para enviar el voto al backend
             // TODO Lógica para enviar el voto al backend
             // TODO Lógica para enviar el voto al backend
+            
 
             navigate('/votacion/confirmado');
 
@@ -26,7 +32,6 @@ export default function ConfirmationModal() {
 
     }
 
-    const {voto, modal, setModal} = useVoto();
 
   return (
     <div className='confirmation-modal'>

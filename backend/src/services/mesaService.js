@@ -55,89 +55,10 @@ async function updateAbierta(id, esta_abierta) {
     }
 }
 
-async function selectCiudadanoAndMesa(mesa_id, ciudadano_id) {
-    const query = `
-        SELECT c.id AS ciudadano_id, c.primer_nombre, c.segundo_nombre, c.primer_apellido, c.segundo_apellido,
-               cm.mesa_id, cm.emitio_voto
-        FROM Ciudadano c
-        JOIN Ciudadano_Mesa cm on c.id = cm.ciudadano_id
-        WHERE cm.mesa_id = ? AND c.id = ?
-    `;
-    try {
-        const [rows] = await pool.query(query, [mesa_id, ciudadano_id]);
-        if (rows.length > 0) {
-            return rows[0];
-        }
-        return null;
-    } catch (error) {
-        throw error;
-    }
-}
 
-async function insertOnCiudadanoMesa(mesa_id, ciudadano_id, emitio_voto = false) {
-    const query = 'INSERT INTO Ciudadano_Mesa (ciudadano_id, mesa_id, emitio_voto) VALUES (?, ?, ?)';
-    try {
-        const [result] = await pool.query(query, [ciudadano_id, mesa_id, emitio_voto]);
-        console.log('Ciudadano_Mesa inserted successfully:', result);
-        return { ciudadano_id: ciudadano_id, mesa_id: mesa_id, emitio_voto: emitio_voto };
-    } catch (error) {
-        throw error;
-    }
-    
-}
 
-async function updateEmitioVoto(emitio_voto, ciudadano_id, mesa_id) {
-    const query = 'UPDATE Ciudadano_Mesa SET emitio_voto = ? WHERE ciudadano_id = ? AND mesa_id = ?';
-    try {
-        const [result] = await pool.query(query, [emitio_voto, ciudadano_id, mesa_id]);
-        console.log('Ciudadano_Mesa updated successfully:', result);
-        return { affectedRows: result.affectedRows };
-    } catch (error) {
-        throw error;
-    }
-    
-}
 
-async function selectCiudadanoMesaByMesaId(mesa_id) {
-    const query = `
-        SELECT c.id AS ciudadano_id, c.primer_nombre, c.segundo_nombre, c.primer_apellido, c.segundo_apellido,
-               cm.mesa_id, cm.emitio_voto
-        FROM Ciudadano c
-        JOIN Ciudadano_Mesa cm ON c.id = cm.ciudadano_id
-        WHERE cm.mesa_id = ?
-    `;
-    try {
-        const [rows] = await pool.query(query, [mesa_id]);
-        if (rows.length > 0) {
-            return rows;
-        }
-        return rows;
-    } catch (error) {
-        throw error;
-    }
-}
 
-async function selectVotoByID(id) {
-    const query = 'SELECT * FROM Voto WHERE id = ?';
-    try {
-        const [rows] = await pool.query(query, [id]);
-        if (rows.length > 0) {
-            return rows[0];
-        }
-        return null;
-    } catch (error) {
-        throw error;
-    }
-}
-
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-// PARA DISCUTIR
-async function insertVoto() {
-
-}
 
 async function selectVotosPerListaPerMesa(mesa_id) {
 
@@ -274,12 +195,6 @@ module.exports = {
     selectMesaById,
     insertMesa,
     updateAbierta,
-    selectCiudadanoAndMesa,
-    insertOnCiudadanoMesa,
-    updateEmitioVoto,
-    selectCiudadanoMesaByMesaId,
-    selectVotoByID,
-    insertVoto, // PARA DISCUTIR
     selectVotosPerListaPerMesa,
     selectVotosPerPartidoPerMesa,
     selectVotosPerCandidatoPerMesa,

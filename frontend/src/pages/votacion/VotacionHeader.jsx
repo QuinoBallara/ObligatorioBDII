@@ -1,6 +1,6 @@
 import React from 'react'
-import Volver from '../../components/buttons/back'
 import SearchBar from '../../components/UI/Votacion/SearchBar'
+import LogoutButton from '../../components/buttons/logoutVoter'
 import './votacion.css'
 
 function VotacionHeader({listaAFiltrar, setListaAFiltrar}) {
@@ -9,7 +9,7 @@ function VotacionHeader({listaAFiltrar, setListaAFiltrar}) {
 
   return (
     <div className='votacion-header'>
-        <Volver to='/login'/>
+        <LogoutButton />
         <SearchBar listaAFiltrar={listaAFiltrar} setListaAFiltrar={setListaAFiltrar} />
     </div>
   )
