@@ -3,9 +3,10 @@ import { Container, Box, Card, CardContent, Typography, TextField, Button } from
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import escudoUruguay from "../../assets/escudo_uruguay.png";
+import { checkEmitioVoto } from "../../services/authService";
 
 const LoginCiudadanoPage = () => {
-    const { handleLoginCiudadano, isAuthenticated, auth } = useAuth();
+    const { handleLoginCiudadano, isAuthenticated, auth, handleLogoutVoter } = useAuth();
     const [authData, setAuthData] = useState("");
     const navigate = useNavigate();
 
@@ -23,15 +24,25 @@ const LoginCiudadanoPage = () => {
     }
 
     useEffect(() => {
-        if (isAuthenticated && auth && auth.voter && auth.voter.token) {
-            navigate('/votacion/votar');
-        }
-    }, [isAuthenticated, auth])
+        const redirect = async () => {
+            if (isAuthenticated && auth && auth.voter && auth.voter.token) {
+                const response = await checkEmitioVoto(auth);
+                console.log(response);
+                if (!response.emitio_voto) {
+                    navigate('/votacion/votar');
+                } else {
+                    alert("Ya ha votado. No puede votar nuevamente.");
+                    handleLogoutVoter();
+                }
+            }
+        };
+        redirect();
+    }, [isAuthenticated, auth]);
 
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', position: 'relative' }}>
             <Button
-                onClick={() => navigate('/home')}
+                onClick={() => {handleLogoutVoter(); navigate('/home')}}
                 sx={{
                     position: 'absolute',
                     bottom: 1,
