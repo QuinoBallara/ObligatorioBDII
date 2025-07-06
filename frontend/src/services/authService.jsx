@@ -64,7 +64,7 @@ export const validateToken = async (token) => {
 export const checkEmitioVoto = async (auth) => {
     try {
         const response = await axios.get(
-            `${API_URL}/ciudadanoMesa/mesa/${auth.user.mesaId}/ciudadano/${auth.voter.id}`,
+            `${API_URL}/ciudadanoMesa/ciudadano/${auth.voter.id}`,
             { headers: { 'Authorization': `Bearer ${auth.token}` } }
         );
         return response.data;

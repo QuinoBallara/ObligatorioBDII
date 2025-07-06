@@ -34,11 +34,15 @@ const LoginCiudadanoPage = () => {
             if (isAuthenticated && auth && auth.voter && auth.voter.token) {
                 const response = await checkEmitioVoto(auth);
                 console.log(response);
-                if (!response.emitio_voto) {
-                    navigate('/votacion/votar');
-                } else {
+                
+                // Check if any vote has been emitted
+                const hasVoted = response.some(obj => obj.emitio_voto);
+                
+                if (hasVoted) {
                     alert("Ya ha votado. No puede votar nuevamente.");
                     handleLogoutVoter();
+                } else {
+                    navigate('/votacion/votar');
                 }
             }
         };

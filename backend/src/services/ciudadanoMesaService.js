@@ -65,9 +65,25 @@ async function selectCiudadanoMesaByMesaId(mesa_id) {
     }
 }
 
+async function selectCiudadanoMesaByCiudadanoId(ciudadano_id) {
+    const query = `
+        SELECT * FROM Ciudadano_Mesa WHERE ciudadano_id = ?`;
+
+    try {
+        const [rows] = await pool.query(query, [ciudadano_id]);
+        if (rows.length > 0) {
+            return rows;
+        }
+        return null;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     insertCiudadanoMesa,
     updateCiudadanoMesaToEmitioVotoTrue,
     selectCiudadanoMesaByMesaIDAndCiudadanoID,
-    selectCiudadanoMesaByMesaId
+    selectCiudadanoMesaByMesaId,
+    selectCiudadanoMesaByCiudadanoId
 }

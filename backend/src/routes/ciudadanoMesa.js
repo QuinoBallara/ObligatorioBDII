@@ -3,7 +3,13 @@ const { body, param } = require('express-validator');
 const validateRequest = require('../middlewares/validation');
 const forbidCitizen = require('../middlewares/forbidCitizen');
 
-const {postCiudadanoMesa, patchEmitioVoto, getCiudadanoMesaByMesaID, getCiudadanoMesaByMesaIDAndCiudadanoID} = require('../controllers/ciudadanoMesaController');
+const {
+    postCiudadanoMesa, 
+    patchEmitioVoto, 
+    getCiudadanoMesaByMesaID,
+    getCiudadanoMesaByMesaIDAndCiudadanoID,
+    getCiudadanoMesaByCiudadanoId
+} = require('../controllers/ciudadanoMesaController');
 
 const router = express.Router();
 
@@ -47,6 +53,16 @@ router.get(
     ],
     validateRequest,
     getCiudadanoMesaByMesaIDAndCiudadanoID
+);
+
+router.get(
+    '/ciudadano/:ciudadano_id',
+    [
+        param('ciudadano_id').isString().withMessage('The field ciudadano_id must be a string.'),
+    ],
+    validateRequest,
+    forbidCitizen,
+    getCiudadanoMesaByCiudadanoId
 );
 
 module.exports = router;
