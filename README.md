@@ -1,4 +1,4 @@
-﻿# Obligatorio BDII
+# Obligatorio BDII
 
 Joaquín Ballara, Facundo Dutra, Mauro Machado
 

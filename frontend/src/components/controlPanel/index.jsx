@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Container, Card, Typography, Divider, Slide, Zoom } from '@mui/material';
+import { Box, Container, Card, Typography, Divider, Slide, Zoom, Snackbar, Alert } from '@mui/material';
 import escudoUruguay from "../../assets/escudo_uruguay.png";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -19,6 +19,9 @@ import { useSidebar } from '../../contexts/sidebarContext';
 function ControlPanel() {
     const { auth, handleLogoutPresidente } = useAuth();
     const [tableInfo, setTableInfo] = useState({});
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [currentTime, setCurrentTime] = useState(new Date());
     const navigate = useNavigate();
     const { showSidebar, setShowSidebar } = useSidebar();
 
@@ -31,6 +34,23 @@ function ControlPanel() {
         }
         fetchTableInfo();
     }, [auth]);
+
+    // Update current time every minute to refresh the countdown
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 60000); // Update every minute
+
+        return () => clearInterval(timer);
+    }, []);
+
+    // Helper function to check if table can be closed
+    const canCloseTable = () => {
+        const now = currentTime;
+        const closingTime = new Date();
+        closingTime.setHours(19, 30, 0, 0);
+        return now >= closingTime;
+    }
 
     const logout = async () => {
         const response = await handleLogoutPresidente();
@@ -129,8 +149,42 @@ function ControlPanel() {
                                 onClick={async () => {
                                     if (tableInfo && auth) {
                                         const newState = !tableInfo.esta_abierta;
-                                        const response = await changeTableState(auth.user.mesaId, auth.token, newState);
-                                        setTableInfo({ ...tableInfo, esta_abierta: newState });
+                                        
+                                        // Check if trying to open the table and if it's before 8:00
+                                        if (newState) { // newState true means opening the table
+                                            const now = new Date();
+                                            const openingTime = new Date();
+                                            openingTime.setHours(8, 0, 0, 0); // Set to 8:00:00
+                                            
+                                            if (now < openingTime) {
+                                                setSnackbarMessage(`No se puede abrir la mesa antes de las 8:00. Hora actual: ${now.toLocaleTimeString()}`);
+                                                setSnackbarOpen(true);
+                                                return;
+                                            }
+                                        }
+                                        
+                                        // Check if trying to close the table and if it's before 19:30
+                                        if (!newState) { // newState false means closing the table
+                                            const now = new Date();
+                                            const closingTime = new Date();
+                                            closingTime.setHours(19, 30, 0, 0); // Set to 19:30:00
+                                            
+                                            if (now < closingTime) {
+                                                setSnackbarMessage(`No se puede cerrar la mesa antes de las 19:30. Hora actual: ${now.toLocaleTimeString()}`);
+                                                setSnackbarOpen(true);
+                                                return;
+                                            }
+                                        }
+                                        
+                                        try {
+                                            const response = await changeTableState(auth.user.mesaId, auth.token, newState);
+                                            setTableInfo({ ...tableInfo, esta_abierta: newState });
+                                            setSnackbarMessage(`Mesa ${newState ? 'abierta' : 'cerrada'} exitosamente`);
+                                            setSnackbarOpen(true);
+                                        } catch (error) {
+                                            setSnackbarMessage('Error al cambiar el estado de la mesa');
+                                            setSnackbarOpen(true);
+                                        }
                                     }
                                 }}
                             >
@@ -144,8 +198,12 @@ function ControlPanel() {
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
                                     <Typography variant="subtitle2" sx={{ textAlign: 'center' }}>
-                                        Click para
-                                        {tableInfo && !tableInfo.esta_abierta ? ' abrir' : ' cerrar'}
+                                        {tableInfo && !tableInfo.esta_abierta 
+                                            ? 'Click para abrir' 
+                                            : canCloseTable() 
+                                                ? 'Click para cerrar' 
+                                                : 'Cierre disponible a las 19:30'
+                                        }
                                     </Typography>
                                     {tableInfo && tableInfo.esta_abierta ? (
                                         <CheckCircleIcon sx={{ color: 'black', fontSize: 30 }} />
@@ -241,6 +299,21 @@ function ControlPanel() {
                     </Card>
                 </Container>
             </Slide>
+            
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={4000}
+                onClose={() => setSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert 
+                    onClose={() => setSnackbarOpen(false)} 
+                    severity={snackbarMessage.includes('Error') ? 'error' : snackbarMessage.includes('No se puede') ? 'warning' : 'success'}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </>
     )
 }

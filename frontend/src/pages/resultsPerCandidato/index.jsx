@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { getVotosPerCandidato } from "../../services/getViewsService";
 import ResultsTable from "../../components/resultsTable/";
+import { getTableInfo } from "../../services/controlPanelService";
 
 const ResultsPerCandidatoPage = () => {
     const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ const ResultsPerCandidatoPage = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { auth } = useAuth();
+    const [tableInfo, setTableInfo] = useState(false);
 
     const columns = [
         { key: 'Candidato', label: 'Candidato', align: 'left' },
@@ -70,7 +72,15 @@ const ResultsPerCandidatoPage = () => {
                 setLoading(false);
             }
         };
+        const fetchTableInfo = async () => {
+            if (auth) {
+                const response = await getTableInfo(auth.user.mesaId, auth.token)
+                setTableInfo(response);
+            }
+        }
 
+        
+        fetchTableInfo();
         fetchData();
     }, [auth]);
 
@@ -82,6 +92,7 @@ const ResultsPerCandidatoPage = () => {
             title="Resultados por Candidato"
             subtitle="Resultados de votación por cada candidato."
             columns={columns}
+            mesaState={tableInfo.esta_abierta}
         />
     );
 };

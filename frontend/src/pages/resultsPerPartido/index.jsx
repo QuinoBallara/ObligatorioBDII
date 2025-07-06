@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { getVotosPerPartido } from "../../services/getViewsService";
 import ResultsTable from "../../components/resultsTable"; 
+import { getTableInfo } from "../../services/controlPanelService";
 
 const ResultsPerPartidoPage = () => {
     const [data, setData] = useState([]);
@@ -10,6 +11,7 @@ const ResultsPerPartidoPage = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { auth } = useAuth();
+    const [tableInfo, setTableInfo] = useState(false);
 
     const columns = [
         { key: 'Partido', label: 'Partido Político', align: 'right' },
@@ -48,7 +50,14 @@ const ResultsPerPartidoPage = () => {
                 setLoading(false);
             }
         };
+        const fetchTableInfo = async () => {
+            if (auth) {
+                const response = await getTableInfo(auth.user.mesaId, auth.token)
+                setTableInfo(response);
+            }
+        }
 
+        fetchTableInfo();
         fetchData();
     }, [auth]);
 
@@ -60,6 +69,7 @@ const ResultsPerPartidoPage = () => {
             title="Resultados por Partido"
             subtitle="Resultados de votación por cada partido."
             columns={columns}
+            mesaState={tableInfo.esta_abierta}
         />
     );
 };

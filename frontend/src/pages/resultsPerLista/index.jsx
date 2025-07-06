@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { getVotosPerLista } from "../../services/getViewsService";
 import ResultsTable from "../../components/resultsTable"; 
+import { getTableInfo } from "../../services/controlPanelService";
 
 const ResultsPerListaPage = () => {
     const [data, setData] = useState([]);
@@ -10,6 +11,7 @@ const ResultsPerListaPage = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { auth } = useAuth();
+    const [tableInfo, setTableInfo] = useState(false);
 
     const columns = [
         { key: 'Lista', label: 'Lista', align: 'left' },
@@ -50,6 +52,14 @@ const ResultsPerListaPage = () => {
             }
         };
 
+        const fetchTableInfo = async () => {
+            if (auth) {
+                const response = await getTableInfo(auth.user.mesaId, auth.token)
+                setTableInfo(response);
+            }
+        }
+
+        fetchTableInfo();
         fetchData();
     }, [auth]);
 
@@ -61,6 +71,7 @@ const ResultsPerListaPage = () => {
             title="Resultados por Lista"
             subtitle="Resultados de votación por cada lista."
             columns={columns}
+            mesaState={tableInfo.esta_abierta}
         />
     );
 };
