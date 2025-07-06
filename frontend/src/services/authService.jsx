@@ -6,9 +6,6 @@ export const loginCiudadano = async (ci = null, credencialCivica = null) => {
         const payload = {};
         if (ci != null) payload.id = ci;
         if (credencialCivica != null) payload.credencialCivica = credencialCivica;
-        console.log('API_URL:', API_URL);
-        console.log('Full URL:', `${API_URL}/auth/login/ciudadano`);
-        console.log('Payload being sent:', payload);
         const response = await axios.post(
             `${API_URL}/auth/login/ciudadano`,
             payload,
@@ -32,7 +29,6 @@ export const loginPresidente = async (ci, credencialCivica) => {
             payload,
             { headers: { 'Content-Type': 'application/json' } }
         );
-        console.log('Login response:', response.data);
         return response.data;
     } catch (error) {
         throw error;
