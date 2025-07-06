@@ -71,10 +71,29 @@ async function patchMesaAbierta(req, res, next) {
     }
 
     try {
-        const hasBeenOpened = await selectVotosPerListaPerMesa(id);
-        if (hasBeenOpened) {
-            return res.status(400).json({ message: 'Cannot reopen a mesa that has already been closed after voting.' });
-        }
+        // const mesa = await selectMesaById(id);
+        // if (!mesa.esta_abierta) {
+        //     const now = new Date();
+        //     const closingTime = new Date();
+        //     closingTime.setHours(8, 0, 0, 0);
+            
+        //     if (now <= closingTime) {
+        //         return res.status(400).json({ 
+        //             message: 'Cannot open a mesa before 8:00. Current time: ' + now.toLocaleTimeString() 
+        //         });
+        //     }
+        // }
+        // if (mesa.esta_abierta) {
+        //     const now = new Date();
+        //     const closingTime = new Date();
+        //     closingTime.setHours(19, 30, 0, 0);
+            
+        //     if (now >= closingTime) {
+        //         return res.status(400).json({ 
+        //             message: 'Cannot reopen a mesa after 19:30. Current time: ' + now.toLocaleTimeString() 
+        //         });
+        //     }
+        // }
 
         const result = await updateAbierta(id, esta_abierta);
         if (result.affectedRows === 0) {

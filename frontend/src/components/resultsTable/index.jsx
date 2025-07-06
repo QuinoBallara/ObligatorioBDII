@@ -7,9 +7,19 @@ const ResultsTable = ({
     loading, 
     error, 
     title, 
-    subtitle, 
+    subtitle,
+    mesaState, 
     columns 
 }) => {
+    
+    if (mesaState) {
+        return (
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4 }}>
+                <Typography>La mesa aún no ha sido cerrada. No se pueden mostrar los resultados.</Typography>
+            </Container>
+        )
+    }
+    
     if (loading) {
         return (
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4 }}>
@@ -17,7 +27,7 @@ const ResultsTable = ({
             </Container>
         );
     }
-
+    
     if (error) {
         return (
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)', paddingTop: 4 }}>
