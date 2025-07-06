@@ -20,7 +20,6 @@ async function insert(nombre, municipio_id) {
     const query = 'INSERT INTO Comisaria (municipio_id, nombre) VALUES (?, ?)';
     try {
         const [result] = await pool.query(query, [municipio_id, nombre]);
-        console.log('Comisaria inserted successfully:', result);
         return { insertId: result.insertId }; 
     } catch(error) {
         throw error;
@@ -48,7 +47,6 @@ async function insertPolicia(policia_id, comisaria_id) {
 
     try{
         const [result] = await pool.query(query, [policia_id, comisaria_id]);
-        console.log('Comisaria inserted successfully:', result);
         return {insertId: result.insertId};
     } catch (error) {
         throw error;

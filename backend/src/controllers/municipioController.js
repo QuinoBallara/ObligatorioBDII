@@ -9,9 +9,7 @@ async function getMunicipioByID(req, res, next) {
     
     try {
         const resultsQuery = await selectByID(id);
-    
-        console.log('Results from getMunicipioByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Municipio not found' });
         }
@@ -27,9 +25,7 @@ async function getMunicipio(req, res, next) {
     
     try {
         const resultsQuery = await select();
-    
-        console.log('Results from getMunicipio:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Municipio found' });
         }

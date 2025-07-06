@@ -17,7 +17,7 @@ export default function SearchBar({listaAFiltrar, setListaAFiltrar}) {
       gap: '16px',
       minWidth: '60vh',
     }}>
-        <TextField value={listaAFiltrar} variant='standard' label='Buscar una lista' fullWidth onChange={(e) => {console.log(e.target.value); setListaAFiltrar(e.target.value)}} ></TextField>
+        <TextField value={listaAFiltrar} variant='standard' label='Buscar una lista' fullWidth onChange={(e) => {setListaAFiltrar(e.target.value)}} ></TextField>
         <IconButton>
             <SearchIcon />
         </IconButton>

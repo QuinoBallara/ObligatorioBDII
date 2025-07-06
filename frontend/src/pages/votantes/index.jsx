@@ -13,10 +13,9 @@ const VotantesPage = () => {
     const { auth } = useAuth();
 
     const columns = [
-        { key: 'ciudadano_id', label: 'ID Ciudadano', align: 'left' },
-        { key: 'nombre_completo', label: 'Nombre Completo', align: 'left' },
-        { key: 'apellido_completo', label: 'Apellido Completo', align: 'left' },
-        { key: 'mesa_id', label: 'Mesa ID', align: 'center' },
+        { key: 'ciudadano_id', label: 'CI', align: 'left' },
+        { key: 'nombre_completo', label: 'Nombres', align: 'left' },
+        { key: 'apellido_completo', label: 'Apellidos', align: 'left' },
         { 
             key: 'emitio_voto', 
             label: 'Emitió Voto', 
@@ -67,6 +66,18 @@ const VotantesPage = () => {
                         nombre_completo: nombreCompleto,
                         apellido_completo: apellidoCompleto
                     };
+                })
+                .sort((a, b) => {
+                    // Sort by emitio_voto (1 first, then 0)
+                    if (a.emitio_voto !== b.emitio_voto) {
+                        return b.emitio_voto - a.emitio_voto; // 1 comes before 0
+                    }
+                    // If same vote status, sort by apellido then nombre
+                    const apellidoCompare = a.apellido_completo.localeCompare(b.apellido_completo);
+                    if (apellidoCompare !== 0) {
+                        return apellidoCompare;
+                    }
+                    return a.nombre_completo.localeCompare(b.nombre_completo);
                 });
                 
                 setData(processedData);
@@ -78,12 +89,11 @@ const VotantesPage = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchData();
     }, [auth]);
 
     return (
-        <Card sx={{ padding: 2, margin: 2 }}>
         <ResultsTable
             data={data}
             loading={loading}
@@ -92,7 +102,6 @@ const VotantesPage = () => {
             subtitle="Lista de votantes habilitados para esta mesa."
             columns={columns}
         />
-        </Card>
     );
 };
 

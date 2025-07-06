@@ -9,9 +9,7 @@ async function getOrganismoEstatalByID(req, res, next) {
     
     try {
         const resultsQuery = await selectOrganismoEstatalByID(id);
-    
-        console.log('Results from selectOrganismoEstatalByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Organismo Estatal not found' });
         }
@@ -27,9 +25,7 @@ async function getOrganismoEstatal(req, res, next) {
     
     try {
         const resultsQuery = await selectOrganismoEstatal();
-    
-        console.log('Results from selectOrganismoEstatal:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Organismo Estatal found' });
         }
@@ -86,9 +82,7 @@ async function getCiudadanoOrganismoEstatalByOrganismoEstatalID(req, res, next) 
     
     try {
         const resultsQuery = await selectCiudadanoOrganismoEstatalByOrganismoEstatalID(organismo_estatal_id);
-    
-        console.log('Results from selectCiudadanoOrganismoEstatalByOrganismoEstatalID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Ciudadano Organismo Estatal found' });
         }
@@ -108,9 +102,7 @@ async function getCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID(re
     
     try {
         const resultsQuery = await selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID(organismo_estatal_id, ciudadano_id);
-    
-        console.log('Results from selectCiudadanoOrganismoEstatalByOrganismoEstatalIDAndCiudadanoID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Ciudadano Organismo Estatal found for the given IDs' });
         }

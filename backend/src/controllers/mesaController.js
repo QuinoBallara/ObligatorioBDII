@@ -11,7 +11,6 @@ const {
 async function getMesa(req, res, next) {
     try {
         const resultsQuery = await selectMesa();
-        console.log('Results from selectMesa:', resultsQuery);
 
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No mesas found' });
@@ -73,7 +72,6 @@ async function patchMesaAbierta(req, res, next) {
 
     try {
         const hasBeenOpened = await selectVotosPerListaPerMesa(id);
-        console.log(hasBeenOpened)
         if (hasBeenOpened) {
             return res.status(400).json({ message: 'Cannot reopen a mesa that has already been closed after voting.' });
         }

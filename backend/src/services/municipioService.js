@@ -35,7 +35,6 @@ async function insert(nombre, departamento_id) {
     const query = 'INSERT INTO Municipio (nombre, departamento_id) VALUES (?, ?)';
     try {
         const [result] = await pool.query(query, [nombre, departamento_id]);
-        console.log('Municipio inserted successfully:', result);
         return { insertId: result.insertId }; 
     } catch(error) {
         throw error;

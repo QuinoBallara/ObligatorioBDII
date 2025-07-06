@@ -20,7 +20,6 @@ export const getTableInfo = async (tableId, token) => {
 
 export const changeTableState = async (tableId, token, newState) => {
     try {
-        console.log('Changing table state for tableId:', tableId, 'to newState:', newState);
         const result = await axios.patch(`${API_URL}/mesa/${tableId}`, {
             'esta_abierta': newState ? true : false
         }, {
@@ -29,7 +28,6 @@ export const changeTableState = async (tableId, token, newState) => {
                 'Authorization': `Bearer ${token}`,
             }
         });
-        console.log('Table state changed:', result.data);
         return result.data;
     }
     catch (error) {

@@ -36,7 +36,6 @@ async function insert(nombre) {
     const query = 'INSERT INTO TipoCiudadano (nombre) VALUES (?)';
     try {
         const [result] = await pool.query(query, [nombre]);
-        console.log('TipoCiudadano inserted successfully:', result);
         return { insertId: result.insertId };
     } catch(error) {
         throw error;

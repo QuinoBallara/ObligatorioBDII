@@ -32,7 +32,9 @@ function App() {
                   <ControlPanel />
                   <div style={{
                     flex: 1,
-                    marginLeft: showSidebar ? '0' : '0',
+                    padding: '20px',
+                    marginLeft: showSidebar ? '25vw' : '0',
+                    minMarginLeft: showSidebar ? '350px' : '0',
                     transition: 'margin-left 0.3s ease'
                   }}>
                     <Outlet />

@@ -90,8 +90,6 @@ async function blacklistToken(token) {
 async function checkTokenInBlacklist(token) {
     // This function would typically check if the token is in the blacklist in the database
     // For now, we will just check the array
-    console.log('Checking token in blacklist:', token);
-    console.log('Current blacklist:', tokenBlacklist);
     return tokenBlacklist.includes(token);
 }
 

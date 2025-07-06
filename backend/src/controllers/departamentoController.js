@@ -3,9 +3,7 @@ const { selectDepartamentoByID, insertDepartamento, selectDepartamento } = requi
 async function getDepartamento(req, res, next) {
     try {
         const resultsQuery = await selectDepartamento();
-    
-        console.log('Results from selectDepartamento:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Departamento found' });
         }
@@ -26,9 +24,7 @@ async function getDepartamentoByID(req, res, next) {
     
     try {
         const resultsQuery = await selectDepartamentoByID(id);
-    
-        console.log('Results from selectDepartamentoByID:', resultsQuery);
-    
+        
         if (!resultsQuery) {
             return res.status(404).json({ message: 'Departamento not found' });
         }

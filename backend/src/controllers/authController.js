@@ -12,7 +12,6 @@ async function loginCiudadano(req, res, next) {
     try {
         let user;
         user = await getCiudadano(id, credencialCivica);
-        console.log('User found:', user);
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
