@@ -93,13 +93,14 @@ async function postListaPresidencial(req, res, next) {
 
 async function getListaPresidencialByEleccion(req, res, next) {
     const { eleccion_id } = req.params;
+    const { departamento_id } = req.params;
 
     if (!eleccion_id) {
         return res.status(400).json({ message: 'Eleccion ID is required' });
     }
 
     try {
-        const resultsQuery = await selectListaPresidencialByEleccion(eleccion_id);
+        const resultsQuery = await selectListaPresidencialByEleccion(eleccion_id, departamento_id);
 
         if (!resultsQuery) {
             return res.status(404).json({ message: 'No Lista Presidencial found for this Eleccion' });

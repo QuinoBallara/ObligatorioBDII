@@ -16,7 +16,19 @@ async function selectMesa() {
 
 async function selectMesaById(id) {
 
-    const query = `SELECT * FROM Mesa WHERE id = ?`;
+    const query = `
+        SELECT 
+            m.*,
+            d.id as departamento_id,
+            mun.nombre as municipio_nombre,
+            z.nombre as zona_nombre,
+            e.nombre as establecimiento_nombre
+        FROM Mesa m
+        JOIN Establecimiento e ON m.establecimiento_id = e.id
+        JOIN Zona z ON e.zona_id = z.id
+        JOIN Municipio mun ON z.municipio_id = mun.id
+        JOIN Departamento d ON mun.departamento_id = d.id
+        WHERE m.id = ?`;
 
     try {
         const [rows] = await pool.query(query, [id]);

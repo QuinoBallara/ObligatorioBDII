@@ -244,7 +244,7 @@ async function insertListaPresidencial(lista_id, partido_politico_id, departamen
     }
 }
 
-async function selectListaPresidencialByEleccion(eleccion_id) {
+async function selectListaPresidencialByEleccion(eleccion_id, departamento_id) {
 
     const query = `SELECT 
     -- Datos de Lista Presidencial
@@ -308,14 +308,14 @@ FROM ListaPresidencial lp
     INNER JOIN TipoEleccion te 
         ON e.tipo_eleccion_id = te.id
 
-WHERE l.eleccion_id = ?
+WHERE l.eleccion_id = ? AND lp.departamento_id = ?
 
 ORDER BY 
     lp.lista_id, 
     clp.numero;`;
 
     try {
-        const [rows] = await pool.query(query, [eleccion_id]);
+        const [rows] = await pool.query(query, [eleccion_id, departamento_id]);
         
         if (rows.length === 0) {
             return null;
@@ -357,7 +357,7 @@ ORDER BY
 
         return Array.from(listasMap.values());
     } catch(error) {
-        console.error('Error fetching ListaPresidencial by eleccion_id:', error);
+        console.error('Error fetching ListaPresidencial by eleccion_id and departamento_id:', error);
         throw error;
     }
 }

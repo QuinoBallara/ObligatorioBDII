@@ -15,12 +15,16 @@ export const getListas = async (auth) => {
             throw error;
         }
     }
+    
     const mesa = await fecthMesa(auth);
-    const fecthListas = async (mesa) => {
+    
+    const fecthListas = async (mesa, auth) => {
         try {
             const response = await axios.get(
-                `${API_URL}/listaPresidencial/eleccion/${mesa.eleccion_id}`,
-                { headers: { 'Authorization': `Bearer ${auth.token}` } }
+                `${API_URL}/listaPresidencial/eleccion/${mesa.eleccion_id}/${mesa.departamento_id}`,
+                {
+                    headers: { 'Authorization': `Bearer ${auth.token}` }
+                }
             );
             return response.data;
         } catch (error) {
@@ -28,7 +32,8 @@ export const getListas = async (auth) => {
             throw error;
         }
     }
-    const listas = await fecthListas(mesa);
+    
+    const listas = await fecthListas(mesa, auth);
     return listas;
 }
 
