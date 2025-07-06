@@ -1,6 +1,6 @@
 const pool = require('../db/db').promise();
 
-async function getByID(id) {
+async function selectCiudadanoByID(id) {
 
     const query = 'SELECT * FROM Ciudadano WHERE id = ?';
 
@@ -15,7 +15,7 @@ async function getByID(id) {
     }
 }
 
-async function get() {
+async function selectCiudadano() {
 
     const query = 'SELECT * FROM Ciudadano';
 
@@ -30,7 +30,7 @@ async function get() {
     }
 }
 
-async function insert(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo) {
+async function insertCiudadano(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo) {
 
     const query = 'INSERT INTO Ciudadano (id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, esta_vivo) VALUES (?, ?, ?, ?, ?, ?, ?)';
     try {
@@ -43,7 +43,7 @@ async function insert(id, primer_nombre, segundo_nombre, primer_apellido, segund
 
 }
 
-async function insertCredencial(credencial_civica, id) {
+async function insertCredencialCiudadano(credencial_civica, id) {
 
     const query = 'INSERT INTO Ciudadano_CredencialCivica (ciudadano_id, credencial_civica) VALUES (?, ?)';
 
@@ -58,8 +58,8 @@ async function insertCredencial(credencial_civica, id) {
 }
 
 module.exports = {
-    getByID,
-    get,
-    insert,
-    insertCredencial
+    selectCiudadanoByID,
+    selectCiudadano,
+    insertCiudadano,
+    insertCredencialCiudadano
 };

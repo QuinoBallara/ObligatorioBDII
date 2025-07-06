@@ -1,4 +1,4 @@
-const {get, getByID, insert} = require('../services/tipoCiudadanoService');
+const {selectTipoCiudadano, selectTipoCiudadanoByID, insertTipoCiudadano} = require('../services/tipoCiudadanoService');
 
 async function getTipoCiudadanoByID(req, res, next) {
     const {id} = req.params;
@@ -8,7 +8,7 @@ async function getTipoCiudadanoByID(req, res, next) {
     }
 
     try{
-        const resultsQuery = await getByID(id);
+        const resultsQuery = await selectTipoCiudadanoByID(id);
     
         if (!resultsQuery) {
             return res.status(404).json({message: 'Tipo Ciudadano not found'});
@@ -24,7 +24,7 @@ async function getTipoCiudadanoByID(req, res, next) {
 async function getTipoCiudadano(req, res, next) {
 
     try {
-        const resultsQuery = await get();
+        const resultsQuery = await selectTipoCiudadano();
 
         if (!resultsQuery) {
             return res.status(404).json({message: 'No Tipo Ciudadano found'});
@@ -44,7 +44,7 @@ async function postTipoCiudadano(req, res, next) {
         return res.status(400).json({message: 'Nombre is required'});
     }
     try{
-        const resultsQuery = await insert(nombre);
+        const resultsQuery = await insertTipoCiudadano(nombre);
     
         return res.status(201).json({message: 'Tipo Ciudadano created successfully', id: resultsQuery.insertId});
     }  catch (error) {
