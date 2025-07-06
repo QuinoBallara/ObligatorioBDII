@@ -1,6 +1,6 @@
 const pool = require('../db/db').promise();
 
-async function insertCiudadanoMesa(ciudadano_id, mesa_id, emitio_voto) {
+async function insertCiudadanoMesa(ciudadano_id, mesa_id, emitio_voto = false) {
     const query = `
         INSERT INTO Ciudadano_Mesa (ciudadano_id, mesa_id, emitio_voto) VALUES (?, ?, ?)`;
 
