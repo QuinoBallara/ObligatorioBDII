@@ -18,12 +18,15 @@ export default function RightContent() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        gap: '60px',
+        justifyContent: 'space-between',
+        height: '75vh', // Take full viewport height
+        padding: '1rem',
+        boxSizing: 'border-box',
+        minHeight: '200px', // Minimum height to prevent overcrowding
         }}>
         <BlankVote />
         <EpicSelector />
-        <div>
+        <div style={{ textAlign: 'center', flex: '0 0 auto' }}>
           <Typography variant='h6' >
             Lista seleccionada para votar:
           </Typography>
